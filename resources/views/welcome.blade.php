@@ -8,7 +8,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="stylesheet" href="{{ mix('app.css') }}">
     </head>
-    <body class="bg-blue-lightest">
+    <body class="bg-blue-lightest font-sans">
         <div id="app">
             @include('partials.navbar')
         </div>
