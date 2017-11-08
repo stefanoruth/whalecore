@@ -12,5 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return (\App\Page::with('contents')->get());
+    // return \App\Site::withUsers()->get();
+
+    return view('app');
 });
+
+Route::auth();

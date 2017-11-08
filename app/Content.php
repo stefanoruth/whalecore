@@ -3,13 +3,14 @@
 namespace App;
 
 use App\Relations\BelongsToSite;
+use App\Relations\Revisionable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Page extends Model
+class Content extends Model
 {
     use BelongsToSite, SoftDeletes;
-    
+
     /**
      * The attributes that aren't mass assignable.
      *
@@ -18,16 +19,20 @@ class Page extends Model
     protected $guarded = [];
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'body' => 'json',
+    ];
+
+    /**
      * Relationship
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function template()
+    public function language()
     {
-        return $this->belongsTo(Template::class);
-    }
-
-    public function contents()
-    {
-        return $this->belongsToMany(Content::class, 'page_contents');
+        return $this->belongsTo(Language::class);
     }
 }

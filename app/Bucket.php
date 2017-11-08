@@ -6,10 +6,10 @@ use App\Relations\BelongsToSite;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Page extends Model
+class Bucket extends Model
 {
     use BelongsToSite, SoftDeletes;
-    
+
     /**
      * The attributes that aren't mass assignable.
      *
@@ -26,8 +26,12 @@ class Page extends Model
         return $this->belongsTo(Template::class);
     }
 
+    /** 
+     * Relationship
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function contents()
     {
-        return $this->belongsToMany(Content::class, 'page_contents');
+        return $this->belongsToMany(Content::class, 'bucket_contents');
     }
 }

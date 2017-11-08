@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSitesTable extends Migration
+class CreateBucketsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,16 @@ class CreateSitesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sites', function (Blueprint $table) {
+        Schema::create('buckets', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('language_code')->nullable();
-            $table->string('title');
-            $table->json('meta')->nullable();
+            $table->integer('site_id')->unsigned();
+            $table->integer('template_id')->unsigned();
+            $table->string('name');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('language_code')->references('code')->on('languages')->onDelete('set null');
+            $table->foreign('site_id')->references('id')->on('sites')->onDelete('cascade');
+            $table->foreign('template_id')->references('id')->on('sites')->onDelete('cascade');
         });
     }
 
@@ -32,6 +33,6 @@ class CreateSitesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sites');
+        Schema::dropIfExists('buckets');
     }
 }

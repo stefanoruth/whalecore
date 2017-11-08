@@ -4,11 +4,12 @@ namespace App;
 
 use App\Relations\BelongsToSite;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Cashier\Billable;
 
-class Media extends Model
+class SiteBilling extends Model
 {
-    use BelongsToSite;
-    
+    use BelongsToSite, Billable;
+        
     /**
      * The attributes that aren't mass assignable.
      *

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSiteUsersTable extends Migration
+class CreateContentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateSiteUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('site_users', function (Blueprint $table) {
+        Schema::create('contents', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('site_id')->unsigned();
-            $table->integer('user_id')->unsigned();
-            $table->integer('role_id')->unsigned();
+            $table->json('body');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('site_id')->references('id')->on('sites')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
         });
     }
 
@@ -32,6 +31,6 @@ class CreateSiteUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('site_users');
+        Schema::dropIfExists('contents');
     }
 }

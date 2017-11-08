@@ -4,11 +4,10 @@ namespace App;
 
 use App\Relations\BelongsToSite;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Page extends Model
+class Revision extends Model
 {
-    use BelongsToSite, SoftDeletes;
+    use BelongsToSite;
     
     /**
      * The attributes that aren't mass assignable.
@@ -17,17 +16,21 @@ class Page extends Model
      */
     protected $guarded = [];
 
-    /**
+    /** 
      * Relationship
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function template()
+    public function user()
     {
-        return $this->belongsTo(Template::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function contents()
+    /**
+     * Relationship
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
+    public function revisionable()
     {
-        return $this->belongsToMany(Content::class, 'page_contents');
+        return $this->morphTo();
     }
 }
