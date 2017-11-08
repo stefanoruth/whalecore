@@ -2,13 +2,10 @@
 
 namespace App;
 
-use App\Relations\BelongsToSite;
 use Illuminate\Database\Eloquent\Model;
 
-class Revision extends Model
+class ContentRevision extends Model
 {
-    use BelongsToSite;
-    
     /**
      * The attributes that aren't mass assignable.
      *
@@ -16,7 +13,7 @@ class Revision extends Model
      */
     protected $guarded = [];
 
-    /** 
+    /**
      * Relationship
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -27,10 +24,10 @@ class Revision extends Model
 
     /**
      * Relationship
-     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function revisionable()
+    public function content()
     {
-        return $this->morphTo();
+        return $this->belongsTo(Content::class);
     }
 }

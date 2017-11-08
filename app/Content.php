@@ -35,4 +35,50 @@ class Content extends Model
     {
         return $this->belongsTo(Language::class);
     }
+
+    /**
+     * Relationship
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function pages()
+    {
+        return $this->belongsToMany(Page::class, 'page_contents');
+    }
+
+    /**
+     * Relationship
+     * @return \Illuminate\Database\Eloquent\Concerns\belongsToMany
+     */
+    public function buckets()
+    {
+        return $this->belongsToMany(Bucket::class, 'bucket_contents');
+    }
+
+    /**
+     * fetch and query revisions of the model
+     * @return \Illuminate\Database\Eloquent\Relations\Relation
+     */
+    public function revisions()
+    {
+        return $this->hasMany(ContentRevision::class);
+    }
+
+    /**
+     * Boots the Revivision trait
+     * @return void
+     */
+    protected static function bootRevisionable()
+    {
+        parent::boot();
+
+        // Create revision on model update.
+        static::updating(function ($model) {
+            $model->revisions()->create([
+                'user_id' => function_exists('auth') && auth()->check() ? auth()->user()->id : null,
+                'before'  => array_intersect_key($model->fresh()->toArray(), $model->getDirty()),
+                'after'   => $model->getDirty(),
+            ]);
+        });
+    }
+
 }
