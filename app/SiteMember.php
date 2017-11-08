@@ -4,8 +4,9 @@ namespace App;
 
 use App\Relations\BelongsToSite;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class SiteMember extends Model
+class SiteMember extends Pivot
 {
     use BelongsToSite;
     
@@ -22,6 +23,9 @@ class SiteMember extends Model
      * @var bool
      */
     public $incrementing = false;
+
+
+    protected $with = ['role'];
 
     /**
      * Relationship

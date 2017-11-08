@@ -7,11 +7,11 @@
             {{ csrf_field() }}
             <div class="mb-4">
                 <label class="block text-grey-darker text-sm font-bold mb-2" for="email">Email</label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="email" type="text" placeholder="Email">
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="email" type="text" name="email" placeholder="Email">
             </div>
             <div class="mb-6">
                 <label class="block text-grey-darker text-sm font-bold mb-2" for="password">Password</label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="password" type="password" placeholder="******************">
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" id="password" type="password" name="password" placeholder="******************">
             </div>
             <div class="flex items-center justify-between">
                 <button class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded" type="submit">Sign In</button>

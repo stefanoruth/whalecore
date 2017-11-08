@@ -11,11 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    // return (\App\Page::with('contents')->get());
-    // return \App\Site::withUsers()->get();
-
-    return view('app');
-});
-
 Route::auth();
+Route::middleware('auth')->group(function(){
+    Route::get('/', 'DashboardController@index');
+    Route::resource('sites', 'SiteController');
+
+    Route::middleware('tenancy')->group(function(){
+        Route::resource('pages', 'PageController');
+        Route::resource('templates', 'TemplateController');
+        Route::resource('buckets', 'BucketController');
+        Route::resource('components', 'ComponentController');
+        Route::resource('media', 'MediaController');
+    });
+});

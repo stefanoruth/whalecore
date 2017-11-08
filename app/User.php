@@ -24,4 +24,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function sites()
+    {
+        return $this->belongsToMany(Site::class, 'site_members')
+                    ->using(SiteMember::class)
+                    ->withPivot('role_id')
+                    ->withTimestamps()
+                    ->as('member');
+    }
 }

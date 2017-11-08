@@ -3,6 +3,7 @@
 namespace App\Relations;
 
 use App\Site;
+use Illuminate\Database\Eloquent\Builder;
 
 trait BelongsToSite
 {
@@ -13,5 +14,14 @@ trait BelongsToSite
     public function site()
     {
         return $this->belongsTo(Site::class);
+    }
+
+    /**
+     * Boots the BelongsToSite trait
+     * @return void
+     */
+    protected static function bootBelongsToSite()
+    {
+        static::addGlobalScope(new SiteScope);
     }
 }
