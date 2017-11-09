@@ -15,6 +15,7 @@ Route::auth();
 Route::middleware('auth')->group(function(){
     Route::get('/', 'DashboardController@index');
     Route::resource('sites', 'SiteController');
+    Route::get('logout', 'Auth\LoginController@logout');
 
     Route::middleware('tenancy')->group(function(){
         Route::resource('pages', 'PageController');
