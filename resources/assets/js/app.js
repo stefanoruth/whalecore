@@ -8,7 +8,8 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
-Vue.config.productionTip = false;
+Vue.component('modal', require('./components/Modal'));
+Vue.component('new-site-modal', require('./components/NewSiteModal'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -16,14 +17,27 @@ Vue.config.productionTip = false;
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-new Vue({
-    el: '#navbar',
-    name: 'NavBar',
-    data: {
-        mobile: false,
-    },
-});
+if (document.getElementById('navbar') != null) {
+    new Vue({
+        el: '#navbar',
+        name: 'NavBar',
+        data: {
+            mobile: false,
+        },
+    });
+}
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        showNewSiteModal: false,
+    },
+
+    methods: {
+        loginToSite(SiteId) {
+            axios.post(route('tenant.store'), {siteId: SiteId}).then((response) => {
+                window.location = route('pages.index');
+            });
+        }
+    }
 });

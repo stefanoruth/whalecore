@@ -6,7 +6,7 @@ use App\Relations\BelongsToSite;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class SiteMember extends Pivot
+class SiteMember extends Model
 {
     use BelongsToSite;
     

@@ -2,7 +2,7 @@
 
 namespace App\Exceptions;
 
-class SiteSpecificAreaException extends Exception
+class SiteSpecificAreaException extends \Exception
 {
     //
 }

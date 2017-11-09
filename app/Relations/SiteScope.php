@@ -17,6 +17,6 @@ class SiteScope implements Scope
      */
     public function apply(Builder $builder, Model $model)
     {
-        $builder->where('site_id', 1);
+        $builder->where('site_id', cookie('tenant'));
     }
 }

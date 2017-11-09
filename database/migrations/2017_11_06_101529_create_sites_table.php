@@ -17,6 +17,7 @@ class CreateSitesTable extends Migration
             $table->increments('id');
             $table->string('language_code')->nullable();
             $table->string('title');
+            $table->string('api_key')->unique()->nullable();
             $table->json('meta')->nullable();
             $table->timestamps();
             $table->softDeletes();

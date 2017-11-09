@@ -16,6 +16,7 @@
 
 var colors = {
   'transparent': 'transparent',
+  'black-transparent': 'rgba(10, 10, 10, 0.86)',
 
   'black': '#222b2f',
   'grey-darkest': '#364349',

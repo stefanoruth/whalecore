@@ -25,12 +25,21 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /** 
+     * Relationship
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
     public function sites()
     {
-        return $this->belongsToMany(Site::class, 'site_members')
-                    ->using(SiteMember::class)
-                    ->withPivot('role_id')
-                    ->withTimestamps()
-                    ->as('member');
+        return $this->hasManyThrough(Site::class, SiteMember::class, 'user_id', 'id', 'id', 'site_id');
+    }
+
+    /**
+     * Relationship
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function members()
+    {
+        return $this->hasMany(Member::class);
     }
 }

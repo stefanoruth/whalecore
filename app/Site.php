@@ -25,6 +25,15 @@ class Site extends Model
         return $this->hasMany(SiteMember::class);
     }
 
+    /** 
+     * Relationship
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function users()
+    {
+        return $this->hasManyThrough(User::class, SiteMember::class, 'site_id', 'id', 'id', 'user_id');
+    }
+
     /**
      * Relationship
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
