@@ -27,6 +27,11 @@
             @include('partials.navbar')
         @endif
         <main id="app">
+            @hasSection('pageTitle')
+                <div class="container mx-auto">
+                    <h1 class="text-3xl">@yield('pageTitle')</h1>
+                </div>
+            @endif
             @yield('body')
         </main>
         @routes

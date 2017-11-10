@@ -17,16 +17,16 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register')->middleware('guest');
 
 Route::middleware('auth')->group(function(){
-    Route::get('/', 'SiteController@index');
+    Route::get('/', 'SiteController@index')->name('dashboard');
     Route::resource('sites', 'SiteController')->except(['create']);
     Route::resource('tenant', 'TenantController')->only(['store']);
     Route::get('logout', 'Auth\LoginController@logout')->name('logout');
 
     Route::middleware('tenancy')->group(function(){
-        Route::resource('pages', 'PageController');
-        Route::resource('templates', 'TemplateController');
-        Route::resource('buckets', 'BucketController');
-        Route::resource('components', 'ComponentController');
+        Route::resource('pages', 'PageController')->except(['show', 'create']);
+        Route::resource('templates', 'TemplateController')->except(['show', 'create']);
+        Route::resource('buckets', 'BucketController')->except(['show', 'create']);
+        Route::resource('components', 'ComponentController')->except(['show', 'create']);
         Route::resource('media', 'MediaController', ['parameters' => ['media'=>'id'] ]);
     });
 });

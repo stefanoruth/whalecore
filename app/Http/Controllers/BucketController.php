@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Bucket;
 use Illuminate\Http\Request;
 
 class BucketController extends Controller
@@ -13,17 +14,9 @@ class BucketController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('bucket-list', [
+            'buckets' => Bucket::with('template')->paginate(15),
+        ]);
     }
 
     /**
@@ -33,17 +26,6 @@ class BucketController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
     {
         //
     }

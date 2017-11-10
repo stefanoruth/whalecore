@@ -14,19 +14,9 @@ class PageController extends Controller
      */
     public function index()
     {
-        return view('pages.index', [
-            'pages' => Page::paginate(25),
+        return view('page-list', [
+            'pages' => Page::with('template')->paginate(10),
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -41,17 +31,6 @@ class PageController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -59,7 +38,9 @@ class PageController extends Controller
      */
     public function edit($id)
     {
-        //
+        $page = Page::findOrFail($id);
+
+        return view('page-edit', compact('page'));
     }
 
     /**

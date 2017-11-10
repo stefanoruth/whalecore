@@ -17,7 +17,7 @@ class Tenancy
     public function handle($request, Closure $next)
     {
         $session = session('tenant');
-        dump($session);
+        // dump($session);
 
         if (is_null($session)) {
             throw new SiteSpecificAreaException("A Site has not been selected", 403);
