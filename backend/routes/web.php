@@ -11,13 +11,15 @@
 |
 */
 
+Route::view('/', 'app');
+
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login')->middleware('guest');
 Route::post('login', 'Auth\LoginController@login')->middleware('guest');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register')->middleware('guest');
 Route::post('register', 'Auth\RegisterController@register')->middleware('guest');
 
 Route::middleware('auth')->group(function(){
-    Route::get('/', 'SiteController@index')->name('dashboard');
+    // Route::get('/', 'SiteController@index')->name('dashboard');
     Route::resource('sites', 'SiteController')->except(['create']);
     Route::resource('tenant', 'TenantController')->only(['store']);
     Route::get('logout', 'Auth\LoginController@logout')->name('logout');
