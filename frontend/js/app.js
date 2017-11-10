@@ -3,7 +3,6 @@ require('./bootstrap');
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-
 window.Vue = Vue;
 Vue.use(VueRouter);
 Vue.component('modal', require('./components/Modal'));
@@ -18,6 +17,6 @@ Vue.component('new-site-modal', require('./components/NewSiteModal'));
 const app = new Vue({
     el: '#app',
     router: new VueRouter({
-
+        routes: require('./routes'),
     }),
 });
