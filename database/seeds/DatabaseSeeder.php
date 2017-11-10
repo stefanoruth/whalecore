@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
 
             $templates = factory(App\Template::class, 5)->create(['site_id' => $site->id]);
 
-            factory(App\Media::class, 10)->create(['site_id' => $site->id]);
+            // factory(App\Media::class, 10)->create(['site_id' => $site->id]);
             factory(App\Component::class, 2)->create(['site_id' => $site->id]);
             factory(App\Page::class, 50)->make(['site_id' => $site->id])->each(function($page) use ($templates){
                 $page->template_id = $templates->random()->id;
