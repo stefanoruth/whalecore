@@ -1,11 +1,11 @@
-/node_modules
+/frontend/node_modules
+/backend/vendor
+/backend/storage/*.key
 /public/hot
 /public/storage
 /public/app.css
 /public/app.js
 /public/mix-manifest.json
-/storage/*.key
-/vendor
 /.idea
 /.vagrant
 Homestead.json
