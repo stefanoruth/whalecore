@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Media;
 use Illuminate\Http\Request;
 
 class MediaController extends Controller
@@ -13,7 +14,9 @@ class MediaController extends Controller
      */
     public function index()
     {
-        //
+        return view('media-list', [
+            'mediaList' => Media::all(),
+        ]);
     }
 
     /**
