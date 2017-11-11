@@ -36,15 +36,11 @@ class SiteController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate([
+        $data = request()->validate([
             'title' => 'required',
-            'template' => 'required',
         ]);
 
-        return tap(Site::create([
-            'title' => request('title'),
-            'template_id' => request('template'),
-        ]), function($site){
+        return tap(Site::create($data), function($site){
             $site->members()->create([
                 'role_id' => Role::where('name', 'owner')->firstOrfail()->id,
                 'user_id' => auth()->id(),
