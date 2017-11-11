@@ -5,8 +5,7 @@ import VueRouter from 'vue-router';
 
 window.Vue = Vue;
 Vue.use(VueRouter);
-Vue.component('modal', require('./components/modals/Modal'));
-Vue.component('new-site-modal', require('./components/modals/NewSiteModal'));
+Vue.component('modal', require('./components/Modal'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

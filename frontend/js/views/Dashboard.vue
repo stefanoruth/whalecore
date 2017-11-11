@@ -8,20 +8,29 @@
             </div>
         </div>
 
-        <div class="w-48 h-48 cursor-pointer rounded overflow-hidden bg-white shadow-lg m-4" @click="showNewSiteModal = true">
+        <div class="w-48 h-48 cursor-pointer rounded overflow-hidden bg-white shadow-lg m-4" @click="showModal = true">
             <div class="flex justify-center items-center h-full">
                 <div class="font-bold text-xl mb-2">New site</div>
             </div>
         </div>
-        <new-site-modal :show="showNewSiteModal" @close="showNewSiteModal = false"></new-site-modal>
+        <modal :show="showModal" @close="showModal = false">   
+            <div class="mb-4">
+                <label class="block text-grey-darker text-sm font-bold mb-2" for="email">Email</label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" type="text" :class="{'border-red': errors != null}" v-model="newSiteTitle" placeholder="Title..">
+                <p class="text-red text-xs italic" v-if="errors != null">{{ errors.title[0] }}</p>
+            </div>
+            <button @click="newSite">Create</button>
+        </modal>
     </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      showNewSiteModal: false,
-      sites: []
+      showModal: false,
+      sites: [],
+      newSiteTitle: null,
+      errors: null,
     };
   },
   mounted() {
@@ -33,9 +42,18 @@ export default {
   methods: {
     loginToSite(SiteId) {
       axios.post(route("tenant.store"), { siteId: SiteId }).then(response => {
-          //Add login
+        //Redirect to pages list
       });
-    }
+    },
+    newSite() {
+                axios.post(route('sites.store'), {title: this.newSiteTitle}).then((response) => {
+                    axios.post(route('tenant.store'), {siteId: response.data.id}).then((response) => {
+                        //Redirect to pages list                    
+                    });
+                }).catch((error) => {
+                    this.errors = error.response.data.errors;
+                });
+            }
   }
 };
 </script>
