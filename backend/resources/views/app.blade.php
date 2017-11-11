@@ -9,10 +9,14 @@
         <link rel="stylesheet" href="{{ mix('app.css') }}">
     </head>
     <body class="font-sans bg-blue-lightest">
-        <div id="app">
-            <router-view></router-view>
-        </div>
-        @routes
-        <script src="{{ mix('app.js') }}"></script>
+        @hasSection('body')
+            @yield('body')
+        @else
+            <div id="app">
+                <router-view></router-view>
+            </div>
+            @routes
+            <script src="{{ mix('app.js') }}"></script>
+        @endif
     </body>
 </html>
