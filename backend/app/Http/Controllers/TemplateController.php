@@ -14,7 +14,7 @@ class TemplateController extends Controller
      */
     public function index()
     {
-        return Template::all();
+        return Template::withCount('pages')->withCount('buckets')->get();
     }
 
     /**
@@ -38,7 +38,7 @@ class TemplateController extends Controller
      */
     public function show($id)
     {
-        return Template::findOrFail($id)
+        return Template::findOrFail($id);
     }
 
     /**

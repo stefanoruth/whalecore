@@ -13,6 +13,7 @@
             @yield('body')
         @else
             <div id="app">
+                <navigation v-if="showNavbar"></navigation>
                 <router-view></router-view>
             </div>
             @routes
