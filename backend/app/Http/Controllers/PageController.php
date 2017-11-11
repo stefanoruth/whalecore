@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Page;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class PageController extends Controller
@@ -31,8 +32,18 @@ class PageController extends Controller
             'template' => ['required',Rule::exists('templates', 'id')->where('site_id', session('tenant'))],
         ]);
 
+
+        // Generate slug
+        $slug = Str::slug(request('title'));
+        $i = 1;
+        while (Page::where('slug', $slug)->count() > 0) {
+            $slug = Str::slug(request('title')).$i;
+            $i++;
+        }
+
         return Page::create([
             'title'       => request('title'),
+            'slug'        => $slug,
             'template_id' => request('template'),
             'site_id'     => session('tenant'),
         ]);
@@ -69,6 +80,6 @@ class PageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Page::where('id', $id)->delete();
     }
 }
