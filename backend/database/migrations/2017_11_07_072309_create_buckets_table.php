@@ -21,6 +21,7 @@ class CreateBucketsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
+            $table->unique(['site_id', 'title']);
             $table->foreign('site_id')->references('id')->on('sites')->onDelete('cascade');
             $table->foreign('template_id')->references('id')->on('templates')->onDelete('cascade');
         });
