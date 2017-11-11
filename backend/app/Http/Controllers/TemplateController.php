@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Template;
 use Illuminate\Http\Request;
 
 class TemplateController extends Controller
@@ -13,7 +14,7 @@ class TemplateController extends Controller
      */
     public function index()
     {
-        //
+        return Template::all();
     }
 
     /**
@@ -24,7 +25,9 @@ class TemplateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'title' => 'required',
+        ]);
     }
 
     /**
@@ -35,7 +38,7 @@ class TemplateController extends Controller
      */
     public function show($id)
     {
-        //
+        return Template::findOrFail($id)
     }
 
     /**

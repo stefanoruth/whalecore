@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Page;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PageController extends Controller
 {
@@ -13,7 +15,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        //
+        return Page::with('template')->get();
     }
 
     /**
@@ -24,7 +26,16 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'title'    => 'required',
+            'template' => ['required',Rule::exists('templates', 'id')->where('site_id', session('tenant'))],
+        ]);
+
+        return Page::create([
+            'title'       => request('title'),
+            'template_id' => request('template'),
+            'site_id'     => session('tenant'),
+        ]);
     }
 
     /**
@@ -35,7 +46,7 @@ class PageController extends Controller
      */
     public function show($id)
     {
-        //
+        return Page::with('template')->findOrFail($id);
     }
 
     /**

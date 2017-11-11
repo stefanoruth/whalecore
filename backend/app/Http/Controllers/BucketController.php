@@ -59,6 +59,6 @@ class BucketController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Bucket::delete($id);
     }
 }
