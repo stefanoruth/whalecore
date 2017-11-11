@@ -17,7 +17,7 @@ class CreateBucketsTable extends Migration
             $table->increments('id');
             $table->integer('site_id')->unsigned();
             $table->integer('template_id')->unsigned();
-            $table->string('name');
+            $table->string('title');
             $table->timestamps();
             $table->softDeletes();
 

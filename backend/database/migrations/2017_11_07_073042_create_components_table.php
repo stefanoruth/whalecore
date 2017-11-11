@@ -16,7 +16,7 @@ class CreateComponentsTable extends Migration
         Schema::create('components', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('site_id')->unsigned();
-            $table->string('name');
+            $table->string('title');
             $table->json('structure')->nullable();
             $table->timestamps();
             $table->softDeletes();
