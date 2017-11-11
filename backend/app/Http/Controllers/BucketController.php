@@ -14,9 +14,7 @@ class BucketController extends Controller
      */
     public function index()
     {
-        return view('bucket-list', [
-            'buckets' => Bucket::with('template')->paginate(15),
-        ]);
+        return Bucket::with('template')->get();
     }
 
     /**
@@ -31,14 +29,14 @@ class BucketController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function show($id)
     {
-        //
+        return Bucket::with('template')->findOrFail($id);
     }
 
     /**

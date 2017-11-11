@@ -11,24 +11,24 @@
 |
 */
 
-Route::view('/', 'app');
+Route::view('/', 'app')->middleware('auth');
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login')->middleware('guest');
+Route::get('logout', 'Auth\LoginController@logout')->middleware('auth')->name('logout');
 Route::post('login', 'Auth\LoginController@login')->middleware('guest');
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register')->middleware('guest');
 Route::post('register', 'Auth\RegisterController@register')->middleware('guest');
 
-Route::middleware('auth')->group(function(){
-    // Route::get('/', 'SiteController@index')->name('dashboard');
-    Route::resource('sites', 'SiteController')->except(['create']);
-    Route::resource('tenant', 'TenantController')->only(['store']);
-    Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+
+Route::middleware('auth')->prefix('api')->group(function(){
+    Route::apiResource('sites', 'SiteController');
+    Route::apiResource('tenant', 'TenantController')->only(['store']);
 
     Route::middleware('tenancy')->group(function(){
-        Route::resource('pages', 'PageController')->except(['show', 'create']);
-        Route::resource('templates', 'TemplateController')->except(['show', 'create']);
-        Route::resource('buckets', 'BucketController')->except(['show', 'create']);
-        Route::resource('components', 'ComponentController')->except(['show', 'create']);
-        Route::resource('media', 'MediaController', ['parameters' => ['media'=>'id'] ]);
+        Route::apiResource('pages', 'PageController');
+        Route::apiResource('templates', 'TemplateController');
+        Route::apiResource('buckets', 'BucketController');
+        Route::apiResource('components', 'ComponentController');
+        Route::apiResource('media', 'MediaController', ['parameters' => ['media'=>'id'] ]);
     });
 });

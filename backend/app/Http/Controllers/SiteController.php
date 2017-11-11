@@ -9,13 +9,14 @@ use Illuminate\Support\Facades\Auth;
 
 class SiteController extends Controller
 {
-    /** 
+    /**
      * Construct
      */
     public function __construct()
     {
         $this->middleware('tenancy')->except(['index', 'store']);
     }
+
 
     /**
      * Display a listing of the resource.
@@ -24,23 +25,26 @@ class SiteController extends Controller
      */
     public function index()
     {
-        return view('dashboard', [
-            'sites' => Auth::user()->sites()->get(),
-        ]);
+        return Auth::user()->sites()->get();
     }
 
     /**
      * Store a newly created resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(Request $request)
     {
-        $data = request()->validate([
+        request()->validate([
             'title' => 'required',
+            'template' => 'required',
         ]);
 
-        return tap(Site::create($data), function($site){
+        return tap(Site::create([
+            'title' => request('title'),
+            'template_id' => request('template'),
+        ]), function($site){
             $site->members()->create([
                 'role_id' => Role::where('name', 'owner')->firstOrfail()->id,
                 'user_id' => auth()->id(),
@@ -56,18 +60,7 @@ class SiteController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return Auth::user()->sites()->findOrFail($id);
     }
 
     /**

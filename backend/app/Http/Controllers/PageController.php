@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Page;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -14,9 +13,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        return view('page-list', [
-            'pages' => Page::with('template')->paginate(10),
-        ]);
+        //
     }
 
     /**
@@ -31,16 +28,14 @@ class PageController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function show($id)
     {
-        $page = Page::findOrFail($id);
-
-        return view('page-edit', compact('page'));
+        //
     }
 
     /**
