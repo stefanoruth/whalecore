@@ -13,7 +13,7 @@ class MediaController extends Controller
      */
     public function index()
     {
-        //
+        return Media::all();
     }
 
     /**
@@ -35,7 +35,7 @@ class MediaController extends Controller
      */
     public function show($id)
     {
-        //
+        return Media::findOrFail($id);
     }
 
     /**
@@ -58,6 +58,8 @@ class MediaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // Delete from disk.
+
+        return Media::where('id', $id)->delete();
     }
 }
