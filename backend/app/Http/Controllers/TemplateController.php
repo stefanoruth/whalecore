@@ -61,6 +61,6 @@ class TemplateController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Template::where('id', $id)->delete();
     }
 }

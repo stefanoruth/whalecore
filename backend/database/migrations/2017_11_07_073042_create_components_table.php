@@ -21,6 +21,7 @@ class CreateComponentsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
+            $table->unique(['site_id','title']);
             $table->foreign('site_id')->references('id')->on('sites')->onDelete('cascade');
         });
     }

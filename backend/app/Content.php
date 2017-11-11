@@ -67,7 +67,7 @@ class Content extends Model
      * Boots the Revivision trait
      * @return void
      */
-    protected static function bootRevisionable()
+    protected static function boot()
     {
         parent::boot();
 
@@ -80,5 +80,4 @@ class Content extends Model
             ]);
         });
     }
-
 }

@@ -40,12 +40,16 @@ class SiteController extends Controller
             'title' => 'required',
         ]);
 
-        return tap(Site::create($data), function($site){
-            $site->members()->create([
-                'role_id' => Role::where('name', 'owner')->firstOrfail()->id,
-                'user_id' => auth()->id(),
-            ]);
-        });
+        $site = Site::create($data);
+        $site->generateApiKey();
+        $site->save();
+
+        $site->members()->create([
+            'role_id' => Role::where('name', 'owner')->firstOrfail()->id,
+            'user_id' => auth()->id(),
+        ]);
+
+        return $site;
     }
 
     /**

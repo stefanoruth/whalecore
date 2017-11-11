@@ -105,4 +105,20 @@ class Site extends Model
     {
         return $this->with('members.user', 'members.role');
     }
+
+    /**
+     * Generates a new 40 char api key for the current site.
+     * @return \App\Site
+     */
+    public function generateApiKey()
+    {
+        do {
+            $salt = sha1(time() . mt_rand());
+            $key = substr($salt, 0, 40);
+        } while (static::where('api_key', $key)->count() > 0);
+
+        $this->api_key = $key;
+
+        return $this;
+    }
 }
