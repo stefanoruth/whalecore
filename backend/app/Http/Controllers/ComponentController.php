@@ -13,7 +13,7 @@ class ComponentController extends Controller
      */
     public function index()
     {
-        //
+        return Component::all();
     }
 
     /**
@@ -35,7 +35,7 @@ class ComponentController extends Controller
      */
     public function show($id)
     {
-        //
+        return Component::findOrFail($id);
     }
 
     /**
@@ -58,6 +58,6 @@ class ComponentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Component::where('id', $id)->delete();
     }
 }
