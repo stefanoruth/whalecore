@@ -1,6 +1,5 @@
 <template>
-    <div class="flex h-screen justify-center items-center" id="dashboard">
-        
+    <div class="flex h-screen justify-center items-center" id="dashboard">    
         <div v-for="site in sites" :key="site.id" class="w-48 h-48 cursor-pointer rounded overflow-hidden bg-white shadow-lg m-4" @click="loginToSite(site.id)">
             <img class="w-full" src="https://tailwindcss.com/img/card-top.jpg" alt="Sunset in the mountains">
             <div class="px-6 py-4">
@@ -16,7 +15,7 @@
         <modal :show="showModal" @close="showModal = false">   
             <div class="mb-4">
                 <label class="block text-grey-darker text-sm font-bold mb-2" for="email">Email</label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" type="text" :class="{'border-red': errors != null}" v-model="newSiteTitle" placeholder="Title..">
+                <input id="modalInput" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" type="text" :class="{'border-red': errors != null}" v-model="newSiteTitle" autofocus placeholder="Title..">
                 <p class="text-red text-xs italic" v-if="errors != null">{{ errors.title[0] }}</p>
             </div>
             <button @click="newSite">Create</button>
@@ -42,13 +41,13 @@ export default {
   methods: {
     loginToSite(SiteId) {
       axios.post(route("tenant.store"), { siteId: SiteId }).then(response => {
-        //Redirect to pages list
+       this.$router.push('/pages');
       });
     },
     newSite() {
                 axios.post(route('sites.store'), {title: this.newSiteTitle}).then((response) => {
                     axios.post(route('tenant.store'), {siteId: response.data.id}).then((response) => {
-                        //Redirect to pages list                    
+                        this.$router.push('/pages');                                            
                     });
                 }).catch((error) => {
                     this.errors = error.response.data.errors;
