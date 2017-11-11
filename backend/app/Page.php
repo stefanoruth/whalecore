@@ -26,6 +26,10 @@ class Page extends Model
         return $this->belongsTo(Template::class);
     }
 
+    /**
+     * Relationship
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function contents()
     {
         return $this->belongsToMany(Content::class, 'page_contents');
