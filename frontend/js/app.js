@@ -8,6 +8,9 @@ Vue.use(VueRouter);
 Vue.component('modal', require('./components/Modal'));
 Vue.component('navigation', require('./components/Navbar'));
 Vue.component('template-editor', require('./template-builder/TemplateEditor'));
+Vue.component('template-field-item', require('./template-builder/FieldItem'));
+Vue.component('template-field-edit', require('./template-builder/FieldEdit'));
+Vue.component('template-field-new', require('./template-builder/FieldNew'));
 
 Vue.filter('pretty', function(value) {
     return JSON.stringify(value, null, 2);

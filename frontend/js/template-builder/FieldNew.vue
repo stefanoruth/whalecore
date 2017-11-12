@@ -11,12 +11,11 @@
             <div @click="add('radio')">Radio</div>
             <div @click="add('bool')">Bool</div>
         </modal>
-        <field-edit :show="showEdit" :field="field" @close="resetClose" @save="submitField"></field-edit>
+        <template-field-edit :show="showEdit" :field="field" @close="resetClose" @save="submitField"></template-field-edit>
     </div>
 </template>
 
 <script>
-    import FieldEdit from './FieldEdit';
     import FieldEmpty from './FieldEmpty';
 
     export default {
@@ -47,10 +46,6 @@
                 this.showEdit = false;
                 this.$emit('close');
             }
-        },
-
-        components: {
-            FieldEdit,
         },
     }
 </script>

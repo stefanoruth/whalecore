@@ -2,17 +2,14 @@
     <div>
         <pre>{{ fields | pretty }}</pre>
         <section>
-            <field-item v-for="(field, key) in fields" :key="key" :field="field"></field-item>
+            <template-field-item v-for="(field, key) in fields" :key="key" :field="field"></template-field-item>
         </section>
         <button @click="showNewField = true">Add Field</button>
-        <field-new :show="showNewField" @close="showNewField = false" @newField="addField"></field-new>
+        <template-field-new :show="showNewField" @close="showNewField = false" @newField="addField"></template-field-new>
     </div>
 </template>
 
 <script>
-    import FieldItem from './FieldItem';
-    import FieldNew from './FieldNew';
-
     export default {
         data() {
             return {
@@ -29,11 +26,6 @@
             addField(field) {
                 this.fields.push(field);
             }
-        },
-
-        components: {
-            FieldItem,
-            FieldNew,
         },
     }
 </script>
