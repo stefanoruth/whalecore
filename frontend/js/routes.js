@@ -18,5 +18,9 @@ module.exports = [
     {
         path: '/templates',
         component: require('./views/Templates'),
+    },
+    {
+        path: '/templates/:id',
+        component: require('./template-builder/TemplateEditor'),
     }
 ];

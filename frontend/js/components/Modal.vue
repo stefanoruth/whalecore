@@ -1,6 +1,6 @@
 <template>
     <div class="flex fixed pin justify-center items-center z-40 py-8" v-show="show">
-        <div class="absolute pin bg-black-transparent" @click="close" ></div>
+        <div class="absolute pin bg-black-transparent" @click="close"></div>
         <div class="bg-blue-lightest z-50 rounded p-6 max-w-md max-h-full overflow-auto" @click.stop>
             <slot></slot>
         </div>

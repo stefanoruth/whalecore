@@ -7,6 +7,12 @@ window.Vue = Vue;
 Vue.use(VueRouter);
 Vue.component('modal', require('./components/Modal'));
 Vue.component('navigation', require('./components/Navbar'));
+Vue.component('template-editor', require('./template-builder/TemplateEditor'));
+
+Vue.filter('pretty', function(value) {
+    return JSON.stringify(value, null, 2);
+});
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

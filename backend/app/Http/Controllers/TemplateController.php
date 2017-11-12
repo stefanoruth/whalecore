@@ -55,7 +55,10 @@ class TemplateController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        request()->validate([
+            'title' => ['required',Rule::unique('templates')->where('site_id', session('tanant'))],
+            'structure' => ['required'],
+        ]);
     }
 
     /**
