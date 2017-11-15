@@ -1,30 +1,39 @@
-@extends('app')
-
-@section('body')
-    <div class="flex h-screen justify-center items-center">
-        <div class="w-full max-w-xs">
-            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" method="post" action="{{ route('login') }}">
-                {{ csrf_field() }}
-                <div class="mb-4">
-                    <label class="block text-grey-darker text-sm font-bold mb-2" for="email">Email</label>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker {{ $errors->has('email') ? 'border-red' : '' }}" id="email" type="text" name="email" placeholder="Email">
-                    @if($errors->has('email'))
-                        <p class="text-red text-xs italic">{{ $errors->first('email') }}</p>
-                    @endif
-                </div>
-                <div class="mb-6">
-                    <label class="block text-grey-darker text-sm font-bold mb-2" for="password">Password</label>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker {{ $errors->has('password') ? 'border-red' : '' }}" id="password" type="password" name="password" placeholder="******************">
-                    @if($errors->has('password'))
-                        <p class="text-red text-xs italic">{{ $errors->first('password') }}</p>
-                    @endif
-                </div>
-                <div class="flex items-center justify-between">
-                    <button class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded" type="submit">Sign In</button>
-                </div>
-            </form>
-            <p class="text-center text-grey text-xs">@2017 Whalecore. All rights reserved.</p>
-            <p class="text-center text-grey text-xs mt-2">Don't have an account, create one <a class="text-blue hover:text-blue-darker" href="{{ route('register') }}">here</a></p>
-        </div>
-    </div>
+@extends('app') @section('body')
+<section class="hero is-success is-fullheight">
+	<div class="hero-body">
+		<div class="container has-text-centered">
+			<div class="column is-4 is-offset-4">
+				<h3 class="title has-text-grey">Login</h3>
+				<div class="box">
+					<figure class="avatar">
+						<img class="image is-96x96" src="{{ asset('hvalborg.png') }}">
+					</figure>
+					<form method="post" action="{{ route('login') }}">
+						{{ csrf_field() }}
+						<div class="field">
+							<div class="control">
+								<input class="input is-large {{ $errors->has('email') ? 'is-danger' : '' }}" type="email" name="email" placeholder="Your Email" autofocus=""> 
+								@if($errors->has('email'))
+								<p class="help is-danger">{{ $errors->first('email') }}</p>
+								@endif
+							</div>
+						</div>
+						<div class="field">
+							<div class="control">
+								<input class="input is-large {{ $errors->has('password') ? 'is-danger' : '' }}" type="password" name="password" placeholder="Your Password"> 
+								@if($errors->has('password'))
+								<p class="help is-danger">{{ $errors->first('password') }}</p>
+								@endif
+							</div>
+						</div>
+						<button type='submit' class="button is-block is-info is-large">Login</a>
+					</form>
+				</div>
+				<p class="has-text-grey">
+					<a href="{{ route('register') }}">Sign Up</a> &nbsp;·&nbsp;
+				</p>
+			</div>
+		</div>
+	</div>
+</section>
 @stop

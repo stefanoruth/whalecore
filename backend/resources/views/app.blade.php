@@ -8,7 +8,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="stylesheet" href="{{ mix('app.css') }}">
     </head>
-    <body class="font-sans bg-blue-lightest">
+    <body>
         @hasSection('body')
             @yield('body')
         @else
