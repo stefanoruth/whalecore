@@ -18,6 +18,15 @@ class Template extends Model
     protected $guarded = [];
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'structure' => 'json',
+    ];
+
+    /**
      * Relationship
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */

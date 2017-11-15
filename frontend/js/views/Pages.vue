@@ -15,7 +15,7 @@
                     <td>{{page.slug}}</td>
                     <td>{{page.template.title}}</td>
                     <td>
-                        <a href="#">Edit</a>
+                        <router-link :to="{name: 'page.edit', params: {id: page.id}}">Edit</router-link>
                     </td>
                 </tr>
             </tbody>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Template;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class TemplateController extends Controller
 {
@@ -55,10 +56,14 @@ class TemplateController extends Controller
      */
     public function update(Request $request, $id)
     {
-        request()->validate([
-            'title' => ['required',Rule::unique('templates')->where('site_id', session('tanant'))],
-            'structure' => ['required'],
+        $data = request()->validate([
+            'title' => ['required',Rule::unique('templates')->where('site_id', session('tenant'))->ignore($id)],
+            'structure' => ['present','array'],
         ]);
+
+        return tap(Template::where('id', $id)->firstOrFail(),function($template) use ($data){
+            $template->fill($data)->save();
+        });
     }
 
     /**

@@ -12,6 +12,11 @@ module.exports = [
         component: require('./views/Pages'),
     },
     {
+        path: '/pages/:id',
+        name: 'page.edit',
+        component: require('./content-builder/ContentEditor'),
+    },
+    {
         path: '/buckets',
         component: require('./views/Buckets'),
     },
@@ -21,6 +26,7 @@ module.exports = [
     },
     {
         path: '/templates/:id',
+        name: 'template.edit',
         component: require('./template-builder/TemplateEditor'),
-    }
+    },
 ];

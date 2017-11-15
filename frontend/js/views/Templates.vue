@@ -15,7 +15,7 @@
                     <td>{{template.buckets_count}}</td>
                     <td>{{template.pages_count}}</td>                    
                     <td>
-                        <a href="#">Edit</a>
+                        <router-link :to="{name: 'template.edit', params: {id: template.id}}">Edit</router-link>
                     </td>
                 </tr>
             </tbody>
