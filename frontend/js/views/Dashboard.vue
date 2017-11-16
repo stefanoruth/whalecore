@@ -50,6 +50,8 @@ export default {
     };
   },
   mounted() {
+    this.$emit('disablenavbar');
+
     axios.get(route("projects.index")).then(response => {
       this.projects = response.data;
     });
