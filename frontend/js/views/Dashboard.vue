@@ -1,4 +1,5 @@
 <template>
+<div class="container">
 <div class="columns is-multiline is-mobile">
   <div v-for="project in projects" :key="project.id" class="column">
    <div class="card card-equal-height">
@@ -35,6 +36,7 @@
           </div>
           <button @click="newProject">Create</button>
   </modal>
+</div>
 </div>
 </template>
 <script>
