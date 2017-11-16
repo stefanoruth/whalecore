@@ -15,14 +15,14 @@ class CreateMediaTable extends Migration
     {
         Schema::create('media', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('site_id')->unsigned();
+            $table->integer('project_id')->unsigned();
             $table->string('file_name');
             $table->string('mime_type')->nullable();
             $table->integer('size')->unsigned();
             $table->string('disk');
             $table->timestamps();
 
-            $table->foreign('site_id')->references('id')->on('sites')->onDelete('cascade');
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
         });
     }
 

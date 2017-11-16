@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSitesTable extends Migration
+class CreateProjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSitesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sites', function (Blueprint $table) {
+        Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
             $table->string('language_code')->nullable();
             $table->string('title');
@@ -33,6 +33,6 @@ class CreateSitesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sites');
+        Schema::dropIfExists('projects');
     }
 }

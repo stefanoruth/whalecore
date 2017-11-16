@@ -2,13 +2,13 @@
 
 namespace App;
 
-use App\Relations\BelongsToSite;
+use App\Relations\BelongsToProject;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Cashier\Billable;
 
-class SiteBilling extends Model
+class ProjectBilling extends Model
 {
-    use BelongsToSite, Billable;
+    use BelongsToProject, Billable;
         
     /**
      * The attributes that aren't mass assignable.

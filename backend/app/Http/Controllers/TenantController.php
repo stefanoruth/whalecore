@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Exceptions\SiteSpecificAreaException;
-use App\Site;
+use App\Exceptions\ProjectSpecificAreaException;
+use App\Project;
 
 class TenantController extends Controller
 {
@@ -15,17 +15,17 @@ class TenantController extends Controller
     public function store()
     {
         request()->validate([
-            'siteId' => 'required',
+            'projectId' => 'required',
         ]);
 
-        $site = Site::whereHas('users', function($query){
+        $project = Project::whereHas('users', function($query){
             $query->where('id', auth()->id());
-        })->where('id', request('siteId'))->first();
+        })->where('id', request('projectId'))->first();
 
-        if (is_null($site)) {
-            throw new SiteSpecificAreaException("You need to be a part of the site project to login" ,403);
+        if (is_null($project)) {
+            throw new ProjectSpecificAreaException("You need to be a part of the project to login" ,403);
         }
 
-        session(['tenant' => $site->id]);
+        session(['tenant' => $project->id]);
     }
 }

@@ -21,7 +21,7 @@ Route::post('register', 'Auth\RegisterController@register')->middleware('guest')
 
 
 Route::middleware('auth')->prefix('api')->group(function(){
-    Route::apiResource('sites', 'SiteController');
+    Route::apiResource('projects', 'ProjectController');
     Route::apiResource('tenant', 'TenantController')->only(['store']);
 
     Route::middleware('tenancy')->group(function(){

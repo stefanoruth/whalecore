@@ -15,14 +15,14 @@ class CreateBucketsTable extends Migration
     {
         Schema::create('buckets', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('site_id')->unsigned();
+            $table->integer('project_id')->unsigned();
             $table->integer('template_id')->unsigned();
             $table->string('title');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->unique(['site_id', 'title']);
-            $table->foreign('site_id')->references('id')->on('sites')->onDelete('cascade');
+            $table->unique(['project_id', 'title']);
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
             $table->foreign('template_id')->references('id')->on('templates')->onDelete('cascade');
         });
     }

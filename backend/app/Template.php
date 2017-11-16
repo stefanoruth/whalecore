@@ -2,13 +2,13 @@
 
 namespace App;
 
-use App\Relations\BelongsToSite;
+use App\Relations\BelongsToProject;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Template extends Model
 {
-    use BelongsToSite, SoftDeletes;
+    use BelongsToProject, SoftDeletes;
     
     /**
      * The attributes that aren't mass assignable.

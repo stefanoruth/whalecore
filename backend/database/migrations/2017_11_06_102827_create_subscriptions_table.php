@@ -13,9 +13,9 @@ class CreateSubscriptionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('site_billings', function ($table) {
+        Schema::create('project_billings', function ($table) {
             $table->increments('id');
-            $table->integer('site_id')->unsigned();
+            $table->integer('project_id')->unsigned();
             $table->string('email');
             $table->string('stripe_id')->nullable();
             $table->string('card_brand')->nullable();
@@ -23,7 +23,7 @@ class CreateSubscriptionsTable extends Migration
             $table->timestamp('trial_ends_at')->nullable();
             $table->timestamps();
 
-            $table->foreign('site_id')->references('id')->on('sites')->onDelete('cascade');
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
         });
 
         Schema::create('subscriptions', function ($table) {
@@ -46,7 +46,7 @@ class CreateSubscriptionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('site_billings');
+        Schema::dropIfExists('project_billings');
         Schema::dropIfExists('subscriptions');
     }
 }
