@@ -1,5 +1,8 @@
+//Dependencies
 @import '../node_modules/bulma/bulma';
+//our own variables and mixins
 @import './utilities/__variables';
 @import './utilities/__mixins';
-
+//compnents
 @import './components/login-register';
+@import './components/card';
