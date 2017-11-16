@@ -29,9 +29,9 @@ class User extends Authenticatable
      * Relationship
      * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
-    public function sites()
+    public function projects()
     {
-        return $this->hasManyThrough(Site::class, SiteMember::class, 'user_id', 'id', 'id', 'site_id');
+        return $this->hasManyThrough(Project::class, ProjectMember::class, 'user_id', 'id', 'id', 'project_id');
     }
 
     /**
@@ -40,6 +40,6 @@ class User extends Authenticatable
      */
     public function members()
     {
-        return $this->hasMany(Member::class);
+        return $this->hasMany(ProjectMember::class);
     }
 }

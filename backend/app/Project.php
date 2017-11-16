@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Site extends Model
+class Project extends Model
 {
     use SoftDeletes;
 
@@ -22,7 +22,7 @@ class Site extends Model
      */
     public function members()
     {
-        return $this->hasMany(SiteMember::class);
+        return $this->hasMany(ProjectMember::class);
     }
 
     /** 
@@ -31,7 +31,7 @@ class Site extends Model
      */
     public function users()
     {
-        return $this->hasManyThrough(User::class, SiteMember::class, 'site_id', 'id', 'id', 'user_id');
+        return $this->hasManyThrough(User::class, ProjectMember::class, 'project_id', 'id', 'id', 'user_id');
     }
 
     /**
@@ -107,8 +107,8 @@ class Site extends Model
     }
 
     /**
-     * Generates a new 40 char api key for the current site.
-     * @return \App\Site
+     * Generates a new 40 char api key for the current project.
+     * @return \App\Project
      */
     public function generateApiKey()
     {

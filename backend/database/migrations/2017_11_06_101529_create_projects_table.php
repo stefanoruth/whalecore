@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateComponentsTable extends Migration
+class CreateProjectsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,16 @@ class CreateComponentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('components', function (Blueprint $table) {
+        Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('site_id')->unsigned();
+            $table->string('language_code')->nullable();
             $table->string('title');
-            $table->json('structure')->nullable();
+            $table->string('api_key')->unique()->nullable();
+            $table->json('meta')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
-            $table->unique(['site_id','title']);
-            $table->foreign('site_id')->references('id')->on('sites')->onDelete('cascade');
+            $table->foreign('language_code')->references('code')->on('languages')->onDelete('set null');
         });
     }
 
@@ -33,6 +33,6 @@ class CreateComponentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('components');
+        Schema::dropIfExists('projects');
     }
 }

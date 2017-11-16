@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Exceptions\SiteSpecificAreaException;
+use App\Exceptions\ProjectSpecificAreaException;
 use Closure;
 
 class Tenancy
@@ -20,11 +20,11 @@ class Tenancy
         // dump($session);
 
         if (is_null($session)) {
-            throw new SiteSpecificAreaException("A Site has not been selected", 403);
+            throw new ProjectSpecificAreaException("A project has not been selected", 403);
         }
 
-        if (is_null(auth()->user()->sites()->find($session))) {
-            throw new SiteSpecificAreaException("Site is unauthorized", 403);
+        if (is_null(auth()->user()->projects()->find($session))) {
+            throw new ProjectSpecificAreaException("Project is unauthorized", 403);
         }
 
         return $next($request);

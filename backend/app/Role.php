@@ -17,8 +17,8 @@ class Role extends Model
      * Relationship
      * @return \Illuminate\Database\Eloquent\Concerns\hasMany
      */
-    public function siteUsers()
+    public function members()
     {
-        return $this->hasMany(SiteUser::class);
+        return $this->hasMany(ProjectMember::class);
     }
 }

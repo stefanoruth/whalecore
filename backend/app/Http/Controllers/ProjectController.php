@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Role;
-use App\Site;
+use App\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class SiteController extends Controller
+class ProjectController extends Controller
 {
     /**
      * Construct
@@ -25,7 +25,7 @@ class SiteController extends Controller
      */
     public function index()
     {
-        return Auth::user()->sites()->get();
+        return Auth::user()->projects()->get();
     }
 
     /**
@@ -40,16 +40,16 @@ class SiteController extends Controller
             'title' => 'required',
         ]);
 
-        $site = Site::create($data);
-        $site->generateApiKey();
-        $site->save();
+        $project = Project::create($data);
+        $project->generateApiKey();
+        $project->save();
 
-        $site->members()->create([
+        $project->members()->create([
             'role_id' => Role::where('name', 'owner')->firstOrfail()->id,
             'user_id' => auth()->id(),
         ]);
 
-        return $site;
+        return $project;
     }
 
     /**
@@ -60,7 +60,7 @@ class SiteController extends Controller
      */
     public function show($id)
     {
-        return Auth::user()->sites()->findOrFail($id);
+        return Auth::user()->projects()->findOrFail($id);
     }
 
     /**

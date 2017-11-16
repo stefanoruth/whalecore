@@ -2,14 +2,14 @@
 
 namespace App;
 
-use App\Relations\BelongsToSite;
+use App\Relations\BelongsToProject;
 use App\Relations\Revisionable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Content extends Model
 {
-    use BelongsToSite, SoftDeletes;
+    use BelongsToProject, SoftDeletes;
 
     /**
      * The attributes that aren't mass assignable.

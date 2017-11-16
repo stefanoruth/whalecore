@@ -27,12 +27,12 @@ class TemplateController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'title' => ['required',Rule::unique('templates')->where('site_id', session('tanant'))],
+            'title' => ['required',Rule::unique('templates')->where('project_id', session('tanant'))],
         ]);
 
         return Template::create([
             'title' => request('title'),
-            'site_id' => session('tenant'),
+            'project_id' => session('tenant'),
         ]);
     }
 
@@ -57,7 +57,7 @@ class TemplateController extends Controller
     public function update(Request $request, $id)
     {
         $data = request()->validate([
-            'title' => ['required',Rule::unique('templates')->where('site_id', session('tenant'))->ignore($id)],
+            'title' => ['required',Rule::unique('templates')->where('project_id', session('tenant'))->ignore($id)],
             'structure' => ['present','array'],
         ]);
 

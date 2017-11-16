@@ -2,13 +2,13 @@
 
 namespace App;
 
-use App\Relations\BelongsToSite;
+use App\Relations\BelongsToProject;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class SiteMember extends Model
+class ProjectMember extends Model
 {
-    use BelongsToSite;
+    use BelongsToProject;
     
     /**
      * The attributes that aren't mass assignable.

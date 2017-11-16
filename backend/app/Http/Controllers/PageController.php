@@ -29,7 +29,7 @@ class PageController extends Controller
     {
         request()->validate([
             'title'    => 'required',
-            'template' => ['required',Rule::exists('templates', 'id')->where('site_id', session('tenant'))],
+            'template' => ['required',Rule::exists('templates', 'id')->where('project_id', session('tenant'))],
         ]);
 
 
@@ -45,7 +45,7 @@ class PageController extends Controller
             'title'       => request('title'),
             'slug'        => $slug,
             'template_id' => request('template'),
-            'site_id'     => session('tenant'),
+            'project_id'     => session('tenant'),
         ]);
     }
 
