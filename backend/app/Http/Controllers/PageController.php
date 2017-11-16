@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Page;
+use App\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
@@ -16,7 +16,7 @@ class PageController extends Controller
      */
     public function index()
     {
-        return Page::with('template')->get();
+        return Item::with('template.type')->type('page')->get();
     }
 
     /**
@@ -36,12 +36,12 @@ class PageController extends Controller
         // Generate slug
         $slug = Str::slug(request('title'));
         $i = 1;
-        while (Page::where('slug', $slug)->count() > 0) {
+        while (Item::where('slug', $slug)->count() > 0) {
             $slug = Str::slug(request('title')).$i;
             $i++;
         }
 
-        return Page::create([
+        return Item::create([
             'title'       => request('title'),
             'slug'        => $slug,
             'template_id' => request('template'),
@@ -57,7 +57,7 @@ class PageController extends Controller
      */
     public function show($id)
     {
-        return Page::with('template')->findOrFail($id);
+        return Item::with('template.type')->type('page')->findOrFail($id);
     }
 
     /**
@@ -80,6 +80,6 @@ class PageController extends Controller
      */
     public function destroy($id)
     {
-        return Page::where('id', $id)->delete();
+        return Item::where('id', $id)->delete();
     }
 }

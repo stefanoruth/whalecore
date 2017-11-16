@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePagesTable extends Migration
+class CreateContentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,16 @@ class CreatePagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('pages', function (Blueprint $table) {
+        Schema::create('content', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('project_id')->unsigned();
-            $table->integer('template_id')->unsigned();
-            $table->string('slug');
-            $table->string('title');
+            $table->integer('item_id')->unsigned();
+            $table->json('body');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->unique(['project_id', 'slug']);
+            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
             $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
-            $table->foreign('template_id')->references('id')->on('templates')->onDelete('cascade');
         });
     }
 
@@ -35,6 +33,6 @@ class CreatePagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pages');
+        Schema::dropIfExists('content');
     }
 }

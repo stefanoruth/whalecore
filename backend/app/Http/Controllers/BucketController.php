@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Bucket;
+use App\Item;
 use Illuminate\Http\Request;
 
 class BucketController extends Controller
@@ -14,7 +14,7 @@ class BucketController extends Controller
      */
     public function index()
     {
-        return Bucket::with('template')->get();
+        return Item::with('template.type')->type('bucket')->get();
     }
 
     /**
@@ -36,7 +36,7 @@ class BucketController extends Controller
      */
     public function show($id)
     {
-        return Bucket::with('template')->findOrFail($id);
+        return Item::with('template.type')->type('bucket')->findOrFail($id);
     }
 
     /**
@@ -59,6 +59,6 @@ class BucketController extends Controller
      */
     public function destroy($id)
     {
-        return Bucket::where('id', $id)->delete();
+        return Item::where('id', $id)->delete();
     }
 }

@@ -38,15 +38,6 @@ class Project extends Model
      * Relationship
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function pages()
-    {
-        return $this->hasMany(Page::class);
-    }
-
-    /**
-     * Relationship
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
     public function templates()
     {
         return $this->hasMany(Template::class);
@@ -56,18 +47,9 @@ class Project extends Model
      * Relationship
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function buckets()
+    public function items()
     {
-        return $this->hasMany(Bucket::class);
-    }
-
-    /**
-     * Relationship
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function components()
-    {
-        return $this->hasMany(Component::class);
+        return $this->hasMany(Item::class);
     }
 
     /**

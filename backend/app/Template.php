@@ -43,4 +43,13 @@ class Template extends Model
     {
         return $this->hasMany(Bucket::class);
     }
+
+    /** 
+     * Relationship
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function type()
+    {
+        return $this->belongsTo(TemplateType::class);
+    }
 }

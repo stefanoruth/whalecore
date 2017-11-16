@@ -4,16 +4,14 @@
             <thead>
                 <tr>
                     <th>Title</th>
-                    <th>Used in Buckets</th>
-                    <th>Used on Pages</th>                    
+                    <th>Type</th>                   
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="template in templates" :key="template.id">
                     <td>{{template.title}}</td>
-                    <td>{{template.buckets_count}}</td>
-                    <td>{{template.pages_count}}</td>                    
+                    <td>{{template.type.name}}</td>            
                     <td>
                         <router-link :to="{name: 'template.edit', params: {id: template.id}}">Edit</router-link>
                     </td>

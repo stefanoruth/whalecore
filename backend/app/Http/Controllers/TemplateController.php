@@ -15,7 +15,7 @@ class TemplateController extends Controller
      */
     public function index()
     {
-        return Template::withCount('pages')->withCount('buckets')->get();
+        return Template::with('type')->get();
     }
 
     /**
