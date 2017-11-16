@@ -27,4 +27,19 @@ class Item extends Model
     {
         return $this->hasMany(Content::class);
     }
+
+    /** 
+     * Scope
+     * @param  [type] $query [description]
+     * @param  [type] $type  [description]
+     * @return [type]        [description]
+     */
+    public function scopeType($query, $type)
+    {
+        return $query->whereHas('template', function($query) use ($type) {
+            $query->whereHas('type', function($query) use ($type) {
+                $query->where('name', $type);
+            });
+        });
+    }
 }
