@@ -42,7 +42,7 @@
 								@endif
 							</div>
 						</div>
-						<button type="submit" class="button is-block is-info is-large">Create</a>
+						<button type="submit" class="button is-block is-primary is-large">Create</a>
 					</form>
 				</div>
 			</div>
