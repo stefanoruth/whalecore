@@ -14,7 +14,7 @@
         @else
             <div id="app">
                 <navigation v-if="showNavbar"></navigation>
-                <router-view></router-view>
+                <router-view @disablenavbar="showNavbar = false"></router-view>
             </div>
             @routes
             <script src="{{ mix('app.js') }}"></script>
