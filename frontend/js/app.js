@@ -25,9 +25,6 @@ Vue.filter('pretty', function(value) {
 
 const app = new Vue({
     el: '#app',
-    data: {
-        showNavbar: true,
-    },
     router: new VueRouter({
         routes: require('./routes'),
     }),

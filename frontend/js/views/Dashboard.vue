@@ -1,5 +1,4 @@
 <template>
-<section>
 <div class="container">
 <div class="columns is-multiline is-mobile">
   <div v-for="project in projects" :key="project.id" class="column" @click="loginToProject(project.id)">
@@ -39,7 +38,6 @@
   </modal>
 </div>
 </div>
-</section>
 </template>
 <script>
 export default {
