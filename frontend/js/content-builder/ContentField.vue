@@ -4,11 +4,12 @@
         <p class="help">{{ field.description }}</p>
 
         <div class="column">
-            <div v-for="i in 3">
+            <div v-for="i in content[field.id]">
                 <content-field v-for="(subField, key) in field.fields" :key="key" :field="subField" :parent="nameKey" :content="content" :parentType="field.type" :indentifier="i"></content-field>
                 <hr>
             </div>
         </div>
+        <button class="button" @click="addCopy">Add Copy</button>
     </div>
 
     <div v-else-if="field.type == 'section'" class="field">
@@ -27,15 +28,15 @@
             <input v-if="field.type == 'text'" class="input" type="text" :name="fieldKey" :placeholder="field.placeholder">
             <div v-else-if="field.type == 'image'" class="file has-name">
                 <label class="file-label">
-                    <input class="file-input" type="file" name="resume">
+                    <input class="file-input" type="file" :name="fieldKey">
                     <span class="file-cta">
                         <span class="file-label">Choose a file…</span>
                     </span>
                     <span class="file-name">Screen Shot 2017-07-29 at 15.54.25.png</span>
                 </label>
             </div>
-            <textarea v-else-if="field.type == 'textarea'" class="textarea"></textarea>
-            <div v-else>Not yet whaled</div>
+            <textarea v-else-if="field.type == 'textarea'" :name="fieldKey" class="textarea"></textarea>
+            <div v-else>Not yet whaled: {{ fieldKey }}</div>
         </div>
     </div>
 </template>
@@ -74,7 +75,14 @@
                 }
 
                 return '['+this.field.id+']';
-            }
+            },
+        },
+
+        methods: {
+            addCopy() {
+                var base = this.content[this.field.id][0];
+                this.content[this.field.id].push(base);
+            },
         }
     }
 </script>
