@@ -13,8 +13,8 @@
             @yield('body')
         @else
             <div id="app">
-                <navigation v-if="showNavbar"></navigation>
-                <router-view @disablenavbar="showNavbar = false"></router-view>
+                <navigation></navigation>
+                <router-view></router-view>
             </div>
             @routes
             <script src="{{ mix('app.js') }}"></script>
