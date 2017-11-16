@@ -1,6 +1,6 @@
 <template>
-    <div class="container mx-auto">
-        <table border="1" class="w-full">
+    <div class="container">
+        <table border="1" class="table is-striped is-fullwidth">
             <thead>
                 <tr>
                     <th>Title</th>
