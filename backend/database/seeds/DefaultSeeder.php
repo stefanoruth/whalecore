@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class LanguageSeeder extends Seeder
+class DefaultSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,21 @@ class LanguageSeeder extends Seeder
      */
     public function run()
     {
+        // Roles
+        $roles = ['owner', 'administator', 'content-editor'];
+
+        foreach ($roles as $role) {
+            \App\Role::updateOrCreate(['name' => $role]);
+        }
+
+        // Template Types
+        $types = ['page', 'post', 'bucket'];
+
+        foreach ($types as $type) {
+            \App\TemplateType::updateOrCreate(['name' => $type]);
+        }
+
+        // Language
         $languages = [
             'en' => 'English',
             'da' => 'Danish',

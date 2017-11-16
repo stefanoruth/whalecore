@@ -6,6 +6,7 @@ use Faker\Generator as Faker;
 
 $factory->define(\App\Template::class, function (Faker $faker) {
     return [
-        'title' => $faker->colorName,
+        'title' => $faker->unique()->colorName,
+        'type_id' => \App\TemplateType::inRandomOrder()->first()->id,
     ];
 });

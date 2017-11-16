@@ -6,16 +6,9 @@ use App\Relations\BelongsToProject;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Bucket extends Model
+class Item extends Model
 {
     use BelongsToProject, SoftDeletes;
-
-    /**
-     * The attributes that aren't mass assignable.
-     *
-     * @var array
-     */
-    protected $guarded = [];
 
     /**
      * Relationship
@@ -28,10 +21,10 @@ class Bucket extends Model
 
     /** 
      * Relationship
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function contents()
     {
-        return $this->belongsToMany(Content::class, 'bucket_contents');
+        return $this->hasMany(Content::class);
     }
 }

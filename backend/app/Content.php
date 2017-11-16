@@ -12,6 +12,13 @@ class Content extends Model
     use BelongsToProject, SoftDeletes;
 
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'content';
+
+    /**
      * The attributes that aren't mass assignable.
      *
      * @var array

@@ -5,7 +5,7 @@ use Illuminate\Support\Str;
 
 /* @var Illuminate\Database\Eloquent\Factory $factory */
 
-$factory->define(App\Page::class, function (Faker $faker) {
+$factory->define(App\Item::class, function (Faker $faker) {
     $title = $faker->unique()->sentence;
 
     return [
