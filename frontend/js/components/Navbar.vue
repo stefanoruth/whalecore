@@ -13,10 +13,14 @@
         <div class="navbar-menu" v-bind:class="{'is-active':mobileShow}">
             <div class="navbar-start">
                 <router-link to="/" class="navbar-item">Dashboard</router-link>
-                <router-link to="/pages" class="navbar-item">Pages</router-link>
-                <router-link to="/buckets" class="navbar-item">Buckets</router-link>
+                <div class="navbar-item has-dropdown is-hoverable">
+                    <div class="navbar-link">Content</div>
+                    <div class="navbar-dropdown">
+                        <router-link to="/pages" class="navbar-item">Pages</router-link>
+                        <router-link to="/buckets" class="navbar-item">Buckets</router-link>
+                    </div>
+                </div>
                 <router-link to="/templates" class="navbar-item">Templates</router-link>
-                <router-link to="#" class="navbar-item">Components</router-link>
                 <router-link to="#" class="navbar-item">Media Library</router-link>
             </div>
             <div class="navbar-end">
