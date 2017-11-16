@@ -26,7 +26,7 @@
 								@endif
 							</div>
 						</div>
-						<button type='submit' class="button is-block is-info is-large">Login</a>
+						<button type='submit' class="button is-block is-primary is-large">Login</a>
 					</form>
 				</div>
 				<p class="has-text-grey">

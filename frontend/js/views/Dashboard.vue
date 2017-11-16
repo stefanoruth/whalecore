@@ -1,7 +1,7 @@
 <template>
 <div class="container">
-<div class="columns is-multiline is-mobile">
-  <div v-for="project in projects" :key="project.id" class="column" @click="loginToProject(project.id)">
+<div class="columns is-multiline">
+  <div v-for="project in projects" :key="project.id" class="column is-4" @click="loginToProject(project.id)">
    <div class="card card-equal-height">
     <div class="card-content">
     <div class="media">
@@ -17,7 +17,7 @@
   </div>
   </div> 
   </div>
-  <div class="column">
+  <div class="column is-4">
     <div class="card card-equal-height" @click="showModal = true">
         <div class="card-content">
           <div class="media"> 
@@ -29,12 +29,17 @@
       </div>
     </div>
     <modal :show="showModal" @close="showModal = false">   
-       <div class="mb-4">
-          <label class="block text-grey-darker text-sm font-bold mb-2" for="email">Email</label>
-          <input id="modalInput" class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" type="text" :class="{'border-red': errors != null}" v-model="newProjectTitle" autofocus placeholder="Title..">
-          <p class="text-red text-xs italic" v-if="errors != null">{{ errors.title[0] }}</p>
-          </div>
-          <button @click="newProject">Create</button>
+        <h1 slot="title">New project</h1>            
+        <div>
+            <div class="field">
+                <label class="label" for="title">Project title</label>
+                <div class="control">
+                    <input class="input" type="text" :class="{'border-red': errors != null}" v-model="newProjectTitle" autofocus placeholder="Title..">
+                    <p class="help is-danger" v-if="errors != null">{{ errors.title[0] }}</p>           
+                </div>
+            </div>
+        </div>
+        <button class="button is-primary is-medium" slot="footer" @click="newProject">Create</button>
   </modal>
 </div>
 </div>
