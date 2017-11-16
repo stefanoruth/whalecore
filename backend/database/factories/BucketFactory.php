@@ -6,6 +6,6 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Bucket::class, function (Faker $faker) {
     return [
-        'title' => $faker->word(),
+        'title' => $faker->unique()->word(),
     ];
 });
