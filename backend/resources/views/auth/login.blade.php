@@ -30,7 +30,7 @@
 					</form>
 				</div>
 				<p class="has-text-grey">
-					<a href="{{ route('register') }}">Sign Up</a> &nbsp;·&nbsp;
+					<a href="{{ route('register') }}">Sign Up</a>
 				</p>
 			</div>
 		</div>
