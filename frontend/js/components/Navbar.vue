@@ -12,7 +12,6 @@
         </div>
         <div class="navbar-menu" v-bind:class="{'is-active':mobileShow}">
             <div class="navbar-start">
-                <router-link to="/" class="navbar-item">Dashboard</router-link>
                 <div class="navbar-item has-dropdown is-hoverable">
                     <div class="navbar-link">Content</div>
                     <div class="navbar-dropdown">
@@ -24,8 +23,14 @@
                 <router-link to="#" class="navbar-item">Media Library</router-link>
             </div>
             <div class="navbar-end">
-                <router-link to="#" class="navbar-item">Settings</router-link>
-                <router-link to="#" class="navbar-item">User</router-link>
+                <div class="navbar-item has-dropdown is-hoverable">                
+                    <div class="navbar-link">Settings</div>
+                        <div class="navbar-dropdown">
+                            <router-link to="/" class="navbar-item">Change project</router-link>                        
+                            <router-link to="#" class="navbar-item">Settings</router-link>
+                            <router-link to="#" class="navbar-item">User</router-link>
+                    </div>
+                </div>
                 <a href="/logout" class="navbar-item">Logout</a>
             </div>
         </div>
@@ -34,7 +39,6 @@
 
 <script>
 export default {
-
   data() {
     return {
       mobileShow: false
