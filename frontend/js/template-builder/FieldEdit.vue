@@ -17,7 +17,7 @@
                 <label class="block text-grey-darker text-sm font-bold mb-2">Default</label>
                 <input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" type="text" v-model="field.default">
             </div>
-            <div class="mb-4" v-if="!hasSubFields()">
+            <div class="mb-4">
                 <label class="block text-grey-darker text-sm font-bold mb-2">Description</label>
                 <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" v-model="field.description"></textarea>
             </div>
