@@ -8,6 +8,7 @@ Vue.use(VueRouter);
 Vue.component('modal', require('./components/Modal'));
 Vue.component('navigation', require('./components/Navbar'));
 Vue.component('content-field', require('./content-builder/ContentField'));
+Vue.component('content-field-simple', require('./content-builder/ContentFieldSimple'));
 Vue.component('template-editor', require('./template-builder/TemplateEditor'));
 Vue.component('template-field-item', require('./template-builder/FieldItem'));
 Vue.component('template-field-edit', require('./template-builder/FieldEdit'));

@@ -1,13 +1,9 @@
 <template>
     <div class="columns" v-if="template.length > 0">
-        <pre class="column">{{ template | pretty }}</pre>
-        <pre style="column">{{ content | pretty }}</pre>
+        <!-- <pre class="column">{{ template | pretty }}</pre> -->
+        <pre class="column is-4">{{ content | pretty }}</pre>
         <div class="column">
-            <form action="" enctype="multipart/form-data" method="post" v-on:submit.prevent="onSubmit">
-                <input type="hidden" name="_method" value="put">
-                <button type="submit" class="button">Submit</button>
-                <content-field v-for="(field, key) in template" :key="key" :field="field" :content="content[key]" :indentifier="key"></content-field>
-            </form>
+            <content-field v-for="(field, key) in template" :key="key" :field="field" :content="content[key]" :indentifier="key" style="margin-bottom:50px;"></content-field>
         </div>
     </div>
 </template>
@@ -33,20 +29,13 @@
 
         methods: {
             buildContent(template, parent) {
-                if (typeof parent !== 'undefined') {
-                    var data = {};
-                    for (var i = 0; i < template.length; i++) {
-                        if (template[i].fields.length > 0) {
-                            data[template[i].id] = this.buildContent(template[i].fields, template[i]);
-                        } else {
-                            data[template[i].id] = null;
-                        }
-                    }
-                } else {
+                // If is top level item
+                if (typeof parent === 'undefined') {
                     var data = [];
                     for (var i = 0; i < template.length; i++) {
                         var newField = {};
 
+                        // If repeater or section
                         if (template[i].fields.length > 0) {
                             newField[template[i].id] = this.buildContent(template[i].fields, template[i]);
                         } else {
@@ -54,6 +43,18 @@
                         }
 
                         data.push(newField);
+                    }
+                } else {
+
+                    var data = {};
+                    for (var i = 0; i < template.length; i++) {
+
+                        // If repeater or section
+                        if (template[i].fields.length > 0) {
+                            data[template[i].id] = this.buildContent(template[i].fields, template[i]);
+                        } else {
+                            data[template[i].id] = null;
+                        }
                     }
                 }
 
@@ -66,7 +67,7 @@
 
             onSubmit(event) {
                 axios.post(route('pages.update', this.$route.params.id), new FormData(event.target));
-            }
+            },
         },
     }
 </script>
