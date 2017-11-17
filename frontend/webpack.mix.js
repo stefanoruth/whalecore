@@ -14,6 +14,7 @@ let mix = require('laravel-mix');
 mix.setPublicPath('..\\public')
    .js('js/app.js', '..\\public')
    .sass('sass/app.scss', '.')
+   .copyDirectory('./node_modules/font-awesome/fonts', '../public/fonts')
    .options({
         processCssUrls: false,
    });
