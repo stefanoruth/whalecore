@@ -1,5 +1,6 @@
 <template>
     <modal :show="show" @close="$emit('close')">
+        <h1 slot="title">Edit field</h1>    
         <div v-if="field != null">
             <div class="field">
                 <label class="label">Title</label>
@@ -51,9 +52,9 @@
                     <input class="input" type="number" v-model="field.max">
                 </div>
             </div>
-            <button class="button is-success" @click="$emit('save')">Save</button>
-            <button class="button is-danger" @click="$emit('delete')">Delete</button>
         </div>
+        <button slot="footer" class="button is-success" @click="$emit('save')">Save</button>
+        <button slot="footer" class="button is-danger" @click="$emit('delete')">Delete</button>
     </modal>
 </template>
 
