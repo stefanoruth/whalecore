@@ -1,0 +1,13 @@
+.fieldSelector {
+    display: flex;
+    flex-direction: column;
+    .fieldSelectorItem {
+        background-color: $grey-lighter;
+        width: 100%;
+        margin: 10px 0;
+        text-align: center;
+        line-height: 70px;
+        font-size: 30px;
+        cursor: pointer;
+    }
+}

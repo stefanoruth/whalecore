@@ -1,12 +1,14 @@
 <template>
-    <div v-if="template != null">
-        <pre>{{ fields | pretty }}</pre>
-        <section>
-            <template-field-item v-for="(field, key) in fields" :key="key" :field="field" @delete="deleteField(key)"></template-field-item>
-        </section>
-        <button @click="showNewField = true">Add Field</button>
-        <template-field-new :show="showNewField" @close="showNewField = false" @newField="addField"></template-field-new>
-        <button @click="save">Save Template</button>
+    <div v-if="template != null" class="columns">
+        <pre class="column">{{ fields | pretty }}</pre>
+        <div class="column">
+            <section>
+                <template-field-item v-for="(field, key) in fields" :key="key" :field="field" @delete="deleteField(key)"></template-field-item>
+            </section>
+            <button @click="showNewField = true">Add Field</button>
+            <template-field-new :show="showNewField" @close="showNewField = false" @newField="addField"></template-field-new>
+            <button @click="save">Save Template</button>
+        </div>
     </div>
 </template>
 

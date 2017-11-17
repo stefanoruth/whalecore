@@ -1,55 +1,70 @@
 <template>
     <modal :show="show" @close="$emit('close')">
         <div v-if="field != null">
-            <div class="mb-4">
-                <label class="block text-grey-darker text-sm font-bold mb-2">Title</label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" type="text" v-model="field.title">
+            <div class="field">
+                <label class="label">Title</label>
+                <div class="control">
+                    <input class="input" type="text" v-model="field.title">
+                </div>
             </div>
-            <div class="mb-4">
-                <label class="block text-grey-darker text-sm font-bold mb-2">Id</label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" type="text" v-model="field.id">
+             <div class="field">
+                <label class="label">Id</label>
+                <div class="control">
+                    <input class="input" type="text" v-model="field.id">
+                </div>
             </div>
-            <div class="mb-4" v-if="!hasSubFields()">
-                <label class="block text-grey-darker text-sm font-bold mb-2">Placeholder</label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" type="text" v-model="field.placeholder">
+            <div class="field" v-if="!hasSubFields()">
+                <label class="label">Placeholder</label>
+                <div class="control">
+                    <input class="input" type="text" v-model="field.placeholder">
+                </div>
             </div>
-            <div class="mb-4" v-if="!hasSubFields()">
-                <label class="block text-grey-darker text-sm font-bold mb-2">Default</label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" type="text" v-model="field.default">
+            <div class="field" v-if="!hasSubFields()">
+                <label class="label">Default</label>
+                <div class="control">
+                    <input class="input" type="text" v-model="field.default">
+                </div>
             </div>
-            <div class="mb-4" v-if="!hasSubFields()">
-                <label class="block text-grey-darker text-sm font-bold mb-2">Description</label>
-                <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" v-model="field.description"></textarea>
+             <div class="field" v-if="!hasSubFields()">
+                <label class="label">Description</label>
+                <div class="control">
+                    <input class="input" type="text" v-model="field.description">
+                </div>
             </div>
-            <div class="mb-4" v-if="!hasSubFields()">
-                <label class="block text-grey-darker text-sm font-bold mb-2">
-                    <input class="mr-2" type="checkbox" v-model="field.required">
-                    <span>Required</span>
-                </label>
+            <div class="field" v-if="!hasSubFields()">
+                <div class="control">
+                    <label class="checkbox">          
+                        <input type="checkbox" v-model="field.required">
+                        Required
+                    </label>
+                </div>
             </div>
-            <div class="mb-4" v-if="hasSubFields()">
-                <label class="block text-grey-darker text-sm font-bold mb-2">Min</label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" type="number" v-model.number="field.min">
+            <div class="field" v-if="!hasSubFields()">
+                <label class="label">Minimum items in repeater</label>
+                <div class="control">
+                    <input class="input" type="number" v-model="field.min">
+                </div>
             </div>
-            <div class="mb-4" v-if="hasSubFields()">
-                <label class="block text-grey-darker text-sm font-bold mb-2">Max</label>
-                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" type="number" v-model.number="field.max">
+            <div class="field" v-if="!hasSubFields()">
+                <label class="label">Maximum items in repeater</label>
+                <div class="control">
+                    <input class="input" type="number" v-model="field.max">
+                </div>
             </div>
-
-            <button @click="$emit('save')">Save</button>
-            <button @click="$emit('delete')">Delete</button>
+            <button class="button is-success" @click="$emit('save')">Save</button>
+            <button class="button is-danger" @click="$emit('delete')">Delete</button>
         </div>
     </modal>
 </template>
 
 <script>
-    export default {
-        props: ['show', 'field'],
+export default {
+  props: ["show", "field"],
 
-        methods: {
-            hasSubFields() {
-                return ['section', 'repeater'].indexOf(this.field.type) > -1;
-            },
-        }
+  methods: {
+    hasSubFields() {
+      return ["section", "repeater"].indexOf(this.field.type) > -1;
     }
+  }
+};
 </script>
