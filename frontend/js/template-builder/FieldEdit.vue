@@ -28,7 +28,7 @@
              <div class="field" v-if="!hasSubFields()">
                 <label class="label">Description</label>
                 <div class="control">
-                    <input class="input" type="text" v-model="field.description">
+                    <textarea class="textarea" placeholder="e.g. Hello world" v-model="field.description"></textarea>
                 </div>
             </div>
             <div class="field" v-if="!hasSubFields()">
