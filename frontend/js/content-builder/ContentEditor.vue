@@ -1,12 +1,14 @@
 <template>
-    <div v-if="template.length > 0">
-        <pre style="float:left;">{{ template | pretty }}</pre>
-        <pre style="float:left;">{{ content | pretty }}</pre>
-        <div style="clear:both;"></div>
-        <form action="" method="post" v-on:submit.prevent="onSubmit">
-            <content-field v-for="(field, key) in template" :key="key" :field="field" :indentifier="key"></content-field>
-            <button type="submit">Submit</button>
-        </form>
+    <div class="columns" v-if="template.length > 0">
+        <pre class="column">{{ template | pretty }}</pre>
+        <pre style="column">{{ content | pretty }}</pre>
+        <div class="column">
+            <form action="" enctype="multipart/form-data" method="post" v-on:submit.prevent="onSubmit">
+                <input type="hidden" name="_method" value="put">
+                <button type="submit" class="button">Submit</button>
+                <content-field v-for="(field, key) in template" :key="key" :field="field" :content="content[key]" :indentifier="key"></content-field>
+            </form>
+        </div>
     </div>
 </template>
 
@@ -17,7 +19,6 @@
                 model: null,
                 template: [],
                 content: [],
-                form: null,
             }
         },
 
@@ -25,7 +26,6 @@
             axios.get(route('pages.show', this.$route.params.id)).then(response => {
                 this.model = response.data;
                 this.template = response.data.template.structure;
-
 
                 this.content = this.buildContent(this.template);
             });
@@ -65,8 +65,7 @@
             },
 
             onSubmit(event) {
-                this.form = new FormData(event.target);
-                console.log(this.form);
+                axios.post(route('pages.update', this.$route.params.id), new FormData(event.target));
             }
         },
     }
