@@ -10,4 +10,5 @@ module.exports = function(type) {
     this.required = false;
     this.min = 0;
     this.max = null;
+    this.values = [];
 }

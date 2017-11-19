@@ -1,5 +1,5 @@
 <template>
-    <div v-if="field.type == 'repeater' || field.type == 'section'" class="card">
+    <div v-if="field.type == 'repeater' || field.type == 'section'" class="card field">
         <div class="card-header">
             <div class="card-header-title">{{ field.title }}</div>
             <div class="card-header-icon" @click="openChilds = !openChilds">
@@ -12,7 +12,7 @@
         </div>
         <template v-if="field.type == 'repeater'">
             <div class="card-content" v-show="openChilds">
-                <div v-for="(dataField, i) in content[field.id]" class="field">
+                <div v-for="(dataField, i) in content[field.id]" class="field card">
                     <content-field v-for="(subField, key) in field.fields" :key="key" :field="subField" :content="content[field.id][i]" :indentifier="i"></content-field>
                 </div>
             </div>

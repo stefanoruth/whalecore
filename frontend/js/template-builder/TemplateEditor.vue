@@ -5,9 +5,11 @@
             <section>
                 <template-field-item v-for="(field, key) in fields" :key="key" :field="field" @delete="deleteField(key)"></template-field-item>
             </section>
-            <button @click="showNewField = true">Add Field</button>
-            <template-field-new :show="showNewField" @close="showNewField = false" @newField="addField"></template-field-new>
-            <button @click="save">Save Template</button>
+            <div class="box">
+                <button @click="showNewField = true" class="button is-small is-primary">Add Field</button>
+                <template-field-new :show="showNewField" @close="showNewField = false" @newField="addField"></template-field-new>
+                <button @click="save" class="button is-small is-success">Save Template</button>
+            </div>
         </div>
     </div>
 </template>

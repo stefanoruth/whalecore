@@ -1,6 +1,6 @@
 <template>
     <div v-show="show">
-        <modal class="fieldSelector" :show="showNew" @close="resetClose">
+        <modal class="fieldSelector" v-show="showNew" @close="resetClose">
             <h1 slot="title">New Field</h1>    
             <div class="fieldSelectorItem" @click="add('text')">Text</div>
             <div class="fieldSelectorItem" @click="add('textarea')">Textarea</div>
