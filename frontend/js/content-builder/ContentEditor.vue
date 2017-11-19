@@ -3,7 +3,7 @@
         <!-- <pre class="column">{{ template | pretty }}</pre> -->
         <pre class="column is-4">{{ content | pretty }}</pre>
         <div class="column">
-            <content-field v-for="(field, key) in template" :key="key" :field="field" :content="content[key]" :indentifier="key" style="margin-bottom:50px;"></content-field>
+            <content-field v-for="(field, key) in template" :key="key" :field="field" :content="content[key]" :cleanContent="cleanContent[key]" :indentifier="key" style="margin-bottom:50px;"></content-field>
         </div>
     </div>
 </template>
@@ -15,6 +15,7 @@
                 model: null,
                 template: [],
                 content: [],
+                cleanContent: [],
             }
         },
 
@@ -22,8 +23,8 @@
             axios.get(route('pages.show', this.$route.params.id)).then(response => {
                 this.model = response.data;
                 this.template = response.data.template.structure;
-
-                this.content = this.buildContent(this.template);
+                this.cleanContent = this.buildContent(this.template);
+                this.content = JSON.parse(JSON.stringify(this.cleanContent));
             });
         },
 

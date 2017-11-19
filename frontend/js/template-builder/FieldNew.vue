@@ -10,7 +10,7 @@
             <div class="fieldSelectorItem" @click="add('image')">Image</div>
             <div class="fieldSelectorItem" @click="add('select')">Select</div>
             <div class="fieldSelectorItem" @click="add('radio')">Radio</div>
-            <div class="fieldSelectorItem" @click="add('bool')">Bool</div>
+            <div class="fieldSelectorItem" @click="add('checkbox')">Checkbox</div>
         </modal>
         <template-field-edit :show="showEdit" :field="field" @close="resetClose" @save="submitField"></template-field-edit>
     </div>

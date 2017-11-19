@@ -17,6 +17,25 @@
             </div>
 
             <textarea v-else-if="field.type == 'textarea'" class="textarea is-small" v-model="content[field.id]"></textarea>
+
+            <div v-else-if="field.type == 'select'" class="select">
+                <select v-model="content[field.id]">
+                    <option v-for="(value, i) in field.values" :key="i" :value="value.key">{{ value.label }}</option>
+                </select>
+            </div>
+
+            
+            <div v-else-if="field.type == 'multi-select'" class="select is-multiple">
+                <select multiple size="5">
+                    <option v-for="(value, i) in field.values" :key="i" :value="value.key">{{ value.label }}</option>
+                </select>
+            </div>
+
+            <div v-else-if="field.type == 'radio'" class="control">
+                <label v-for="(value, i) in field.values" :key="i" class="radio"><input type="radio" v-model="content[field.id]" v-bind:value="value.key">{{ value.label }}</label>
+            </div>
+            
+            <label v-else-if="field.type == 'checkbox'" class="checkbox"><input type="checkbox" v-model="content[field.id]">{{ field.title }}</label>
             
             <div v-else>Not yet whaled</div>
         </div>
