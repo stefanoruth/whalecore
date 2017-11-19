@@ -18,6 +18,8 @@
 
             <textarea v-else-if="field.type == 'textarea'" class="textarea is-small" v-model="content[field.id]"></textarea>
 
+            <tinymce v-else-if="field.type == 'text-editor'" :id="field.id" v-model="content[field.id]"></tinymce>
+
             <div v-else-if="field.type == 'select'" class="select">
                 <select v-model="content[field.id]">
                     <option v-for="(value, i) in field.values" :key="i" :value="value.key">{{ value.label }}</option>

@@ -7,9 +7,11 @@
                 <i v-if="openChilds" class="fa fa-angle-up" aria-hidden="true"></i>
             </div>
         </div>
+
         <div class="card-content" v-if="field.description">
             <p>{{ field.description }}</p>
         </div>
+    
         <template v-if="field.type == 'repeater'">
             <div class="card-content" v-show="openChilds">
                 <div v-for="(dataField, i) in content[field.id]" :key="i" class="card">
@@ -29,6 +31,7 @@
                 </div>
             </div>
         </template>
+
         <template v-if="field.type == 'section'">
             <div class="card-content" v-show="openChilds">
                 <content-field v-for="(subField, key) in field.fields" :key="key" :field="subField" :cleanContent="cleanContent[field.id]" :content="content[field.id]" :indentifier="key"></content-field>

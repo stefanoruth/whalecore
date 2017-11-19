@@ -15,6 +15,8 @@ mix.setPublicPath('..\\public')
    .js('js/app.js', '..\\public')
    .sass('sass/app.scss', '.')
    .copyDirectory('./node_modules/font-awesome/fonts', '../public/fonts')
+   .copyDirectory('./node_modules/tinymce/skins/lightgray/fonts', '../public/fonts')
+   .copyDirectory('./node_modules/tinymce/skins/lightgray', '../public/tinymce')
    .options({
         processCssUrls: false,
    });

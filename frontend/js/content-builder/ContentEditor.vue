@@ -40,7 +40,7 @@
                         if (template[i].fields.length > 0) {
                             newField[template[i].id] = this.buildContent(template[i].fields, template[i]);
                         } else {
-                            newField[template[i].id] = null;
+                            newField[template[i].id] = "";
                         }
 
                         data.push(newField);
@@ -54,7 +54,7 @@
                         if (template[i].fields.length > 0) {
                             data[template[i].id] = this.buildContent(template[i].fields, template[i]);
                         } else {
-                            data[template[i].id] = null;
+                            data[template[i].id] = "";
                         }
                     }
                 }

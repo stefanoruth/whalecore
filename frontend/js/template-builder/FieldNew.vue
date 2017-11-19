@@ -4,6 +4,7 @@
             <h1 slot="title">New Field</h1>    
             <div class="fieldSelectorItem" @click="add('text')">Text</div>
             <div class="fieldSelectorItem" @click="add('textarea')">Textarea</div>
+            <div class="fieldSelectorItem" @click="add('text-editor')">Text Editor (TinyMCE)</div>
             <div class="fieldSelectorItem" @click="add('number')">Number</div>
             <div class="fieldSelectorItem" @click="add('repeater')">Repeater</div>
             <div class="fieldSelectorItem" @click="add('section')">Section</div>
