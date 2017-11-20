@@ -13,7 +13,7 @@
             <div class="fieldSelectorItem" @click="add('radio')">Radio</div>
             <div class="fieldSelectorItem" @click="add('checkbox')">Checkbox</div>
         </modal>
-        <template-field-edit :show="showEdit" :field="field" @close="resetClose" @save="submitField"></template-field-edit>
+        <template-field-edit :show="showEdit" :field="field" @close="resetClose" @delete="resetClose" @save="submitField"></template-field-edit>
     </div>
 </template>
 
