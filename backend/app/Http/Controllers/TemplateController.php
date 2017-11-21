@@ -61,7 +61,7 @@ class TemplateController extends Controller
             'structure' => ['present','array'],
         ]);
 
-        return tap(Template::where('id', $id)->firstOrFail(),function($template) use ($data){
+        return tap(Template::where('id', $id)->firstOrFail(), function ($template) use ($data) {
             $template->fill($data)->save();
         });
     }

@@ -25,7 +25,7 @@ class Project extends Model
         return $this->hasMany(ProjectMember::class);
     }
 
-    /** 
+    /**
      * Relationship
      * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
@@ -70,7 +70,7 @@ class Project extends Model
         return $this->hasOne(Billing::class);
     }
 
-    /** 
+    /**
      * Relationship
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

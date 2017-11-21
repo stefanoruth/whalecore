@@ -4,7 +4,6 @@ namespace App;
 
 use App\Relations\BelongsToProject;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class ProjectMember extends Model
 {

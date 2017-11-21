@@ -35,7 +35,7 @@ class Template extends Model
         return $this->hasMany(Page::class);
     }
 
-    /** 
+    /**
      * Relationship
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -44,7 +44,7 @@ class Template extends Model
         return $this->hasMany(Bucket::class);
     }
 
-    /** 
+    /**
      * Relationship
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

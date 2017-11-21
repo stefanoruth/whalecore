@@ -3,7 +3,6 @@
 namespace App;
 
 use App\Relations\BelongsToProject;
-use App\Relations\Revisionable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

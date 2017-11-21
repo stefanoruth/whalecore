@@ -19,7 +19,7 @@ class Item extends Model
         return $this->belongsTo(Template::class);
     }
 
-    /** 
+    /**
      * Relationship
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -28,7 +28,7 @@ class Item extends Model
         return $this->hasMany(Content::class);
     }
 
-    /** 
+    /**
      * Scope
      * @param  [type] $query [description]
      * @param  [type] $type  [description]
@@ -36,8 +36,8 @@ class Item extends Model
      */
     public function scopeType($query, $type)
     {
-        return $query->whereHas('template', function($query) use ($type) {
-            $query->whereHas('type', function($query) use ($type) {
+        return $query->whereHas('template', function ($query) use ($type) {
+            $query->whereHas('type', function ($query) use ($type) {
                 $query->where('name', $type);
             });
         });
