@@ -30,7 +30,7 @@ export default {
     },
     mounted() {
         axios.get(route("templates.index")).then(response => {
-            this.templates = response.data;
+            this.templates = response.data.data;
         });
     }
 };

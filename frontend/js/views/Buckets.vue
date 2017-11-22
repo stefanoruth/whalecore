@@ -30,7 +30,7 @@ export default {
     },
     mounted() {
         axios.get(route("buckets.index")).then(response => {
-            this.buckets = response.data;
+            this.buckets = response.data.data;
         });
     }
 };

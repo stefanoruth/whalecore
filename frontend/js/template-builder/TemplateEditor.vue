@@ -26,9 +26,9 @@
 
         mounted() {
             axios.get(route('templates.show', this.$route.params.id)).then(response => {
-                this.template = response.data;
-                if (response.data.structure != null) {
-                    this.fields = response.data.structure;
+                this.template = response.data.data;
+                if (response.data.data.structure != null) {
+                    this.fields = response.data.data.structure;
                 }
             });
         },

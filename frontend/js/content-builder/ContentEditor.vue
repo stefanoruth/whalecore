@@ -21,8 +21,8 @@
 
         mounted() {
             axios.get(route('pages.show', this.$route.params.id)).then(response => {
-                this.model = response.data;
-                this.template = response.data.template.structure;
+                this.model = response.data.data;
+                this.template = response.data.data.template.structure;
                 this.cleanContent = this.buildContent(this.template);
                 this.content = JSON.parse(JSON.stringify(this.cleanContent));
             });

@@ -56,7 +56,7 @@ export default {
   },
   mounted() {
     axios.get(route("projects.index")).then(response => {
-      this.projects = response.data;
+      this.projects = response.data.data;
     });
   },
 

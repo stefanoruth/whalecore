@@ -32,7 +32,7 @@ export default {
     },
     mounted() {
         axios.get(route("pages.index")).then(response => {
-            this.pages = response.data;
+            this.pages = response.data.data;
         });
     }
 };

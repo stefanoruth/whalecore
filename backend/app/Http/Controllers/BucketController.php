@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Item;
 use Illuminate\Http\Request;
+use App\Http\Resources\ItemResource;
 
 class BucketController extends Controller
 {
@@ -14,7 +15,9 @@ class BucketController extends Controller
      */
     public function index()
     {
-        return Item::with('template.type')->type('bucket')->get();
+        return ItemResource::collection(
+            Item::with('template.type')->type('bucket')->get()
+        );
     }
 
     /**
@@ -36,7 +39,9 @@ class BucketController extends Controller
      */
     public function show($id)
     {
-        return Item::with('template.type')->type('bucket')->findOrFail($id);
+        return ItemResource::make(
+            Item::with('template.type')->type('bucket')->findOrFail($id)
+        );
     }
 
     /**

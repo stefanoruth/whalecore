@@ -6,6 +6,7 @@ use App\Project;
 use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\ProjectResource;
 
 class ProjectController extends Controller
 {
@@ -25,7 +26,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return Auth::user()->projects()->get();
+        return ProjectResource::collection(
+            Auth::user()->projects()->get()
+        );
     }
 
     /**
@@ -60,7 +63,9 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        return Auth::user()->projects()->findOrFail($id);
+        return ProjectResource::make(
+            Auth::user()->projects()->findOrFail($id)
+        );
     }
 
     /**

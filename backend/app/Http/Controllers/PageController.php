@@ -6,6 +6,7 @@ use App\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
+use App\Http\Resources\ItemResource;
 
 class PageController extends Controller
 {
@@ -16,7 +17,9 @@ class PageController extends Controller
      */
     public function index()
     {
-        return Item::with('template.type')->type('page')->get();
+        return ItemResource::collection(
+            Item::with('template.type')->type('page')->get()
+        );
     }
 
     /**
@@ -57,7 +60,9 @@ class PageController extends Controller
      */
     public function show($id)
     {
-        return Item::with('template.type')->type('page')->findOrFail($id);
+        return ItemResource::make(
+            Item::with('template.type')->type('page')->findOrFail($id)
+        );
     }
 
     /**

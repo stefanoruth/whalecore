@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Template;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\Http\Resources\TemplateResource;
 
 class TemplateController extends Controller
 {
@@ -15,7 +16,9 @@ class TemplateController extends Controller
      */
     public function index()
     {
-        return Template::with('type')->get();
+        return TemplateResource::collection(
+            Template::with('type')->get()
+        );
     }
 
     /**
@@ -44,7 +47,9 @@ class TemplateController extends Controller
      */
     public function show($id)
     {
-        return Template::findOrFail($id);
+        return TemplateResource::make(
+            Template::findOrFail($id)
+        );
     }
 
     /**
