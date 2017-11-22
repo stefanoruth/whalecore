@@ -30,18 +30,9 @@ class Template extends Model
      * Relationship
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function pages()
+    public function items()
     {
-        return $this->hasMany(Page::class);
-    }
-
-    /**
-     * Relationship
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function buckets()
-    {
-        return $this->hasMany(Bucket::class);
+        return $this->hasMany(Item::class);
     }
 
     /**

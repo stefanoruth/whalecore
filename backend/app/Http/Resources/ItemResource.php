@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\Resource;
+use App\Http\Resources\ContentResource;
 
 class ItemResource extends Resource
 {
@@ -14,6 +15,13 @@ class ItemResource extends Resource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id'       => $this->id,
+            'title'    => $this->title,
+            'slug'     => $this->slug,
+            'template' => TemplateResource::make($this->whenLoaded('template')),
+            'project'  => ProjectResource::make($this->whenLoaded('project')),
+            'content'  => ContentResource::collection($this->whenLoaded('content')),
+        ];
     }
 }
