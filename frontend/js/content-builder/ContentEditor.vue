@@ -21,6 +21,7 @@
         },
 
         mounted() {
+            // Fetches all information about the current page.
             axios.get(route('pages.show', this.$route.params.id)).then(response => {
                 this.model = response.data.data;
                 this.template = response.data.data.template.structure;
@@ -37,6 +38,9 @@
         },
 
         methods: {
+            /**
+             * Takes a template and converts is to an usable datastructure
+             */
             buildContent(template, parent) {
                 // If is top level item
                 if (typeof parent === 'undefined') {
@@ -73,22 +77,19 @@
                 return data;
             },
 
+            /**
+             * Takes to data sets and uses the original as a base for filling with the new set of data.
+             */
             fillContent(original, newset) {
-                // console.log(typeof original, original, newset);
-            
                 for (const key in original) {
                     const element = original[key];
-                    const newElm = newset[key]; //newset.hasOwnProperty(key) ? newset[key] : element;
-                    // console.log("NEW", newElm);
-                    // console.log(typeof element, element, original, key);
+                    const newElm = newset[key];
+
                     if (Array.isArray(element)) {
-                        // console.log("arr", key, element);
-                        let baseElm = element[0];
                         if (newElm.length > 0) {
                             for (const arrKey in newElm) {
                                 const arrElm = newElm[arrKey];
-                                // console.log(element, arrElm);
-                                element[arrKey] = this.fillContent(JSON.parse(JSON.stringify(baseElm)), arrElm);
+                                element[arrKey] = this.fillContent(JSON.parse(JSON.stringify(element[0])), arrElm);
                             }
                         }
                     } else if (typeof element === 'object' && element !== null) {
@@ -101,6 +102,9 @@
                 return original;
             },
 
+            /**
+             * Saves the current content
+             */
             saveContent(event) {
                 axios.post(route('pages.update', this.$route.params.id), {_method:'PUT',content: this.content});
             },
