@@ -29,7 +29,7 @@
                         this.$emit('input', editor.getContent());
                     });
                     
-                    editor.setContent(this.value);
+                    editor.setContent(this.value !== null ? this.value : "");
                 },
                 skin_url: "tinymce",
                 branding: false,
@@ -40,7 +40,7 @@
         },
 
         destroyed () {
-            tinymce.get(this.id).destroy();
+            tinymce.get(this.generatedId).destroy();
         },
     }
 </script>
