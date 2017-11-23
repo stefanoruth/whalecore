@@ -46,18 +46,9 @@ class Content extends Model
      * Relationship
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function pages()
+    public function item()
     {
-        return $this->belongsToMany(Page::class, 'page_contents');
-    }
-
-    /**
-     * Relationship
-     * @return \Illuminate\Database\Eloquent\Concerns\belongsToMany
-     */
-    public function buckets()
-    {
-        return $this->belongsToMany(Bucket::class, 'bucket_contents');
+        return $this->belongsTo(Item::class);
     }
 
     /**

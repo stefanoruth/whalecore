@@ -14,6 +14,16 @@ class ContentRevision extends Model
     protected $guarded = [];
 
     /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'before' => 'json',
+        'after' => 'json',
+    ];
+
+    /**
      * Relationship
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

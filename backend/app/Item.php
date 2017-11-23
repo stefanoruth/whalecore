@@ -23,7 +23,7 @@ class Item extends Model
      * Relationship
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function contents()
+    public function content()
     {
         return $this->hasMany(Content::class);
     }
