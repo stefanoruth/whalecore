@@ -1,4 +1,6 @@
-@extends('app') @section('body')
+@extends('app')
+
+@section('body')
 <section class="hero is-success is-fullheight">
 	<div class="hero-body">
 		<div class="container has-text-centered">
@@ -10,6 +12,7 @@
 					</figure>
 					<form method="post" action="{{ route('login') }}">
 						{{ csrf_field() }}
+						<input type="hidden" name="remember" value="1">
 						<div class="field">
 							<div class="control">
 								<input class="input is-large {{ $errors->has('email') ? 'is-danger' : '' }}" type="email" name="email" placeholder="Your Email" autofocus=""> 
