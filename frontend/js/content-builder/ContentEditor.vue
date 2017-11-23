@@ -1,8 +1,7 @@
 <template>
     <div class="columns" v-if="template.length > 0">
-        <pre class="column is-2">{{ cleanContent | pretty }}</pre>
-        <pre class="column is-4">{{ content | pretty }}</pre>
-        <pre class="column is-2">{{ body | pretty }}</pre>
+        <pre class="column is-3">{{ cleanContent | pretty }}</pre>
+        <pre class="column is-3">{{ content | pretty }}</pre>
         <div class="column">
             <button class="button" @click="saveContent">Save</button>
             <content-field v-for="(field, key) in template" :key="key" :field="field" :content="content[key]" :cleanContent="cleanContent[key]" :indentifier="key" style="margin-bottom:50px;"></content-field>
@@ -18,7 +17,6 @@
                 template: [],
                 content: [],
                 cleanContent: [],
-                body: [],
             }
         },
 
@@ -34,7 +32,6 @@
                     return;
                 }
                 
-                this.body = response.data.data.content[0].body;
                 this.content = this.fillContent(copyContent, response.data.data.content[0].body);
             });
         },
@@ -91,7 +88,7 @@
                             for (const arrKey in newElm) {
                                 const arrElm = newElm[arrKey];
                                 // console.log(element, arrElm);
-                                element[arrKey] = this.fillContent(baseElm, arrElm);
+                                element[arrKey] = this.fillContent(JSON.parse(JSON.stringify(baseElm)), arrElm);
                             }
                         }
                     } else if (typeof element === 'object' && element !== null) {

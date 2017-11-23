@@ -16,7 +16,7 @@
             <div class="card-content" v-show="openChilds">
                 <div v-for="(dataField, i) in content[field.id]" :key="i" class="card">
                     <div class="card-content">
-                        <content-field v-for="(subField, key) in field.fields" :key="key" :field="subField" :cleanContent="cleanContent[field.id][i]" :content="content[field.id][i]" :indentifier="i"></content-field>
+                        <content-field v-for="(subField, key) in field.fields" :key="key" :field="subField" :cleanContent="cleanContent[field.id][0]" :content="content[field.id][i]" :indentifier="i"></content-field>
                     </div>
                     <div class="card-footer">
                         <div class="card-footer-item">
