@@ -3,6 +3,7 @@
         <!-- <pre class="column">{{ template | pretty }}</pre> -->
         <pre class="column is-4">{{ content | pretty }}</pre>
         <div class="column">
+            <button class="button" @click="saveContent">Save</button>
             <content-field v-for="(field, key) in template" :key="key" :field="field" :content="content[key]" :cleanContent="cleanContent[key]" :indentifier="key" style="margin-bottom:50px;"></content-field>
         </div>
     </div>
@@ -24,7 +25,10 @@
                 this.model = response.data.data;
                 this.template = response.data.data.template.structure;
                 this.cleanContent = this.buildContent(this.template);
-                this.content = JSON.parse(JSON.stringify(this.cleanContent));
+                // this.content = JSON.parse(JSON.stringify(this.cleanContent));
+                console.log(response.data.data.content[0].body);
+                let demodata = this.insertContent(JSON.parse(JSON.stringify(this.cleanContent)), response.data.data.content[0].body);
+                this.content = demodata;
             });
         },
 
@@ -66,8 +70,26 @@
                 return data;
             },
 
-            onSubmit(event) {
-                axios.post(route('pages.update', this.$route.params.id), new FormData(event.target));
+            insertContent(original, newset) {
+                if (typeof original === 'array') {
+                    console.log(original, newset);
+                }
+
+                for (const key in original) {
+                    const element = original[key];
+                    // console.log(key, typeof element , element);
+                    
+                    if (typeof element === 'object') {
+                        original[key] = this.insertContent(element, newset[key]);
+                    } else {
+                        original[key] = newset[key];
+                    }
+                }
+                return original;
+            },
+
+            saveContent(event) {
+                axios.post(route('pages.update', this.$route.params.id), {_method:'PUT',content: this.content});
             },
         },
     }

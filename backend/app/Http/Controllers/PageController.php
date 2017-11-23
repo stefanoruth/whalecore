@@ -61,7 +61,7 @@ class PageController extends Controller
     public function show($id)
     {
         return ItemResource::make(
-            Item::with('template.type')->type('page')->findOrFail($id)
+            Item::with('template.type', 'content')->type('page')->findOrFail($id)
         );
     }
 
@@ -74,7 +74,24 @@ class PageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $request->all();
+        request()->validate([
+            'content' => ['required', 'array'],
+        ]);
+
+        $item = Item::with('content')->findOrFail($id);
+        
+        if ($item->content->count() == 0) {
+            $item->content()->create([
+                'project_id' => $item->project_id,
+                'body' => request('content'),
+            ]);
+
+            return;
+        } else {
+            $content = $item->content->first();
+            $content->body = request('content');
+            $content->save();
+        }
     }
 
     /**
