@@ -1,7 +1,8 @@
 <template>
     <div class="columns" v-if="template.length > 0">
-        <!-- <pre class="column">{{ template | pretty }}</pre> -->
+        <pre class="column is-2">{{ cleanContent | pretty }}</pre>
         <pre class="column is-4">{{ content | pretty }}</pre>
+        <pre class="column is-2">{{ body | pretty }}</pre>
         <div class="column">
             <button class="button" @click="saveContent">Save</button>
             <content-field v-for="(field, key) in template" :key="key" :field="field" :content="content[key]" :cleanContent="cleanContent[key]" :indentifier="key" style="margin-bottom:50px;"></content-field>
@@ -17,6 +18,7 @@
                 template: [],
                 content: [],
                 cleanContent: [],
+                body: [],
             }
         },
 
@@ -25,10 +27,15 @@
                 this.model = response.data.data;
                 this.template = response.data.data.template.structure;
                 this.cleanContent = this.buildContent(this.template);
-                // this.content = JSON.parse(JSON.stringify(this.cleanContent));
-                console.log(response.data.data.content[0].body);
-                let demodata = this.insertContent(JSON.parse(JSON.stringify(this.cleanContent)), response.data.data.content[0].body);
-                this.content = demodata;
+                let copyContent = JSON.parse(JSON.stringify(this.cleanContent));
+                
+                if (response.data.data.content.length == 0) {
+                    this.content = copyContent;
+                    return;
+                }
+                
+                this.body = response.data.data.content[0].body;
+                this.content = this.fillContent(copyContent, response.data.data.content[0].body);
             });
         },
 
@@ -44,13 +51,12 @@
                         if (template[i].fields.length > 0) {
                             newField[template[i].id] = this.buildContent(template[i].fields, template[i]);
                         } else {
-                            newField[template[i].id] = "";
+                            newField[template[i].id] = null;
                         }
 
                         data.push(newField);
                     }
                 } else {
-
                     var data = {};
                     for (var i = 0; i < template.length; i++) {
 
@@ -58,7 +64,7 @@
                         if (template[i].fields.length > 0) {
                             data[template[i].id] = this.buildContent(template[i].fields, template[i]);
                         } else {
-                            data[template[i].id] = "";
+                            data[template[i].id] = null;
                         }
                     }
                 }
@@ -70,21 +76,31 @@
                 return data;
             },
 
-            insertContent(original, newset) {
-                if (typeof original === 'array') {
-                    console.log(original, newset);
-                }
-
+            fillContent(original, newset) {
+                // console.log(typeof original, original, newset);
+            
                 for (const key in original) {
                     const element = original[key];
-                    // console.log(key, typeof element , element);
-                    
-                    if (typeof element === 'object') {
-                        original[key] = this.insertContent(element, newset[key]);
+                    const newElm = newset[key]; //newset.hasOwnProperty(key) ? newset[key] : element;
+                    // console.log("NEW", newElm);
+                    // console.log(typeof element, element, original, key);
+                    if (Array.isArray(element)) {
+                        // console.log("arr", key, element);
+                        let baseElm = element[0];
+                        if (newElm.length > 0) {
+                            for (const arrKey in newElm) {
+                                const arrElm = newElm[arrKey];
+                                // console.log(element, arrElm);
+                                element[arrKey] = this.fillContent(baseElm, arrElm);
+                            }
+                        }
+                    } else if (typeof element === 'object' && element !== null) {
+                        original[key] = this.fillContent(element, newElm);
                     } else {
-                        original[key] = newset[key];
+                        original[key] = newElm;
                     }
                 }
+                
                 return original;
             },
 
