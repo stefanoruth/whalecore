@@ -4,6 +4,7 @@
 @import './utilities/__mixins';
 //Dependencies
 @import '../node_modules/bulma/bulma';
+@import '../node_modules/dropzone/dist/dropzone';
 //compnents
 @import './components/login-register';
 @import './components/card';

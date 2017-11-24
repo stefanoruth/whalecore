@@ -21,7 +21,7 @@
                     </div>
                 </div>
                 <router-link to="/templates" class="navbar-item">Templates</router-link>
-                <router-link to="#" class="navbar-item">Media Library</router-link>
+                <router-link to="/media" class="navbar-item">Media Library</router-link>
             </div>
             <div class="navbar-end">
                 <div class="navbar-item has-dropdown is-hoverable">                

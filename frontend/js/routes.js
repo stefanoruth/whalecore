@@ -43,4 +43,8 @@ module.exports = [
         name: 'template.edit',
         component: require('./template-builder/TemplateEditor'),
     },
+    {
+        path: '/media',
+        component: require('./views/MediaLibrary'),
+    },
 ];
