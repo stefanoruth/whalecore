@@ -31,7 +31,7 @@ export default {
         };
     },
     mounted() {
-        axios.get(route("pages.index")).then(response => {
+        axios.get(route('items.index'), {params:{type:'page'}}).then(response => {
             this.pages = response.data.data;
         });
     }

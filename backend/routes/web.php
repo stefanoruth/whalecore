@@ -20,14 +20,13 @@ Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 Route::post('register', 'Auth\RegisterController@register')->middleware('guest');
 
 
-Route::middleware('auth')->prefix('api')->group(function(){
+Route::middleware('auth')->prefix('api')->group(function () {
     Route::apiResource('projects', 'ProjectController');
     Route::apiResource('tenant', 'TenantController')->only(['store']);
 
-    Route::middleware('tenancy')->group(function(){
-        Route::apiResource('pages', 'PageController');
+    Route::middleware('tenancy')->group(function () {
+        Route::apiResource('items', 'ItemController');
         Route::apiResource('templates', 'TemplateController');
-        Route::apiResource('buckets', 'BucketController');
         Route::apiResource('media', 'MediaController', ['parameters' => ['media'=>'id'] ]);
     });
 });

@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Item;
-use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
 use App\Http\Resources\ItemResource;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
-class PageController extends Controller
+class ItemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,7 +17,9 @@ class PageController extends Controller
     public function index()
     {
         return ItemResource::collection(
-            Item::with('template.type')->type('page')->get()
+            Item::with('template.type')->when(request('type'), function ($query) {
+                $query->type(request('type'));
+            })->get()
         );
     }
 
@@ -61,7 +62,7 @@ class PageController extends Controller
     public function show($id)
     {
         return ItemResource::make(
-            Item::with('template.type', 'content')->type('page')->findOrFail($id)
+            Item::with('template.type', 'content')->findOrFail($id)
         );
     }
 

@@ -17,6 +17,7 @@
                     <div class="navbar-dropdown">
                         <router-link to="/pages" class="navbar-item">Pages</router-link>
                         <router-link to="/buckets" class="navbar-item">Buckets</router-link>
+                        <router-link to="/posts" class="navbar-item">Posts</router-link>
                     </div>
                 </div>
                 <router-link to="/templates" class="navbar-item">Templates</router-link>

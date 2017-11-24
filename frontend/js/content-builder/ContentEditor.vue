@@ -22,9 +22,13 @@
 
         mounted() {
             // Fetches all information about the current page.
-            axios.get(route('pages.show', this.$route.params.id)).then(response => {
+            axios.get(route('items.show', this.$route.params.id)).then(response => {
                 this.model = response.data.data;
-                this.template = response.data.data.template.structure;
+
+                if (response.data.data.template.structure !== null) {
+                    this.template = response.data.data.template.structure;
+                }
+                
                 this.cleanContent = this.buildContent(this.template);
                 let copyContent = JSON.parse(JSON.stringify(this.cleanContent));
                 
@@ -106,7 +110,7 @@
              * Saves the current content
              */
             saveContent(event) {
-                axios.post(route('pages.update', this.$route.params.id), {_method:'PUT',content: this.content});
+                axios.post(route('items.update', this.$route.params.id), {_method:'PUT',content: this.content});
             },
         },
     }

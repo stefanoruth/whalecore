@@ -11,7 +11,7 @@
             <tbody>
                 <tr v-for="template in templates" :key="template.id">
                     <td>{{template.title}}</td>
-                    <td>{{template.type.name}}</td>            
+                    <td>{{template.type}}</td>            
                     <td>
                         <router-link :to="{name: 'template.edit', params: {id: template.id}}">Edit</router-link>
                     </td>

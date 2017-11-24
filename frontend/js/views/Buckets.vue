@@ -4,6 +4,7 @@
             <thead>
                 <tr>
                     <th>Title</th>
+                    <th>Slug</th>
                     <th>Template</th>
                     <th>Actions</th>
                 </tr>
@@ -11,9 +12,10 @@
             <tbody>
                 <tr v-for="bucket in buckets" :key="bucket.id">
                     <td>{{bucket.title}}</td>
+                    <td>{{bucket.slug}}</td>
                     <td>{{bucket.template.title}}</td>
                     <td>
-                        <a href="#">Edit</a>
+                        <router-link :to="{name: 'bucket.edit', params: {id: bucket.id}}">Edit</router-link>
                     </td>
                 </tr>
             </tbody>
@@ -29,7 +31,7 @@ export default {
         };
     },
     mounted() {
-        axios.get(route("buckets.index")).then(response => {
+        axios.get(route('items.index'), {params:{type:'bucket'}}).then(response => {
             this.buckets = response.data.data;
         });
     }
