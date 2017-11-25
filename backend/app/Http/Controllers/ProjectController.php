@@ -77,7 +77,15 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = request()->validate([
+            'title' => 'required',
+        ]);
+
+        $project = Project::findOrFail(session('tenant'));
+        $project->title = $data['title'];
+        $project->save();
+
+        return ProjectResource::make($project);
     }
 
     /**
@@ -88,6 +96,6 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Project::where('id', session('tenant'))->delete();
     }
 }

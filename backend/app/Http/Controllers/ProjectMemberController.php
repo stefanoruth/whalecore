@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Project;
+use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Resources\MemberResource;
+use App\ProjectMember;
 
 class ProjectMemberController extends Controller
 {
@@ -40,7 +42,15 @@ class ProjectMemberController extends Controller
      */
     public function update($id)
     {
-        //
+        request()->validate([
+            'role' => [
+                'required',
+                Rule::exists('roles', 'name'),
+            ],
+        ]);
+
+        $role = Role::where('name', request('role'))->firstOrFail();
+        ProjectMember::where('user_id', $id)->where('project_id', session('tenant'))->update(['role_id' => $role->id]);
     }
 
     /**
@@ -51,6 +61,6 @@ class ProjectMemberController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Project::findOrFail(session('tenant'))->members()->where('user_id', $id)->delete();
     }
 }
