@@ -64,7 +64,7 @@ class ProjectController extends Controller
     public function show($id)
     {
         return ProjectResource::make(
-            Auth::user()->projects()->findOrFail($id)
+            Auth::user()->projects()->with('members.user', 'members.role')->findOrFail(session('tenant'))
         );
     }
 

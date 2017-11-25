@@ -47,4 +47,8 @@ module.exports = [
         path: '/media',
         component: require('./views/MediaLibrary'),
     },
+    {
+        path: '/settings',
+        component: require('./views/Settings'),
+    }
 ];

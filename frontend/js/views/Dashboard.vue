@@ -46,42 +46,35 @@
 </template>
 <script>
 export default {
-  data() {
-    return {
-      showModal: false,
-      projects: [],
-      newProjectTitle: null,
-      errors: null
-    };
-  },
-  mounted() {
-    axios.get(route("projects.index")).then(response => {
-      this.projects = response.data.data;
-    });
-  },
-
-  methods: {
-    loginToProject(projectId) {
-      axios
-        .post(route("tenant.store"), { projectId: projectId })
-        .then(response => {
-          this.$router.push("/pages");
+    data() {
+        return {
+        showModal: false,
+        projects: [],
+        newProjectTitle: null,
+        errors: null
+        };
+    },
+    mounted() {
+        axios.get(route("projects.index")).then(response => {
+            this.projects = response.data.data;
         });
     },
-    newProject() {
-      axios
-        .post(route("projects.store"), { title: this.newProjectTitle })
-        .then(response => {
-          axios
-            .post(route("tenant.store"), { projectId: response.data.id })
-            .then(response => {
-              this.$router.push("/pages");
+
+    methods: {
+        loginToProject(projectId) {
+            axios.post(route("tenant.store"), { projectId: projectId }).then(response => {
+                this.$router.push("/pages");
             });
-        })
-        .catch(error => {
-          this.errors = error.response.data.errors;
-        });
+        },
+        newProject() {
+            axios.post(route("projects.store"), { title: this.newProjectTitle }).then(response => {
+                axios.post(route("tenant.store"), { projectId: response.data.id }).then(response => {
+                    this.$router.push("/pages");
+                });
+            }).catch(error => {
+                this.errors = error.response.data.errors;
+            });
+        }
     }
-  }
 };
 </script>
