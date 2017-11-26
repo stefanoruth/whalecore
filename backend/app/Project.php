@@ -17,6 +17,15 @@ class Project extends Model
     protected $guarded = [];
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'meta' => 'json',
+    ];
+
+    /**
      * Relationship
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
@@ -67,7 +76,7 @@ class Project extends Model
      */
     public function billing()
     {
-        return $this->hasOne(Billing::class);
+        return $this->hasOne(ProjectBilling::class);
     }
 
     /**

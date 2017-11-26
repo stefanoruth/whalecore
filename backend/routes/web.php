@@ -23,6 +23,7 @@ Route::post('register', 'Auth\RegisterController@register')->middleware('guest')
 Route::middleware('auth')->prefix('api')->group(function () {
     Route::apiResource('projects', 'ProjectController');
     Route::apiResource('tenant', 'TenantController')->only(['store']);
+    Route::apiResource('languages', 'LanguageController')->only(['index']);
 
     Route::middleware('tenancy')->group(function () {
         Route::apiResource('items', 'ItemController');
@@ -30,7 +31,10 @@ Route::middleware('auth')->prefix('api')->group(function () {
         Route::apiResource('roles', 'RoleController')->only(['index']);
         Route::apiResource('templates', 'TemplateController');
         Route::apiResource('media', 'MediaController', ['parameters' => ['media'=>'id']]);
+        Route::apiResource('subscriptions', 'SubscriptionController');
         Route::apiResource('projects/members', 'ProjectMemberController')->only(['store', 'destroy', 'update']);
         Route::apiResource('projects/api', 'ProjectApiController', ['as' => 'projects', 'parameters' => ['api' => 'id']])->only(['update']);
     });
 });
+
+Route::post('stripe/webhook', '\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook');

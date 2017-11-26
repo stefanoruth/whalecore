@@ -77,12 +77,20 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = request()->validate([
-            'title' => 'required',
-        ]);
-
         $project = Project::findOrFail(session('tenant'));
-        $project->title = $data['title'];
+
+        if (request('title')) {
+            $project->title = request('title');
+        }
+
+        if (request('default_lang')) {
+            $project->language_code = request('default_lang');
+        }
+
+        if (request('languages')) {
+            $project->meta = ['languages' => request('languages')];
+        }
+
         $project->save();
 
         return ProjectResource::make($project);
