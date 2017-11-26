@@ -5,6 +5,7 @@ namespace App;
 use App\Relations\BelongsToProject;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Cashier\Billable;
+use Laravel\Cashier\Subscription;
 
 class ProjectBilling extends Model
 {
@@ -16,4 +17,14 @@ class ProjectBilling extends Model
      * @var array
      */
     protected $guarded = [];
+
+    /**
+     * Get all of the subscriptions for the Stripe model.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class, 'billing_id')->orderBy('created_at', 'desc');
+    }
 }
