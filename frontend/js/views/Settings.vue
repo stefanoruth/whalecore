@@ -11,8 +11,32 @@
                 </ul>
             </aside>
         </div>
+
         <div class="column" v-show="menuActive == 'options'">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-header-title">Options</div>
+                </div>
+                <div class="card-content" v-if="project != null">
+                    <div class="field">
+                        <label class="label">Project Name</label>
+                        <div class="control">
+                            <input class="input" type="text" v-model="project.title">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="card-footer-item">
+                        <button class="button is-primary" @click="updateProject">Save</button>
+                    </div>
+                    <div class="card-footer-item">
+                        <button class="button is-danger" @click="showDelete = true">Delete</button>
+                        <confirm-box :show="showDelete" @close="showDelete = false" @ok="deleteProject">Are you sure?</confirm-box>
+                    </div>
+                </div>
+            </div>
         </div>
+
         <div class="column" v-show="menuActive == 'collaborators'">
             <div class="card">
                 <div class="card-header">
@@ -24,15 +48,14 @@
                             <td>{{ member.name }}</td>
                             <td>{{ member.email }}</td>
                             <td>
-                                <div class="select" @change="updateRole(member.user_id)">
-                                    <select>
-                                        <option>Select dropdown</option>
-                                        <option>With options</option>
+                                <div class="select is-small">
+                                    <select v-model="member.role" @change="updateRole(member)">
+                                        <option v-for="role in roles" :key="role.id" :value="role.name" :selected="role.name == member.role">{{ role.name }}</option>
                                     </select>
                                 </div>
                             </td>
                             <td>
-                                <button class="button is-danger is-small">X</button>
+                                <button class="button is-danger is-small" @click="deleteMember(member.user_id)">X</button>
                             </td>
                         </tr>
                     </table>
@@ -51,11 +74,34 @@
                 </div>
             </div>
         </div>
+
         <div class="column" v-show="menuActive == 'api'">
-
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-header-title">Api</div>
+                </div>
+                <div class="card-content" v-if="project != null">
+                    <div class="field has-addons">
+                        <div class="control is-expanded">
+                            <input class="input" type="text" disabled v-model="project.api_key">
+                        </div>
+                        <div class="control">
+                            <a class="button is-primary" @click="generateNewKey">New Key</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="column" v-show="menuActive == 'billing'">
 
+        <div class="column" v-show="menuActive == 'billing'">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-header-title">Billing</div>
+                </div>
+                <div class="card-content">
+                    
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -67,6 +113,8 @@
                 project: null,
                 menuActive: 'options',
                 newMemberEmail: null,
+                showDelete: false,
+                roles: [],
             };
         },
 
@@ -77,8 +125,11 @@
         },
 
         mounted() {
-            axios.get(route('projects.show', {project:'foo'})).then(response => {
+            axios.get(route('projects.show', {project:'foobar'})).then(response => {
                 this.project = response.data.data;
+            });
+            axios.get(route('roles.index')).then(response => {
+                this.roles = response.data;
             });
         },
 
@@ -90,8 +141,34 @@
                 });
             },
 
-            updateRole(userId) {
-                console.log(userId);
+            updateRole(member) {
+                axios.put(route('members.update', {member:member.user_id}), {role:member.role});
+            },
+
+            deleteMember(userId) {
+                axios.delete(route('members.destroy', {member:userId})).then(response => {
+                    this.project.members = _.reject(this.project.members, function(member) {
+                        return member.user_id == userId;
+                    });
+                });
+            },
+
+            generateNewKey() {
+                axios.put(route('projects.api.update', {id:'foobar'})).then(response => {
+                    this.project.api_key = response.data.api_key;
+                });
+            },
+
+            deleteProject() {
+                axios.delete(route('projects.destroy', {project:'foobar'})).then(response => {
+                    this.$router.push("/");
+                });
+            },
+
+            updateProject() {
+                axios.put(route('projects.update', {project: 'foobar'}), {title: this.project.title}).then(response => {
+
+                });
             },
         },
     }
