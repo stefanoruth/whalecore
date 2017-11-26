@@ -30,13 +30,15 @@ class TemplateController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'title' => ['required',Rule::unique('templates')->where('project_id', session('tanant'))],
+            'title' => ['required',Rule::unique('templates')->where('project_id', session('tenant'))],
+            'type' => ['required'],
         ]);
 
-        return Template::create([
+        return TemplateResource::make(Template::create([
             'title' => request('title'),
+            'type_id' => request('type'),
             'project_id' => session('tenant'),
-        ]);
+        ]));
     }
 
     /**
