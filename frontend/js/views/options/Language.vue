@@ -10,7 +10,6 @@
                     <div class="control">
                         <div class="select">
                         <select v-model="defaultLang">
-                            <option value="" disabled>Select Language</option>
                             <option v-for="lang in languages" :key="lang.code" :value="lang.code">{{ lang.name }}</option>
                         </select>
                         </div>
@@ -44,7 +43,7 @@
             return {
                 languages: [],
                 selectedLangs: [],
-                defaultLang: "",
+                defaultLang: null,
             };
         },
 

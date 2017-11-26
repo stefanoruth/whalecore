@@ -7,5 +7,6 @@ use Faker\Generator as Faker;
 $factory->define(App\Project::class, function (Faker $faker) {
     return [
         'title' => $faker->domainName,
+        'language_code' =>  \App\Language::inRandomOrder()->first()->code,
     ];
 });

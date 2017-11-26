@@ -1,7 +1,7 @@
 <template>
-    <div class="columns" v-if="template.length > 0">
+    <div class="columns">
         <div class="column is-3">
-            <div class="box">
+            <div class="box" v-if="model != null">
                 <div class="field">
                     <label class="label">Title</label>
                     <div class="field is-grouped">
@@ -32,7 +32,7 @@
                     <li v-for="(lang, i) in langs" :key="i" :class="{'is-active':currentLang == lang}" @click="currentLang = lang"><a class="is-uppercase">{{ lang }}</a></li>
                 </ul>
             </div>
-            <div class="box">
+            <div class="box" v-if="template.length > 0">
                 <content-field v-for="(field, key) in template" :key="key" :field="field" :content="content[key]" :baseContent="baseContent[key]" :indentifier="key" style="margin-bottom:50px;"></content-field>
             </div>
         </div>
@@ -72,6 +72,14 @@
                 if (response.data.data.content.length == 0) {
                     this.content = copyContent;
                     return;
+                }
+
+                for (const key in response.data.data.content) {
+                    if (response.data.data.content.hasOwnProperty(key)) {
+                        const content = response.data.data.content[key];
+                        
+                        console.log(content);
+                    }
                 }
                 
                 this.content = this.fillContent(copyContent, response.data.data.content[0].body);
@@ -123,6 +131,10 @@
              */
             fillContent(original, newset) {
                 for (const key in original) {
+                    if (typeof newset[key] === 'undefined') {
+                        continue;
+                    }
+
                     const element = original[key];
                     const newElm = newset[key];
 
