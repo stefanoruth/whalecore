@@ -77,15 +77,14 @@ export default {
           type: this.newTemplateType
         })
         .then(response => {
-            this.$router.push("/templates/" + response.data.data.id);
+          this.$router.push("/templates/" + response.data.data.id);
         })
         .catch(error => {
           this.errors = error.response.data.errors;
         });
     },
-    closeModal(){
-        this.showModal = false,
-        this.errors = null
+    closeModal() {
+      (this.showModal = false), (this.errors = null);
     }
   }
 };
