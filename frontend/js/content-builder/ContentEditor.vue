@@ -22,7 +22,7 @@
                 </ul>
             </div>
             <div class="columns">
-                <pre class="column" v-show="menu == 'base'">{{ cleanContent | pretty }}</pre>
+                <pre class="column" v-show="menu == 'base'">{{ baseContent | pretty }}</pre>
                 <pre class="column" v-show="menu == 'raw'">{{ content | pretty }}</pre>
             </div>
         </div>
@@ -33,7 +33,7 @@
                 </ul>
             </div>
             <div class="box">
-                <content-field v-for="(field, key) in template" :key="key" :field="field" :content="content[key]" :cleanContent="cleanContent[key]" :indentifier="key" style="margin-bottom:50px;"></content-field>
+                <content-field v-for="(field, key) in template" :key="key" :field="field" :content="content[key]" :baseContent="baseContent[key]" :indentifier="key" style="margin-bottom:50px;"></content-field>
             </div>
         </div>
     </div>
@@ -46,7 +46,7 @@
                 model: null,
                 template: [],
                 content: [],
-                cleanContent: [],
+                baseContent: [],
                 langs: [],
                 currentLang: null,
                 menu: 'base',
@@ -66,8 +66,8 @@
                     this.template = response.data.data.template.structure;
                 }
                 
-                this.cleanContent = this.buildContent(this.template);
-                let copyContent = JSON.parse(JSON.stringify(this.cleanContent));
+                this.baseContent = this.buildBase(this.template);
+                let copyContent = JSON.parse(JSON.stringify(this.baseContent));
                 
                 if (response.data.data.content.length == 0) {
                     this.content = copyContent;
@@ -82,7 +82,7 @@
             /**
              * Takes a template and converts is to an usable datastructure
              */
-            buildContent(template, parent) {
+            buildBase(template, parent) {
                 // If is top level item
                 if (typeof parent === 'undefined') {
                     var data = [];
@@ -91,7 +91,7 @@
 
                         // If repeater or section
                         if (template[i].fields.length > 0) {
-                            newField[template[i].id] = this.buildContent(template[i].fields, template[i]);
+                            newField[template[i].id] = this.buildBase(template[i].fields, template[i]);
                         } else {
                             newField[template[i].id] = null;
                         }
@@ -104,7 +104,7 @@
 
                         // If repeater or section
                         if (template[i].fields.length > 0) {
-                            data[template[i].id] = this.buildContent(template[i].fields, template[i]);
+                            data[template[i].id] = this.buildBase(template[i].fields, template[i]);
                         } else {
                             data[template[i].id] = null;
                         }
