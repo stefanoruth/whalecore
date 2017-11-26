@@ -6,6 +6,7 @@ use App\Item;
 use App\Http\Resources\ItemResource;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 
 class ItemController extends Controller
 {

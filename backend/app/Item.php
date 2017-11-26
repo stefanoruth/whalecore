@@ -11,6 +11,13 @@ class Item extends Model
     use BelongsToProject, SoftDeletes;
 
     /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = [];
+
+    /**
      * Relationship
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

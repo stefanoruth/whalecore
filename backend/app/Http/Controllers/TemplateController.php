@@ -17,7 +17,11 @@ class TemplateController extends Controller
     public function index()
     {
         return TemplateResource::collection(
-            Template::with('type')->get()
+            Template::with('type')->when(request('type'), function($query){
+                $query->whereHas('type', function($query){
+                    $query->where('name', request('type'));
+                });
+            })->get()
         );
     }
 
