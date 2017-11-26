@@ -25,8 +25,9 @@ class ProjectResource extends Resource
             'meta'          => $this->meta,
             'templates'     => TemplateResource::collection($this->whenLoaded('templates')),
             'items'         => ItemResource::collection($this->whenLoaded('items')),
-            'language'      => $this->whenLoaded('language'),
+            'language'      => $this->whenLoaded('defaultLanguage'),
             'members'       => MemberResource::collection($this->whenLoaded('members')),
+            'languages'     => $this->whenLoaded('languages'),
         ];
     }
 }

@@ -16,6 +16,10 @@ class SubscriptionController extends Controller
     {
         $project = Project::with('billing')->findOrFail(session('tenant'));
 
+        if (is_null($project->billing)) {
+            return;
+        }
+
         return [
             'invoices' => $project->billing->invoicesIncludingPending()->map(function ($invoice) {
                 return (object) [

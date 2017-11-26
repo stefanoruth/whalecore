@@ -17,17 +17,20 @@ class DatabaseSeeder extends Seeder
         factory(App\User::class)->create(['email' => 'editor@whalecore.net']);
         factory(App\User::class)->create(['email' => 'developer@whalecore.net']);
 
-        factory(App\Project::class, 3)->create()->each(function ($site) {
+        factory(App\Project::class, 1)->create()->each(function ($site) {
             $site->members()->create(['user_id' => $this->admin->id, 'role_id' => 1]);
 
-            $templates = factory(App\Template::class, 10)->create(['project_id' => $site->id]);
+            // Pages
+            $pageTem = factory(App\Template::class)->states('page')->create(['project_id' => $site->id]);
+            factory(App\Item::class, 5)->create(['project_id' => $site->id, 'template_id' => $pageTem->id]);
 
-            // factory(App\Media::class, 10)->create(['project_id' => $site->id]);
-            factory(App\Item::class, 50)->make(['project_id' => $site->id])->each(function ($item) use ($templates) {
-                $item->template_id = $templates->random()->id;
+            // Posts
+            $postTem = factory(App\Template::class)->states('post')->create(['project_id' => $site->id]);
+            factory(App\Item::class, 2)->create(['project_id' => $site->id, 'template_id' => $postTem->id]);
 
-                $item->save();
-            });
+            // Bucket
+            $bucketTem = factory(App\Template::class)->states('bucket')->create(['project_id' => $site->id]);
+            factory(App\Item::class, 1)->create(['project_id' => $site->id, 'template_id' => $bucketTem->id]);
         });
     }
 }

@@ -19,7 +19,7 @@
                     <label class="label">Available Languanges</label>
                     <div class="control">
                         <div class="columns is-multiline">
-                            <div v-for="lang in languages" :key="lang.code" class="column is-3">
+                            <div v-for="lang in languages" :key="lang.code" class="column is-3" v-show="lang.code != defaultLang">
                                 <label class="checkbox"><input type="checkbox" v-model="selectedLangs" :value="lang.code">{{ lang.name }}</label>
                             </div>
                         </div>
@@ -49,13 +49,8 @@
 
         watch: {
             project(project) {
-                if (project.language_code != null) {
-                    this.defaultLang = project.language_code;
-                }
-
-                if (typeof this.project.meta.languages !== 'undefined') {
-                    this.selectedLangs = project.meta.languages;
-                }
+                this.defaultLang = project.language_code;
+                this.selectedLangs = _.map(project.languages, 'code');
             },
         },
 

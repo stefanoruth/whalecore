@@ -22,7 +22,7 @@ class CreateProjectsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('language_code')->references('code')->on('languages')->onDelete('set null');
+            $table->foreign('language_code')->references('code')->on('languages');
         });
     }
 

@@ -81,11 +81,20 @@ class Project extends Model
 
     /**
      * Relationship
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function languages()
+    {
+        return $this->belongsToMany(Language::class, 'project_languages');
+    }
+
+    /**
+     * Relationship
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function defaultLanguage()
     {
-        return $this->belongsTo(Language::class);
+        return $this->belongsTo(Language::class, 'language_code');
     }
 
     /**

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateContentTable extends Migration
+class CreateProjectLanguagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,12 @@ class CreateContentTable extends Migration
      */
     public function up()
     {
-        Schema::create('content', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('project_languages', function (Blueprint $table) {
             $table->integer('project_id')->unsigned();
-            $table->integer('item_id')->unsigned();
             $table->string('language_code');
-            $table->json('body');
-            $table->timestamps();
-            $table->softDeletes();
 
-            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
             $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
-            $table->foreign('language_code')->references('code')->on('languages');
+            $table->foreign('language_code')->references('code')->on('languages')->onDelete('cascade');
         });
     }
 
@@ -35,6 +29,6 @@ class CreateContentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('content');
+        Schema::dropIfExists('project_languages');
     }
 }

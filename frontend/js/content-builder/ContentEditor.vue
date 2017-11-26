@@ -1,7 +1,7 @@
 <template>
-    <div class="columns">
-        <div class="column is-3">
-            <div class="box" v-if="model != null">
+    <div class="columns" v-if="model != null">
+        <div class="column is-4">
+            <div class="box">
                 <div class="field">
                     <label class="label">Title</label>
                     <div class="field is-grouped">
@@ -23,17 +23,19 @@
             </div>
             <div class="columns">
                 <pre class="column" v-show="menu == 'base'">{{ baseContent | pretty }}</pre>
-                <pre class="column" v-show="menu == 'raw'">{{ content | pretty }}</pre>
+                <div class="column" v-show="menu == 'raw'">
+                    <pre v-for="lang in languages" :key="lang.code" v-show="lang.code == selectedLang">{{ content[lang.code] | pretty }}</pre>
+                </div>
             </div>
         </div>
         <div class="column">
             <div class="tabs is-boxed">
                 <ul>
-                    <li v-for="(lang, i) in langs" :key="i" :class="{'is-active':currentLang == lang}" @click="currentLang = lang"><a class="is-uppercase">{{ lang }}</a></li>
+                    <li v-for="lang in languages" :key="lang.code" :class="{'is-active':selectedLang == lang.code}" @click="selectedLang = lang.code"><a>{{ lang.name }}</a></li>
                 </ul>
             </div>
-            <div class="box" v-if="template.length > 0">
-                <content-field v-for="(field, key) in template" :key="key" :field="field" :content="content[key]" :baseContent="baseContent[key]" :indentifier="key" style="margin-bottom:50px;"></content-field>
+            <div class="box" v-for="lang in languages" :key="lang.code" v-show="lang.code == selectedLang">
+                <content-field v-for="(field, key) in template" :key="key" :field="field" :content="content[lang.code][key]" :baseContent="baseContent[key]" :indentifier="key" style="margin-bottom:50px;"></content-field>
             </div>
         </div>
     </div>
@@ -45,11 +47,11 @@
             return {
                 model: null,
                 template: [],
-                content: [],
+                content: null,
                 baseContent: [],
-                langs: [],
-                currentLang: null,
-                menu: 'base',
+                languages: [],
+                selectedLang: null,
+                menu: 'raw',
             }
         },
 
@@ -58,31 +60,37 @@
             axios.get(route('items.show', this.$route.params.id)).then(response => {
                 this.model = response.data.data;
 
-                if (typeof this.model.project.meta.languages !== 'undefined') {
-                    this.langs = this.model.project.meta.languages;
-                }
+                this.selectedLang = this.model.project.language_code;
 
                 if (response.data.data.template.structure !== null) {
                     this.template = response.data.data.template.structure;
                 }
+
+                // Languages
+                let langs = [this.model.project.language];
+                for (const key in this.model.project.languages) {
+                    langs.push(this.model.project.languages[key]);
+                }
+                this.languages = _.uniqBy(langs, 'code');
                 
                 this.baseContent = this.buildBase(this.template);
-                let copyContent = JSON.parse(JSON.stringify(this.baseContent));
                 
-                if (response.data.data.content.length == 0) {
-                    this.content = copyContent;
-                    return;
+                let sets = {};
+                for (const key in this.languages) {
+                    const lang = this.languages[key];
+                    
+                    let data = JSON.parse(JSON.stringify(this.baseContent));
+
+                    if (response.data.data.content.length > 0) {
+                        data = this.fillContent(data, _.find(response.data.data.content, function(content){
+                            return content.language_code == lang.code;
+                        }).body);
+                    }
+
+                    sets[lang.code] = data;
                 }
 
-                for (const key in response.data.data.content) {
-                    if (response.data.data.content.hasOwnProperty(key)) {
-                        const content = response.data.data.content[key];
-                        
-                        console.log(content);
-                    }
-                }
-                
-                this.content = this.fillContent(copyContent, response.data.data.content[0].body);
+                this.content = sets;
             });
         },
 

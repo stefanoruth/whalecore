@@ -64,7 +64,7 @@ class ProjectController extends Controller
     public function show($id)
     {
         return ProjectResource::make(
-            Auth::user()->projects()->with('members.user', 'members.role')->findOrFail(session('tenant'))
+            Auth::user()->projects()->with('members.user', 'members.role', 'defaultLanguage', 'languages')->findOrFail(session('tenant'))
         );
     }
 
@@ -88,7 +88,7 @@ class ProjectController extends Controller
         }
 
         if (request('languages')) {
-            $project->meta = ['languages' => request('languages')];
+            $project->languages()->sync(request('languages'));
         }
 
         $project->save();

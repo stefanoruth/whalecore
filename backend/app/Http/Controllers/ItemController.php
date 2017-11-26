@@ -63,7 +63,7 @@ class ItemController extends Controller
     public function show($id)
     {
         return ItemResource::make(
-            Item::with('template.type', 'content', 'project')->findOrFail($id)
+            Item::with('template.type', 'content', 'project.languages', 'project.defaultLanguage')->findOrFail($id)
         );
     }
 
@@ -76,24 +76,24 @@ class ItemController extends Controller
      */
     public function update(Request $request, $id)
     {
-        request()->validate([
+        $data = request()->validate([
             'content' => ['required', 'array'],
         ]);
 
-        $item = Item::with('content')->findOrFail($id);
-        
-        if ($item->content->count() == 0) {
-            $item->content()->create([
-                'project_id' => $item->project_id,
-                'body' => request('content'),
-            ]);
+        // return request('content');
 
-            return;
-        } else {
-            $content = $item->content->first();
-            $content->body = request('content');
-            $content->save();
+        $item = Item::findOrFail($id);
+
+        foreach ($data['content'] as $langCode => $content) {
+            $item->content()->updateOrCreate([
+                'project_id' => $item->project_id,
+                'language_code' => $langCode,
+            ], [
+                'body' => $content,
+            ]);
         }
+        
+        return ItemResource::make($item);
     }
 
     /**
