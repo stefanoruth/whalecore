@@ -63,7 +63,7 @@ class ItemController extends Controller
     public function show($id)
     {
         return ItemResource::make(
-            Item::with('template.type', 'content')->findOrFail($id)
+            Item::with('template.type', 'content', 'project')->findOrFail($id)
         );
     }
 

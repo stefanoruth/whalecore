@@ -1,10 +1,40 @@
 <template>
     <div class="columns" v-if="template.length > 0">
-        <pre class="column is-3">{{ cleanContent | pretty }}</pre>
-        <pre class="column is-3">{{ content | pretty }}</pre>
+        <div class="column is-3">
+            <div class="box">
+                <div class="field">
+                    <label class="label">Title</label>
+                    <div class="field is-grouped">
+                        <div class="control is-expanded">
+                            <input class="input" type="text" v-model="model.title">
+                        </div>
+                        <div class="control">
+                            <button class="button is-success" @click="saveContent">Publish</button>
+                        </div>
+                    </div>
+                </div>
+            </div>  
+
+            <div class="tabs is-boxed">
+                <ul>
+                    <li :class="{'is-active': menu == 'base'}" @click="menu = 'base'"><a>Base</a></li>
+                    <li :class="{'is-active': menu == 'raw'}" @click="menu = 'raw'"><a>Raw</a></li>
+                </ul>
+            </div>
+            <div class="columns">
+                <pre class="column" v-show="menu == 'base'">{{ cleanContent | pretty }}</pre>
+                <pre class="column" v-show="menu == 'raw'">{{ content | pretty }}</pre>
+            </div>
+        </div>
         <div class="column">
-            <button class="button" @click="saveContent">Save</button>
-            <content-field v-for="(field, key) in template" :key="key" :field="field" :content="content[key]" :cleanContent="cleanContent[key]" :indentifier="key" style="margin-bottom:50px;"></content-field>
+            <div class="tabs is-boxed">
+                <ul>
+                    <li v-for="(lang, i) in langs" :key="i" :class="{'is-active':currentLang == lang}" @click="currentLang = lang"><a class="is-uppercase">{{ lang }}</a></li>
+                </ul>
+            </div>
+            <div class="box">
+                <content-field v-for="(field, key) in template" :key="key" :field="field" :content="content[key]" :cleanContent="cleanContent[key]" :indentifier="key" style="margin-bottom:50px;"></content-field>
+            </div>
         </div>
     </div>
 </template>
@@ -17,6 +47,9 @@
                 template: [],
                 content: [],
                 cleanContent: [],
+                langs: [],
+                currentLang: null,
+                menu: 'base',
             }
         },
 
@@ -24,6 +57,10 @@
             // Fetches all information about the current page.
             axios.get(route('items.show', this.$route.params.id)).then(response => {
                 this.model = response.data.data;
+
+                if (typeof this.model.project.meta.languages !== 'undefined') {
+                    this.langs = this.model.project.meta.languages;
+                }
 
                 if (response.data.data.template.structure !== null) {
                     this.template = response.data.data.template.structure;
