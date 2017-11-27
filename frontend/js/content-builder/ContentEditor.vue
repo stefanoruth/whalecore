@@ -18,7 +18,7 @@
             <div class="tabs is-boxed">
                 <ul>
                     <li :class="{'is-active': menu == 'base'}" @click="menu = 'base'"><a>Base</a></li>
-                    <li :class="{'is-active': menu == 'raw'}" @click="menu = 'raw'"><a>Raw</a></li>
+                    <li :class="{'is-active': menu == 'raw'}" @click="menu = 'raw'"><a>Raw ({{ selectedLang }})</a></li>
                 </ul>
             </div>
             <div class="columns">
