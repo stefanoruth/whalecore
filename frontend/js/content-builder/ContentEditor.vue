@@ -82,9 +82,13 @@
                     let data = JSON.parse(JSON.stringify(this.baseContent));
 
                     if (response.data.data.content.length > 0) {
-                        data = this.fillContent(data, _.find(response.data.data.content, function(content){
+                        let old = _.find(response.data.data.content, function(content){
                             return content.language_code == lang.code;
-                        }).body);
+                        });
+
+                        if (old != null) {
+                            data = this.fillContent(data, old.body);
+                        }
                     }
 
                     sets[lang.code] = data;
