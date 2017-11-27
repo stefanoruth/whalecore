@@ -1,0 +1,256 @@
+[
+    {
+        "id": "intro",
+        "max": null,
+        "min": 0,
+        "type": "text",
+        "title": "Intro",
+        "fields": [],
+        "default": null,
+        "required": false,
+        "description": "Some de script tion",
+        "placeholder": "i am a placeholder"
+    },
+    {
+        "id": "slides",
+        "max": null,
+        "min": 0,
+        "type": "repeater",
+        "title": "Slides",
+        "fields": [
+            {
+                "id": "slide-image",
+                "max": null,
+                "min": 0,
+                "type": "image",
+                "title": "Image",
+                "fields": [],
+                "default": null,
+                "required": false,
+                "description": null,
+                "placeholder": null
+            },
+            {
+                "id": "desc",
+                "max": null,
+                "min": 0,
+                "type": "textarea",
+                "title": "Description",
+                "fields": [],
+                "default": null,
+                "required": false,
+                "description": null,
+                "placeholder": null
+            },
+            {
+                "id": "subsub",
+                "max": 3,
+                "min": 0,
+                "type": "repeater",
+                "title": "SubItems",
+                "fields": [
+                    {
+                        "id": "textline",
+                        "max": null,
+                        "min": 0,
+                        "type": "text",
+                        "title": "Callout",
+                        "fields": [],
+                        "default": null,
+                        "required": false,
+                        "description": null,
+                        "placeholder": null
+                    }
+                ],
+                "default": null,
+                "required": false,
+                "description": null,
+                "placeholder": null
+            },
+            {
+                "id": "my-slides",
+                "dir": "rows",
+                "max": null,
+                "min": 0,
+                "type": "select",
+                "title": "Type of slides",
+                "fields": [],
+                "values": [
+                    {
+                        "key": null,
+                        "label": "Der"
+                    },
+                    {
+                        "key": "1",
+                        "label": "A2 sdasdasdasdasdasdasdas"
+                    }
+                ],
+                "default": null,
+                "required": false,
+                "description": null,
+                "placeholder": null
+            }
+        ],
+        "default": null,
+        "required": false,
+        "description": "these aren't the slides you're looking for",
+        "placeholder": null
+    },
+    {
+        "id": "hero",
+        "max": null,
+        "min": 0,
+        "type": "section",
+        "title": "Hero",
+        "fields": [
+            {
+                "id": "title",
+                "max": null,
+                "min": 0,
+                "type": "text",
+                "title": "Title Message",
+                "fields": [],
+                "default": null,
+                "required": false,
+                "description": null,
+                "placeholder": null
+            },
+            {
+                "id": "bg-image",
+                "max": null,
+                "min": 0,
+                "type": "image",
+                "title": "Background Image",
+                "fields": [],
+                "default": null,
+                "required": false,
+                "description": null,
+                "placeholder": null
+            },
+            {
+                "id": "controls",
+                "max": null,
+                "min": 0,
+                "type": "section",
+                "title": "Mini Controls",
+                "fields": [
+                    {
+                        "id": "button1",
+                        "max": null,
+                        "min": 0,
+                        "type": "text",
+                        "title": "Button",
+                        "fields": [],
+                        "default": null,
+                        "required": false,
+                        "description": null,
+                        "placeholder": null
+                    },
+                    {
+                        "id": "button2",
+                        "max": null,
+                        "min": 0,
+                        "type": "text",
+                        "title": "Button",
+                        "fields": [],
+                        "default": null,
+                        "required": false,
+                        "description": null,
+                        "placeholder": null
+                    }
+                ],
+                "default": null,
+                "required": false,
+                "description": null,
+                "placeholder": null
+            }
+        ],
+        "default": null,
+        "required": false,
+        "description": null,
+        "placeholder": null
+    },
+    {
+        "id": "examples",
+        "dir": "rows",
+        "max": null,
+        "min": 0,
+        "type": "section",
+        "title": "Other FIelds",
+        "fields": [
+            {
+                "id": null,
+                "dir": "rows",
+                "max": null,
+                "min": 0,
+                "type": "select",
+                "title": "Country",
+                "fields": [],
+                "values": [
+                    {
+                        "key": "denmark",
+                        "label": "Epic Danmark"
+                    },
+                    {
+                        "key": "sweden",
+                        "label": "Sverige"
+                    },
+                    {
+                        "key": "norway",
+                        "label": "Norge"
+                    }
+                ],
+                "default": null,
+                "required": false,
+                "description": null,
+                "placeholder": null
+            },
+            {
+                "id": "toggleMe",
+                "dir": "rows",
+                "max": null,
+                "min": 0,
+                "type": "radio",
+                "title": "Some boolean",
+                "fields": [],
+                "values": [
+                    {
+                        "key": "1",
+                        "label": "On"
+                    },
+                    {
+                        "key": "0",
+                        "label": "Off"
+                    },
+                    {
+                        "key": "2",
+                        "label": "Magic"
+                    }
+                ],
+                "default": null,
+                "required": false,
+                "description": null,
+                "placeholder": null
+            },
+            {
+                "id": "box",
+                "dir": "rows",
+                "max": null,
+                "min": 0,
+                "type": "checkbox",
+                "title": "ClickMe",
+                "fields": [],
+                "values": [],
+                "default": null,
+                "required": false,
+                "description": null,
+                "placeholder": null
+            }
+        ],
+        "values": [],
+        "default": null,
+        "required": false,
+        "description": null,
+        "placeholder": null
+    }
+]
