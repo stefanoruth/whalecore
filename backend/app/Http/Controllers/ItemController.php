@@ -46,12 +46,14 @@ class ItemController extends Controller
             $i++;
         }
 
-        return Item::create([
-            'title'       => request('title'),
-            'slug'        => $slug,
-            'template_id' => request('template'),
-            'project_id'     => session('tenant'),
-        ]);
+        return ItemResource::make(
+            Item::create([
+                'title'       => request('title'),
+                'slug'        => $slug,
+                'template_id' => request('template'),
+                'project_id'     => session('tenant'),
+            ])
+        );
     }
 
     /**

@@ -17,7 +17,6 @@ class Tenancy
     public function handle($request, Closure $next)
     {
         $session = session('tenant');
-        // dump($session);
 
         if (is_null($session)) {
             throw new ProjectSpecificAreaException('A project has not been selected', 403);

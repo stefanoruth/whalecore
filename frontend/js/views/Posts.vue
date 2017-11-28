@@ -78,9 +78,9 @@ export default {
   methods: {
     newPost() {
       axios
-        .post(route("templates.store"), {
+        .post(route("items.store"), {
           title: this.postTitle,
-          type: this.postTemplate
+          template: this.postTemplate
         })
         .then(response => {
           this.$router.push("/posts/" + response.data.data.id);

@@ -26,6 +26,10 @@ class Media extends Model
         'path',
     ];
 
+    /**
+     * Generates the public url for the media file.
+     * @return string
+     */
     public function getPathAttribute()
     {
         return Storage::disk($this->disk)->url(sprintf("%s/%s", $this->project_id, $this->file_name));

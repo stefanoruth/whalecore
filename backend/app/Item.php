@@ -36,10 +36,11 @@ class Item extends Model
     }
 
     /**
-     * Scope
-     * @param  [type] $query [description]
-     * @param  [type] $type  [description]
-     * @return [type]        [description]
+     * Scope the type of template
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string $type
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeType($query, $type)
     {
