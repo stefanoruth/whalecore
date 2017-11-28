@@ -22,7 +22,9 @@
                 </ul>
             </div>
             <div class="columns">
-                <pre class="column" v-show="menu == 'base'">{{ baseContent | pretty }}</pre>
+                <div class="column" v-show="menu == 'base'">
+                    <pre>{{ baseContent | pretty }}</pre>
+                </div>
                 <div class="column" v-show="menu == 'raw'">
                     <pre v-for="lang in languages" :key="lang.code" v-show="lang.code == selectedLang">{{ content[lang.code] | pretty }}</pre>
                 </div>
