@@ -48,7 +48,6 @@
     export default {
         props: [
             'field',
-            'indentifier',
             'content',
         ],
     }
