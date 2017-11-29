@@ -61,30 +61,51 @@
             // Fetches all information about the current page.
             axios.get(route('items.show', this.$route.params.id)).then(response => {
                 this.model = response.data.data;
-
-                this.selectedLang = this.model.project.language_code;
-
-                if (response.data.data.template.structure !== null) {
-                    this.template = response.data.data.template.structure;
-                }
-
-                // Languages
-                let langs = [this.model.project.language];
-                for (const key in this.model.project.languages) {
-                    langs.push(this.model.project.languages[key]);
-                }
-                this.languages = _.uniqBy(langs, 'code');
-                
+                this.setTemplate(response.data.data.template);
+                this.setLanguages(this.model.project);
                 this.baseContent = this.buildBase(this.template);
-                
+                this.content = this.fillLanguageContent(response.data.data.content);
+            });
+        },
+
+        methods: {
+            /**
+             * Sets the template if a structure has been defined.
+             */
+            setTemplate(template) {
+                if (template.structure !== null) {
+                    this.template = template.structure;
+                }
+            },
+
+            /**
+             * This all languages for contents.
+             */
+            setLanguages(project) {
+                // Set start language.
+                this.selectedLang = project.language_code;
+                let langs = [project.language];
+
+                // Find all other languages for this project
+                for (const key in project.languages) {
+                    langs.push(project.languages[key]);
+                }
+
+                this.languages = _.uniqBy(langs, 'code');
+            },
+
+            /**
+             * Check each language for pre existing content and fill it into the template.
+             */
+            fillLanguageContent(contentList) {
                 let sets = {};
                 for (const key in this.languages) {
                     const lang = this.languages[key];
                     
                     let data = JSON.parse(JSON.stringify(this.baseContent));
 
-                    if (response.data.data.content.length > 0) {
-                        let old = _.find(response.data.data.content, function(content){
+                    if (contentList.length > 0) {
+                        let old = _.find(contentList, function(content){
                             return content.language_code == lang.code;
                         });
 
@@ -96,11 +117,9 @@
                     sets[lang.code] = data;
                 }
 
-                this.content = sets;
-            });
-        },
+                return sets;
+            },
 
-        methods: {
             /**
              * Takes a template and converts is to an usable datastructure
              */
