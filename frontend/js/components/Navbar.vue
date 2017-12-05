@@ -29,7 +29,7 @@
                         <div class="navbar-dropdown">
                             <router-link to="/" class="navbar-item">Change project</router-link>                        
                             <router-link to="/settings" class="navbar-item">Project settings</router-link>
-                            <router-link to="#" class="navbar-item">User settings</router-link>
+                            <!-- <router-link to="#" class="navbar-item">User settings</router-link> -->
                     </div>
                 </div>
                 <a href="/logout" class="navbar-item">Logout</a>
