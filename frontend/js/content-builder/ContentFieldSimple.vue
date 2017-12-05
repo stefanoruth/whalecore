@@ -6,10 +6,18 @@
 
             <input v-if="field.type == 'text'" class="input is-small" type="text" v-model="content[field.id]" :placeholder="field.placeholder">
 
-            <div v-else-if="field.type == 'image'" class="file is-small has-name">
-                <img :src="content[field.id]" style="width:100px;height:100px;">
-                <button class="button" @click="imageModal = true">Select Image</button>
-                <file-modal :show="imageModal" @close="imageModal = false" v-model="content[field.id]"></file-modal>
+            <div v-else-if="field.type == 'image'" class="file is-small has-name" @click="imageModal = true">
+                <template v-if="content[field.id] != null">
+                    <div class="box" style="padding: 15px;cursor: pointer;" title="Change File">
+                        <img v-if="isImage(content[field.id])" :src="content[field.id]" style="max-height:40px;">
+                        <i v-else class="fa fa-file" style="font-size: 40px;"></i>
+                    </div>
+                </template>
+                <template v-else>
+                    <button class="button is-small">Select Image</button>
+                </template>
+                
+                <file-modal :show="imageModal" @close="imageModal = false" @clearFile="content[field.id] = null" v-model="content[field.id]"></file-modal>
             </div>
 
             <textarea v-else-if="field.type == 'textarea'" class="textarea is-small" v-model="content[field.id]"></textarea>
@@ -51,6 +59,24 @@
             return {
                 imageModal: false,
             };
+        },
+
+        methods: {
+            isImage(file) {
+                if (file == null) {
+                    return false;
+                }
+
+                let bool = false;
+
+                ['.png','.jpg','.jpeg','.svg',].forEach(ext => {
+                    if (file.indexOf(ext) > -1) {
+                        bool = true;
+                    }
+                });
+
+                return bool;
+            },
         },
     }
 </script>

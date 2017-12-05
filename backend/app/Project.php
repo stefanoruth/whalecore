@@ -121,4 +121,20 @@ class Project extends Model
 
         return $this;
     }
+
+    /**
+     * Generate ftp driver based on project meta
+     *
+     * @return \Illuminate\Filesystem\FilesystemAdapter
+     */
+    public function ftp()
+    {
+        return Storage::createFtpDriver([
+            'host'     => $this->meta->ftp->host ?? null,
+            'port'     => $this->meta->ftp->port ?? 21,
+            'root'     => $this->meta->ftp->root ?? null,
+            'username' => $this->meta->ftp->username ?? null,
+            'password' => $this->meta->ftp->password ?? null,
+        ]);
+    }
 }

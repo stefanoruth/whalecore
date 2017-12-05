@@ -32,6 +32,10 @@ class Media extends Model
      */
     public function getPathAttribute()
     {
-        return Storage::disk($this->disk)->url(sprintf("%s/%s", $this->project_id, $this->file_name));
+        if ($this->disk == 'public') {
+            return url(Storage::disk($this->disk)->url(sprintf("%s/%s", $this->project_id, $this->file_name)));
+        }
+
+        return $this->project->ftp()->url($this->file_name);
     }
 }

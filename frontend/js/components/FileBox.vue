@@ -1,13 +1,15 @@
 <template>
     <modal :show="show" @close="$emit('close')">
-        <div slot="title">Select File</div>
+        <div slot="title">Select file from Media Library</div>
         <div class="columns is-multiline">
             <div v-for="file in files" :key="file.id" class="column is-narrow">
-                <div class="box" style="width:100px;" @click="updateValue(file.path)">
-                    <img :src="file.path">
+                <div class="box" style="padding: 15px; cursor: pointer;" @click="updateValue(file.path)" :title="file.file_name">
+                    <img v-if="isImage(file.mime_type)" :src="file.path" style="max-height: 40px;">
+                    <i v-else class="fa fa-file" style="font-size: 40px;"></i>
                 </div>
             </div>
         </div>
+        <button slot="footer" class="button is-small is-danger" @click="$emit('clearFile'), $emit('close')">Remove file</button>
     </modal>
 </template>
 
@@ -35,6 +37,10 @@
                 this.$emit('input', value);
                 this.$emit('close');
             },
+
+            isImage(mime) {
+                return ['image/png', 'image/jpeg'].indexOf(mime) > -1;
+            }
         },
     }
 </script>
