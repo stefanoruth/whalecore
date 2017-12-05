@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Media;
 use App\Project;
 use App\Http\Resources\MediaResource;
+use Illuminate\Support\Str;
 
 class MediaController extends Controller
 {
@@ -37,7 +38,7 @@ class MediaController extends Controller
         ])['file'];
 
 
-        $filename = sprintf("%s-%s.%s", pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME), time(), $file->getClientOriginalExtension());
+        $filename = sprintf("%s-%s.%s", Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)), time(), $file->getClientOriginalExtension());
 
         $media = new Media([
             'project_id' => session('tenant'),
@@ -54,29 +55,6 @@ class MediaController extends Controller
         $media->save();
 
         return $media;
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return Media::findOrFail($id);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
     }
 
     /**
