@@ -7,13 +7,9 @@
             <input v-if="field.type == 'text'" class="input is-small" type="text" v-model="content[field.id]" :placeholder="field.placeholder">
 
             <div v-else-if="field.type == 'image'" class="file is-small has-name">
-                <label class="file-label">
-                    <input class="file-input" type="file">
-                    <span class="file-cta">
-                        <span class="file-label">Choose a file…</span>
-                    </span>
-                    <span class="file-name">Screen Shot 2017-07-29 at 15.54.25.png</span>
-                </label>
+                <img :src="content[field.id]" style="width:100px;height:100px;">
+                <button class="button" @click="imageModal = true">Select Image</button>
+                <file-modal :show="imageModal" @close="imageModal = false" v-model="content[field.id]"></file-modal>
             </div>
 
             <textarea v-else-if="field.type == 'textarea'" class="textarea is-small" v-model="content[field.id]"></textarea>
@@ -50,5 +46,11 @@
             'field',
             'content',
         ],
+
+        data() {
+            return {
+                imageModal: false,
+            };
+        },
     }
 </script>
