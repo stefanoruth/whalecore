@@ -1,9 +1,9 @@
 <template>
-    <nav class="navbar is-unselectable is-light">
+    <nav class="navbar is-unselectable is-light" v-show="$route.path != '/'">
         <div class="navbar-brand">
-            <a href="" class="navbar-item">
+            <router-link to="/" class="navbar-item">
                 <img src="/hvalborg.png" alt="Hvalborg icon">
-            </a>
+            </router-link>
             <div class="navbar-burger" v-on:click="mobileShow = !mobileShow" v-bind:class="{'is-active':mobileShow}">
                 <span></span>
                 <span></span>
