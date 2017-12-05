@@ -22,8 +22,10 @@ trait BelongsToProject
      */
     protected static function bootBelongsToProject()
     {
-        static::addGlobalScope('project-scope', function (Builder $builder) {
-            $builder->where('project_id', session('tenant'));
-        });
+        if (!app()->runningInConsole()) {
+            static::addGlobalScope('project-scope', function (Builder $builder) {
+                $builder->where('project_id', session('tenant'));
+            });
+        }
     }
 }

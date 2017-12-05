@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Item;
 use App\Http\Resources\ItemResource;
+use App\Item;
+use App\Jobs\PublishContent;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class ItemController extends Controller
 {
@@ -34,7 +35,7 @@ class ItemController extends Controller
     {
         request()->validate([
             'title'    => 'required',
-            'template' => ['required',Rule::exists('templates', 'id')->where('project_id', session('tenant'))],
+            'template' => ['required', Rule::exists('templates', 'id')->where('project_id', session('tenant'))],
         ]);
 
 
@@ -51,7 +52,7 @@ class ItemController extends Controller
                 'title'       => request('title'),
                 'slug'        => $slug,
                 'template_id' => request('template'),
-                'project_id'     => session('tenant'),
+                'project_id'  => session('tenant'),
             ])
         );
     }
@@ -82,17 +83,17 @@ class ItemController extends Controller
             'content' => ['required', 'array'],
         ]);
 
-        // return request('content');
-
         $item = Item::findOrFail($id);
 
         foreach ($data['content'] as $langCode => $content) {
-            $item->content()->updateOrCreate([
+            $content = $item->content()->updateOrCreate([
                 'project_id' => $item->project_id,
                 'language_code' => $langCode,
             ], [
                 'body' => $content,
             ]);
+
+            dispatch(new PublishContent($content));
         }
         
         return ItemResource::make($item);
