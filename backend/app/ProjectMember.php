@@ -23,8 +23,14 @@ class ProjectMember extends Model
      */
     public $incrementing = false;
 
-
-    protected $with = ['role'];
+    /**
+     * The relations to eager load on every query.
+     *
+     * @var array
+     */
+    protected $with = [
+        'role'
+    ];
 
     /**
      * Relationship
