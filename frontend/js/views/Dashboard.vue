@@ -1,8 +1,8 @@
 <template>
 <div class="container">
 <div class="columns is-multiline">
-  <div v-for="project in projects" :key="project.id" class="column is-4" @click="loginToProject(project.id)">
-   <div class="card card-equal-height">
+  <div v-for="project in projects" :key="project.id" class="column is-4">
+   <div class="card card-equal-height" @click="loginToProject(project.id)" style="cursor:pointer;">
     <div class="card-content">
     <div class="media">
       <div class="media-left">
@@ -18,7 +18,7 @@
   </div> 
   </div>
   <div class="column is-4">
-    <div class="card card-equal-height" @click="showModal = true">
+    <div class="card card-equal-height" @click="showModal = true" style="cursor:pointer;">
         <div class="card-content">
           <div class="media"> 
             <div class="media-content">
