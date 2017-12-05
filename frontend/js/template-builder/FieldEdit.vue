@@ -32,6 +32,19 @@
                     <textarea class="textarea" placeholder="e.g. Hello world" v-model="field.description"></textarea>
                 </div>
             </div>
+
+            <div class="field" v-if="isRepeater()">
+                <div class="label is-small">Column Direction</div>
+                <div class="control">
+                    <div class="select is-small">
+                        <select v-model="field.dir">
+                            <option value="rows">Rows</option>
+                            <option value="columns">Columns</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
             <div class="field" v-if="!hasSubFields()">
                 <div class="control">
                     <label class="checkbox">          
@@ -40,13 +53,13 @@
                     </label>
                 </div>
             </div>
-            <div class="field" v-if="hasSubFields()">
+            <div class="field" v-if="isRepeater()">
                 <label class="label is-small">Minimum items in repeater</label>
                 <div class="control">
                     <input class="input is-small" type="number" v-model="field.min">
                 </div>
             </div>
-            <div class="field" v-if="hasSubFields()">
+            <div class="field" v-if="isRepeater()">
                 <label class="label is-small">Maximum items in repeater</label>
                 <div class="control">
                     <input class="input is-small" type="number" v-model="field.max">
@@ -88,6 +101,10 @@
         methods: {
             hasSubFields() {
                 return ["section", "repeater"].indexOf(this.field.type) > -1;
+            },
+
+            isRepeater() {
+                return ['repeater'].indexOf(this.field.type) > -1;
             },
 
             needsValues() {

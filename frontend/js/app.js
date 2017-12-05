@@ -17,6 +17,7 @@ Vue.use(tinymce);
 Vue.component('modal', require('./components/Modal'));
 Vue.component('tinymce', require('./components/TinyMCE'));
 Vue.component('navigation', require('./components/Navbar'));
+Vue.component('file-modal', require('./components/FileBox'));
 Vue.component('confirm-box', require('./components/ConfirmBox'));
 Vue.component('content-field', require('./content-builder/ContentField'));
 Vue.component('content-field-simple', require('./content-builder/ContentFieldSimple'));

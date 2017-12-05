@@ -22,15 +22,15 @@
                 </ul>
             </div>
             <div class="columns">
-                <div class="column" v-show="menu == 'base'">
+                <div class="column" v-show="menu == 'base'" style="overflow-x:auto">
                     <pre>{{ baseContent | pretty }}</pre>
                 </div>
-                <div class="column" v-show="menu == 'raw'">
+                <div class="column" v-show="menu == 'raw'" style="overflow-x:auto">
                     <pre v-for="lang in languages" :key="lang.code" v-show="lang.code == selectedLang">{{ content[lang.code] | pretty }}</pre>
                 </div>
             </div>
         </div>
-        <div class="column">
+        <div class="column" style="overflow:hidden;">
             <div class="tabs is-boxed">
                 <ul>
                     <li v-for="lang in languages" :key="lang.code" :class="{'is-active':selectedLang == lang.code}" @click="selectedLang = lang.code"><a>{{ lang.name }}</a></li>

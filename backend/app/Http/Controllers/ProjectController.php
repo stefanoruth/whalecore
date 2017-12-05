@@ -7,6 +7,7 @@ use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Resources\ProjectResource;
+use App\TemplateType;
 
 class ProjectController extends Controller
 {
@@ -41,6 +42,7 @@ class ProjectController extends Controller
     {
         $data = request()->validate([
             'title' => 'required',
+            'language_code' => 'required',
         ]);
 
         $project = Project::create($data);
@@ -50,6 +52,19 @@ class ProjectController extends Controller
         $project->members()->create([
             'role_id' => Role::where('name', 'owner')->firstOrfail()->id,
             'user_id' => auth()->id(),
+        ]);
+            
+        // Create default templates.
+        $project->templates()->create([
+            'type_id'   => TemplateType::where('name', 'bucket')->first()->id,
+            'title'     => 'Employe',
+            'structure' => json_decode('[{"id": "employees", "dir": "rows", "max": null, "min": 0, "type": "repeater", "title": "Employees", "fields": [{"id": "image", "dir": "rows", "max": null, "min": 0, "type": "image", "title": "Image", "fields": [], "values": [], "default": null, "required": false, "description": null, "placeholder": null}, {"id": "name", "dir": "rows", "max": null, "min": 0, "type": "text", "title": "Name", "fields": [], "values": [], "default": null, "required": false, "description": null, "placeholder": null}, {"id": "jobtitle", "dir": "rows", "max": null, "min": 0, "type": "text", "title": "Title", "fields": [], "values": [], "default": null, "required": false, "description": null, "placeholder": null}, {"id": "email", "dir": "rows", "max": null, "min": 0, "type": "text", "title": "Email", "fields": [], "values": [], "default": null, "required": false, "description": null, "placeholder": null}], "values": [], "default": null, "required": false, "description": null, "placeholder": null}]'),
+        ]);
+
+        $project->templates()->create([
+            'type_id'   => TemplateType::where('name', 'page')->first()->id,
+            'title'     => 'Standard page',
+            'structure' => json_decode('[{"id": "page", "dir": "rows", "max": null, "min": 0, "type": "section", "title": "Page", "fields": [{"id": "title", "dir": "rows", "max": null, "min": 0, "type": "text", "title": "Title", "fields": [], "values": [], "default": null, "required": false, "description": null, "placeholder": null}, {"id": "body", "dir": "rows", "max": null, "min": 0, "type": "text-editor", "title": "Body", "fields": [], "values": [], "default": null, "required": false, "description": null, "placeholder": null}], "values": [], "default": null, "required": false, "description": null, "placeholder": null}, {"id": "seo", "dir": "rows", "max": null, "min": 0, "type": "section", "title": "Seo", "fields": [{"id": "title", "dir": "rows", "max": null, "min": 0, "type": "text", "title": "Seo Title", "fields": [], "values": [], "default": null, "required": false, "description": null, "placeholder": null}, {"id": "description", "dir": "rows", "max": null, "min": 0, "type": "text", "title": "Seo Description", "fields": [], "values": [], "default": null, "required": false, "description": null, "placeholder": null}, {"id": "image", "dir": "rows", "max": null, "min": 0, "type": "image", "title": "Seo Image", "fields": [], "values": [], "default": null, "required": false, "description": null, "placeholder": null}], "values": [], "default": null, "required": false, "description": null, "placeholder": null}]'),
         ]);
 
         return $project;

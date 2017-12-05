@@ -81,15 +81,13 @@ export default {
         .post(route("items.store"), {
           title: this.bucketTitle,
           template: this.bucketTemplate
-        })
-        .then(response => {
-            console.log(response);
-          this.$router.push("/buckets/" + response.data.id);
-        })
-        .catch(error => {
+        }).then(response => {
+          this.$router.push("/buckets/" + response.data.data.id);
+        }).catch(error => {
           this.errors = error.response.data.errors;
         });
     },
+
     closeModal() {
       (this.showModal = false), (this.errors = null);
     }

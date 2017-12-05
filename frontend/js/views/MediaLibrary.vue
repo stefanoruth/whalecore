@@ -10,14 +10,18 @@
             <div class="columns">
                 <div class="column is-narrow">
                     <aside class="menu">
-                        <p class="menu-label">Folders</p>
-                        <ul class="menu-list">
-                            <li v-for="(folder, i) in folders" :key="i"><a>{{ folder }}</a></li>
-                        </ul>
-                        <p class="menu-label">Media Types</p>
-                        <ul class="menu-list">
-                            <li v-for="(mime, i) in mimeTypes" :key="i"><a @click="toggleMimeType(mime)" :class="{'is-active': selectedMime == mime}">{{ mime }}</a></li>
-                        </ul>
+                        <template v-if="folders.length > 0">
+                            <p class="menu-label">Folders</p>
+                            <ul class="menu-list">
+                                <li v-for="(folder, i) in folders" :key="i"><a>{{ folder }}</a></li>
+                            </ul>
+                        </template>
+                        <template v-if="mimeTypes.length > 0">
+                            <p class="menu-label">Media Types</p>
+                            <ul class="menu-list">
+                                <li v-for="(mime, i) in mimeTypes" :key="i"><a @click="toggleMimeType(mime)" :class="{'is-active': selectedMime == mime}">{{ mime }}</a></li>
+                            </ul>
+                        </template>
                     </aside>
                 </div>
                 <div class="column">

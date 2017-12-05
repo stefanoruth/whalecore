@@ -14,16 +14,34 @@
     
         <template v-if="field.type == 'repeater'">
             <div class="card-content" v-show="openChilds">
-                <div v-for="(dataField, i) in content[field.id]" :key="i" class="card">
-                    <div class="card-content">
-                        <content-field v-for="(subField, key) in field.fields" :key="key" :field="subField" :baseContent="baseContent[field.id][0]" :content="content[field.id][i]"></content-field>
-                    </div>
-                    <div class="card-footer">
-                        <div class="card-footer-item">
-                            <button class="button is-danger is-small" @click="removeField(i)">X</button>
+                <template v-if="field.dir == 'columns'">
+                    <div class="columns" style="overflow-x:auto;">
+                        <div v-for="(dataField, i) in content[field.id]" :key="i" class="column is-narrow">
+                            <div class="card">
+                                <div class="card-content">
+                                    <content-field v-for="(subField, key) in field.fields" :key="key" :field="subField" :baseContent="baseContent[field.id][0]" :content="content[field.id][i]"></content-field>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="card-footer-item">
+                                        <button class="button is-danger is-small" @click="removeField(i)">X</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </template>
+                <template v-else>
+                    <div v-for="(dataField, i) in content[field.id]" :key="i" class="card">
+                        <div class="card-content">
+                            <content-field v-for="(subField, key) in field.fields" :key="key" :field="subField" :baseContent="baseContent[field.id][0]" :content="content[field.id][i]"></content-field>
+                        </div>
+                        <div class="card-footer">
+                            <div class="card-footer-item">
+                                <button class="button is-danger is-small" @click="removeField(i)">X</button>
+                            </div>
+                        </div>
+                    </div>
+                </template>                
             </div>
             <div class="card-footer" v-show="openChilds">
                 <div class="card-footer-item">

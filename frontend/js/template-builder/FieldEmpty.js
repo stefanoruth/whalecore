@@ -6,7 +6,11 @@ module.exports = function(type) {
     this.dir = 'rows';
     this.description = null;
     this.placeholder = null;
-    this.default = null;
+    if (typeof type !== 'undefined' && type == 'checkbox') {
+        this.default = false;
+    } else {
+        this.default = null;
+    }
     this.required = false;
     this.min = 0;
     this.max = null;
