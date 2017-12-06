@@ -45,7 +45,7 @@ class ProjectController extends Controller
             'language_code' => 'required',
         ]);
 
-        $project = Project::create($data);
+        $project = new Project($data);
         $project->generateApiKey();
         $project->save();
 
