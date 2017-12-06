@@ -15,21 +15,21 @@
                 <div class="navbar-item has-dropdown is-hoverable">
                     <div class="navbar-link">Content</div>
                     <div class="navbar-dropdown">
-                        <router-link to="/pages" class="navbar-item">Pages</router-link>
-                        <router-link to="/buckets" class="navbar-item">Buckets</router-link>
-                        <router-link to="/posts" class="navbar-item">Posts</router-link>
+                        <router-link to="/pages" class="navbar-item" @click.native="mobileShow = false">Pages</router-link>
+                        <router-link to="/buckets" class="navbar-item" @click.native="mobileShow = false">Buckets</router-link>
+                        <router-link to="/posts" class="navbar-item" @click.native="mobileShow = false">Posts</router-link>
                     </div>
                 </div>
-                <router-link to="/templates" class="navbar-item">Templates</router-link>
-                <router-link to="/media" class="navbar-item">Media Library</router-link>
+                <router-link to="/templates" class="navbar-item" @click.native="mobileShow = false">Templates</router-link>
+                <router-link to="/media" class="navbar-item" @click.native="mobileShow = false">Media Library</router-link>
             </div>
             <div class="navbar-end">
                 <div class="navbar-item has-dropdown is-hoverable">                
                     <div class="navbar-link">Settings</div>
                         <div class="navbar-dropdown">
-                            <router-link to="/" class="navbar-item">Change project</router-link>                        
-                            <router-link to="/settings" class="navbar-item">Project settings</router-link>
-                            <!-- <router-link to="#" class="navbar-item">User settings</router-link> -->
+                            <router-link to="/" class="navbar-item" @click.native="mobileShow = false">Change project</router-link>                        
+                            <router-link to="/settings" class="navbar-item" @click.native="mobileShow = false">Project settings</router-link>
+                            <!-- <router-link to="#" class="navbar-item" @click.native="mobileShow = false">User settings</router-link> -->
                     </div>
                 </div>
                 <a href="/logout" class="navbar-item">Logout</a>
