@@ -1,0 +1,119 @@
+[
+    {
+        "hero": {
+            "signup-text": "Sign up!",
+            "login-text": "Login",
+            "hero-body": "Det har aldrig været nemmere at administrere din hjemmesides indhold."
+        }
+    },
+    {
+        "icon-section": {
+            "icon-repeater": [
+                {
+                    "icon-text": "Nemt",
+                    "icon-body": "Med sin intuitive brugerflader, er det nemt og hurtigt at oprette indhold med Whalecore."
+                },
+                {
+                    "icon-text": "Hurtigt",
+                    "icon-body": "Med state-of-the-art arkitektur levere Whalecore dit indhold som de hurtigste på markedet!"
+                },
+                {
+                    "icon-text": "Billigt",
+                    "icon-body": "Whalecore er for alle, også for de mindste spillere på markedet. Vores priser afspejler vores intentioner. Vi vil være det bedste og billigste CMS på markedet."
+                }
+            ]
+        }
+    },
+    {
+        "showcase-section": {
+            "showcases": [
+                {
+                    "image": "http://app.whalecore.dev/storage/1/cms-1512856202.jpg",
+                    "header": "Hurtigste CMS på markedet",
+                    "text": "Vores mål er at levere det bedste, hurtigste og billigste CMS på markedet. Vores små priser står i kontrast til vores høje ambitioner."
+                },
+                {
+                    "image": "http://app.whalecore.dev/storage/1/code-1512856202.jpeg",
+                    "header": "Udvikleren i fokus",
+                    "text": "Vi ser CMS anderledes og vi brænder for cutting-edge teknologier. Ved at lade jeres udviklere tage beslutningen om, hvilke teknologier de ønsker at benytte, uden at bekymre sig om indhold. Føler vi, at vi er med til at skabe nogle af tidens bedste software løsninger!"
+                },
+                {
+                    "image": "http://app.whalecore.dev/storage/1/hipster-1512856203.jpg",
+                    "header": "Nemt og tilgængeligt",
+                    "text": "CMS udvikling skal være sjovt, så hvorfor ikke tage en afslappende dag væk fra kontoret? Med vores saas-app kan I nemt slappe af på jeres yndlings cafe eller hjemme i stuen. I skal blot logge ind på vores hjemmeside og skabe jeres indhold."
+                }
+            ]
+        }
+    },
+    {
+        "testimonials": {
+            "header": "What people are saying...",
+            "testimonial-repeater": [
+                {
+                    "img": "http://app.whalecore.dev/storage/1/fie-laursen-1512856202.jpg",
+                    "header": "Fie Laursen",
+                    "body": "\"WHAT thee FUUUUCK\""
+                },
+                {
+                    "img": "http://app.whalecore.dev/storage/1/man-1512856203.jpg",
+                    "header": "Fred S.",
+                    "body": "\"Før jeg stødte på Whalecore, var jeg altid bitter over de begrænsninger der kom, når en kunde ønskede slev at kunne redigerer indholdet\""
+                },
+                {
+                    "img": "http://app.whalecore.dev/storage/1/woman-1512856203.jpg",
+                    "header": "Sarah W.",
+                    "body": "\"Tak, tak, TAK! - Whalecore gjorde det SJOVT at være CMS udvikler!\""
+                }
+            ]
+        }
+    },
+    {
+        "pricings": [
+            {
+                "name": "Marsvin",
+                "price": "0",
+                "details": [
+                    {
+                        "description": "1 projekt"
+                    },
+                    {
+                        "description": "10.000 API kald pr. dag pr. projekt"
+                    },
+                    {
+                        "description": "5 medarbejdere pr. projekt"
+                    }
+                ]
+            },
+            {
+                "name": "Kaskelothval",
+                "price": "250",
+                "details": [
+                    {
+                        "description": "5 projekter"
+                    },
+                    {
+                        "description": "Ubegrænsede API kald"
+                    },
+                    {
+                        "description": "10 medarbejdere pr. projekt"
+                    }
+                ]
+            },
+            {
+                "name": "Blåhval",
+                "price": "500",
+                "details": [
+                    {
+                        "description": "Ubegrænsede projekter"
+                    },
+                    {
+                        "description": "Ubegrænsede API kald"
+                    },
+                    {
+                        "description": "Ubegrænsede medarbejdere"
+                    }
+                ]
+            }
+        ]
+    }
+]

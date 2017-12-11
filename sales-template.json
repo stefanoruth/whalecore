@@ -1,0 +1,347 @@
+[
+    {
+        "id": "hero",
+        "title": "Hero",
+        "type": "section",
+        "fields": [
+            {
+                "id": "signup-text",
+                "title": "Button signup text",
+                "type": "text",
+                "fields": [],
+                "dir": "rows",
+                "description": null,
+                "placeholder": null,
+                "default": null,
+                "required": true,
+                "min": 0,
+                "max": null,
+                "values": []
+            },
+            {
+                "id": "login-text",
+                "title": "button login text",
+                "type": "text",
+                "fields": [],
+                "dir": "rows",
+                "description": null,
+                "placeholder": null,
+                "default": null,
+                "required": true,
+                "min": 0,
+                "max": null,
+                "values": []
+            },
+            {
+                "id": "hero-body",
+                "title": "Hero text",
+                "type": "textarea",
+                "fields": [],
+                "dir": "rows",
+                "description": null,
+                "placeholder": "header-text",
+                "default": null,
+                "required": true,
+                "min": 0,
+                "max": null,
+                "values": []
+            }
+        ],
+        "dir": "rows",
+        "description": null,
+        "placeholder": null,
+        "default": null,
+        "required": false,
+        "min": 0,
+        "max": null,
+        "values": []
+    },
+    {
+        "id": "icon-section",
+        "title": "Icons",
+        "type": "section",
+        "fields": [
+            {
+                "id": "icon-repeater",
+                "title": "Icon repeater",
+                "type": "repeater",
+                "fields": [
+                    {
+                        "id": "icon-text",
+                        "title": "Icon header",
+                        "type": "text",
+                        "fields": [],
+                        "dir": "rows",
+                        "description": null,
+                        "placeholder": null,
+                        "default": null,
+                        "required": true,
+                        "min": 0,
+                        "max": null,
+                        "values": []
+                    },
+                    {
+                        "id": "icon-body",
+                        "title": "Icon-body",
+                        "type": "textarea",
+                        "fields": [],
+                        "dir": "rows",
+                        "description": null,
+                        "placeholder": null,
+                        "default": null,
+                        "required": true,
+                        "min": 0,
+                        "max": null,
+                        "values": []
+                    }
+                ],
+                "dir": "columns",
+                "description": null,
+                "placeholder": null,
+                "default": null,
+                "required": false,
+                "min": "1",
+                "max": "3",
+                "values": []
+            }
+        ],
+        "dir": "rows",
+        "description": null,
+        "placeholder": null,
+        "default": null,
+        "required": false,
+        "min": 0,
+        "max": null,
+        "values": []
+    },
+    {
+        "id": "showcase-section",
+        "title": "Showcase Section",
+        "type": "section",
+        "fields": [
+            {
+                "id": "showcases",
+                "title": "Showcases",
+                "type": "repeater",
+                "fields": [
+                    {
+                        "id": "image",
+                        "title": "Image",
+                        "type": "image",
+                        "fields": [],
+                        "dir": "rows",
+                        "description": null,
+                        "placeholder": null,
+                        "default": null,
+                        "required": true,
+                        "min": 0,
+                        "max": null,
+                        "values": []
+                    },
+                    {
+                        "id": "header",
+                        "title": "Header",
+                        "type": "text",
+                        "fields": [],
+                        "dir": "rows",
+                        "description": null,
+                        "placeholder": null,
+                        "default": null,
+                        "required": true,
+                        "min": 0,
+                        "max": null,
+                        "values": []
+                    },
+                    {
+                        "id": "text",
+                        "title": "Text",
+                        "type": "textarea",
+                        "fields": [],
+                        "dir": "rows",
+                        "description": null,
+                        "placeholder": null,
+                        "default": null,
+                        "required": true,
+                        "min": 0,
+                        "max": null,
+                        "values": []
+                    }
+                ],
+                "dir": "rows",
+                "description": null,
+                "placeholder": null,
+                "default": null,
+                "required": false,
+                "min": "1",
+                "max": "4",
+                "values": []
+            }
+        ],
+        "dir": "rows",
+        "description": null,
+        "placeholder": null,
+        "default": null,
+        "required": false,
+        "min": 0,
+        "max": null,
+        "values": []
+    },
+    {
+        "id": "testimonials",
+        "title": "Testimonials",
+        "type": "section",
+        "fields": [
+            {
+                "id": "header",
+                "title": "Header",
+                "type": "text",
+                "fields": [],
+                "dir": "rows",
+                "description": null,
+                "placeholder": null,
+                "default": null,
+                "required": true,
+                "min": 0,
+                "max": null,
+                "values": []
+            },
+            {
+                "id": "testimonial-repeater",
+                "title": "Testimonial Repeater",
+                "type": "repeater",
+                "fields": [
+                    {
+                        "id": "img",
+                        "title": "Image",
+                        "type": "image",
+                        "fields": [],
+                        "dir": "rows",
+                        "description": null,
+                        "placeholder": null,
+                        "default": null,
+                        "required": true,
+                        "min": 0,
+                        "max": null,
+                        "values": []
+                    },
+                    {
+                        "id": "header",
+                        "title": "Header",
+                        "type": "text",
+                        "fields": [],
+                        "dir": "rows",
+                        "description": null,
+                        "placeholder": null,
+                        "default": null,
+                        "required": false,
+                        "min": 0,
+                        "max": null,
+                        "values": []
+                    },
+                    {
+                        "id": "body",
+                        "title": "Body",
+                        "type": "textarea",
+                        "fields": [],
+                        "dir": "rows",
+                        "description": null,
+                        "placeholder": null,
+                        "default": null,
+                        "required": true,
+                        "min": 0,
+                        "max": null,
+                        "values": []
+                    }
+                ],
+                "dir": "rows",
+                "description": null,
+                "placeholder": null,
+                "default": null,
+                "required": false,
+                "min": "1",
+                "max": null,
+                "values": []
+            }
+        ],
+        "dir": "rows",
+        "description": null,
+        "placeholder": null,
+        "default": null,
+        "required": false,
+        "min": 0,
+        "max": null,
+        "values": []
+    },
+    {
+        "id": "pricings",
+        "title": "Pricing Table",
+        "type": "repeater",
+        "fields": [
+            {
+                "id": "name",
+                "title": "Name",
+                "type": "text",
+                "fields": [],
+                "dir": "rows",
+                "description": null,
+                "placeholder": null,
+                "default": null,
+                "required": true,
+                "min": 0,
+                "max": null,
+                "values": []
+            },
+            {
+                "id": "price",
+                "title": "Price",
+                "type": "text",
+                "fields": [],
+                "dir": "rows",
+                "description": null,
+                "placeholder": null,
+                "default": null,
+                "required": true,
+                "min": 0,
+                "max": null,
+                "values": []
+            },
+            {
+                "id": "details",
+                "title": "Details",
+                "type": "repeater",
+                "fields": [
+                    {
+                        "id": "description",
+                        "title": "Description",
+                        "type": "text",
+                        "fields": [],
+                        "dir": "rows",
+                        "description": null,
+                        "placeholder": null,
+                        "default": null,
+                        "required": true,
+                        "min": 0,
+                        "max": null,
+                        "values": []
+                    }
+                ],
+                "dir": "rows",
+                "description": null,
+                "placeholder": null,
+                "default": null,
+                "required": false,
+                "min": "1",
+                "max": "5",
+                "values": []
+            }
+        ],
+        "dir": "rows",
+        "description": null,
+        "placeholder": null,
+        "default": null,
+        "required": false,
+        "min": "3",
+        "max": "3",
+        "values": []
+    }
+]
