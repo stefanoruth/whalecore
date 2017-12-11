@@ -37,7 +37,7 @@
                 </ul>
             </div>
             <div class="box" v-for="lang in languages" :key="lang.code" v-show="lang.code == selectedLang">
-                <content-field v-for="(field, key) in template" :key="key" :field="field" :content="content[lang.code][key]" :baseContent="baseContent[key]" style="margin-bottom:50px;"></content-field>
+                <content-field v-for="(field, key) in template" :key="key" :field="field" :content="content[lang.code][key]" :baseContent="baseContent[key]" :lang="lang.code" style="margin-bottom:50px;"></content-field>
             </div>
         </div>
     </div>

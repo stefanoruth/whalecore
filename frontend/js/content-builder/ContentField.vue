@@ -19,7 +19,7 @@
                         <div v-for="(dataField, i) in content[field.id]" :key="i" class="column is-narrow">
                             <div class="card">
                                 <div class="card-content">
-                                    <content-field v-for="(subField, key) in field.fields" :key="key" :field="subField" :baseContent="baseContent[field.id][0]" :content="content[field.id][i]"></content-field>
+                                    <content-field v-for="(subField, key) in field.fields" :key="key" :field="subField" :baseContent="baseContent[field.id][0]" :content="content[field.id][i]" :lang="lang"></content-field>
                                 </div>
                                 <div class="card-footer">
                                     <div class="card-footer-item">
@@ -33,7 +33,7 @@
                 <template v-else>
                     <div v-for="(dataField, i) in content[field.id]" :key="i" class="card">
                         <div class="card-content">
-                            <content-field v-for="(subField, key) in field.fields" :key="key" :field="subField" :baseContent="baseContent[field.id][0]" :content="content[field.id][i]"></content-field>
+                            <content-field v-for="(subField, key) in field.fields" :key="key" :field="subField" :baseContent="baseContent[field.id][0]" :content="content[field.id][i]" :lang="lang"></content-field>
                         </div>
                         <div class="card-footer">
                             <div class="card-footer-item">
@@ -52,12 +52,12 @@
 
         <template v-if="field.type == 'section'">
             <div class="card-content" v-show="openChilds">
-                <content-field v-for="(subField, key) in field.fields" :key="key" :field="subField" :baseContent="baseContent[field.id]" :content="content[field.id]"></content-field>
+                <content-field v-for="(subField, key) in field.fields" :key="key" :field="subField" :baseContent="baseContent[field.id]" :content="content[field.id]" :lang="lang"></content-field>
             </div>
         </template>
     </div>
 
-    <content-field-simple v-else :field="field" :content="content"></content-field-simple>
+    <content-field-simple v-else :field="field" :content="content" :lang="lang"></content-field-simple>
 </template>
 
 <script>
@@ -66,6 +66,7 @@
             'field',
             'content',
             'baseContent',
+            'lang',
         ],
 
         data() {
