@@ -12,7 +12,7 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public')
-   .sass('resources/assets/sass/app.scss', '.')
+   .sass('resources/assets/sass/app.scss', 'public')
    .copyDirectory('./node_modules/font-awesome/fonts', 'public/fonts')
    .copyDirectory('./node_modules/tinymce/skins/lightgray/fonts', 'public/fonts')
    .copyDirectory('./node_modules/tinymce/skins/lightgray', 'public/tinymce')
