@@ -12,6 +12,7 @@ import 'tinymce/plugins/table';
 import 'tinymce/plugins/image';
 
 window.Vue = Vue;
+Vue.config.productionTip = false;
 Vue.use(VueRouter);
 Vue.use(tinymce);
 Vue.component('modal', require('./components/Modal'));

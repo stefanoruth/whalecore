@@ -11,12 +11,11 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.setPublicPath('..\\public')
-   .js('js/app.js', '..\\public')
-   .sass('sass/app.scss', '.')
-   .copyDirectory('./node_modules/font-awesome/fonts', '../public/fonts')
-   .copyDirectory('./node_modules/tinymce/skins/lightgray/fonts', '../public/fonts')
-   .copyDirectory('./node_modules/tinymce/skins/lightgray', '../public/tinymce')
+mix.js('resources/assets/js/app.js', 'public')
+   .sass('resources/assets/sass/app.scss', '.')
+   .copyDirectory('./node_modules/font-awesome/fonts', 'public/fonts')
+   .copyDirectory('./node_modules/tinymce/skins/lightgray/fonts', 'public/fonts')
+   .copyDirectory('./node_modules/tinymce/skins/lightgray', 'public/tinymce')
    .options({
         processCssUrls: false,
    });
