@@ -1,4 +1,5 @@
 let mix = require('laravel-mix');
+let tailwindcss = require('tailwindcss');
 
 /*
  |--------------------------------------------------------------------------
@@ -18,6 +19,7 @@ mix.js('resources/assets/js/app.js', 'public')
    .copyDirectory('./node_modules/tinymce/skins/lightgray', 'public/tinymce')
    .options({
         processCssUrls: false,
+        postCss: [ tailwindcss('./tailwind.js') ],
    });
 
 if (mix.inProduction()) {

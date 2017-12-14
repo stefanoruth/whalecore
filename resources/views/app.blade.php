@@ -7,9 +7,6 @@
         <title>{{ config('app.name') }}</title>
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="stylesheet" href="{{ mix('app.css') }}">
-        @if (auth()->check())
-            <script>window.user = {!! json_encode(auth()->user()) !!};</script>
-        @endif
     </head>
     <body>
         @hasSection('body')

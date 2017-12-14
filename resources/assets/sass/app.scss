@@ -1,11 +1,2 @@
-@import './node_modules/font-awesome/css/font-awesome';
-//Our own variables and mixins
-@import './utilities/__variables';
-@import './utilities/__mixins';
-//Dependencies
-@import './node_modules/bulma/bulma';
-@import './node_modules/dropzone/dist/dropzone';
-//compnents
-@import './components/login-register';
-@import './components/card';
-@import './components/fieldSelector';
+@tailwind preflight;
+@tailwind utilities;
