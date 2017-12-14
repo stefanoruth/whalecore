@@ -1,49 +1,34 @@
 <template>
-    <nav class="navbar is-unselectable is-light" v-show="$route.path != '/'">
-        <div class="navbar-brand">
-            <router-link to="/" class="navbar-item">
-                <img src="/hvalborg.png" alt="Hvalborg icon">
-            </router-link>
-            <div class="navbar-burger" v-on:click="mobileShow = !mobileShow" v-bind:class="{'is-active':mobileShow}">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-        <div class="navbar-menu" v-bind:class="{'is-active':mobileShow}">
-            <div class="navbar-start">
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <div class="navbar-link">Content</div>
-                    <div class="navbar-dropdown">
-                        <router-link to="/pages" class="navbar-item" @click.native="mobileShow = false">Pages</router-link>
-                        <router-link to="/buckets" class="navbar-item" @click.native="mobileShow = false">Buckets</router-link>
-                        <router-link to="/posts" class="navbar-item" @click.native="mobileShow = false">Posts</router-link>
-                    </div>
-                </div>
-                <router-link to="/templates" class="navbar-item" @click.native="mobileShow = false">Templates</router-link>
-                <router-link to="/media" class="navbar-item" @click.native="mobileShow = false">Media Library</router-link>
-            </div>
-            <div class="navbar-end">
-                <div class="navbar-item has-dropdown is-hoverable">                
-                    <div class="navbar-link">Settings</div>
-                        <div class="navbar-dropdown">
-                            <router-link to="/" class="navbar-item" @click.native="mobileShow = false">Change project</router-link>                        
-                            <router-link to="/settings" class="navbar-item" @click.native="mobileShow = false">Project settings</router-link>
-                            <!-- <router-link to="#" class="navbar-item" @click.native="mobileShow = false">User settings</router-link> -->
-                    </div>
-                </div>
-                <a href="/logout" class="navbar-item">Logout</a>
-            </div>
-        </div>
+    <nav class="bg-white flex flex-col border-r border-blue-lighter select-none flex-no-shrink">
+       <div class="flex p-4 border-b border-blue-lighter">
+           <img class="w-12 h-12 inline" src="/hvalborg.png">
+           <div class="self-center px-6">Whalecore</div>
+       </div>
+       <div class="p-8">
+           <ul class="list-reset">
+                <li>
+                    <router-link to="/pages" class="text-black no-underline hover:bg-blue py-2 mb-4 block hover:text-white px-2 rounded">Pages</router-link>
+                </li>
+                <li>
+                    <router-link to="/templates" class="text-black no-underline hover:bg-blue py-2 mb-4 block hover:text-white px-2 rounded">Templates</router-link>
+                </li>
+                <li>
+                    <router-link to="/media" class="text-black no-underline hover:bg-blue py-2 mb-4 block hover:text-white px-2 rounded">Media Library</router-link>
+                </li>
+                <li>
+                    <router-link to="/settings" class="text-black no-underline hover:bg-blue py-2 mb-4 block hover:text-white px-2 rounded">Settings</router-link>
+                </li>
+           </ul>
+       </div>
     </nav>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      mobileShow: false
+    export default {
+        data() {
+            return {
+                mobile: false
+            };
+        }
     };
-  }
-};
 </script>

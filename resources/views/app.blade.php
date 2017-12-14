@@ -12,11 +12,11 @@
         @hasSection('body')
             @yield('body')
         @else
-            <div id="app">
+            <div id="app" class="flex h-screen bg-blue-lightest">
                 <navigation></navigation>
-                <div class="section">
+                <main class="flex-grow p-8 overflow-y-scroll">
                     <router-view></router-view>
-                </div>
+                </main>
             </div>
             @routes
             <script src="{{ mix('app.js') }}"></script>

@@ -1,2 +1,6 @@
 @tailwind preflight;
 @tailwind utilities;
+
+.router-link-active {
+    @apply .bg-blue .text-white;
+}

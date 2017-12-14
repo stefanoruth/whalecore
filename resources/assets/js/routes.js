@@ -17,24 +17,6 @@ module.exports = [
         component: require('./content-builder/ContentEditor'),
     },
     {
-        path: '/buckets',
-        component: require('./views/Buckets'),
-    },
-    {
-        path: '/buckets/:id',
-        name: 'bucket.edit',
-        component: require('./content-builder/ContentEditor'),
-    },
-    {
-        path: '/posts',
-        component: require('./views/Posts'),
-    },
-    {
-        path: '/posts/:id',
-        name: 'post.edit',
-        component: require('./content-builder/ContentEditor'),
-    },
-    {
         path: '/templates',
         component: require('./views/Templates'),
     },
