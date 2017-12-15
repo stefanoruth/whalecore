@@ -7,7 +7,7 @@
                     <div class="text-sm uppercase text-grey-darker">{{ item.template.title }}</div>
                 </div>
                 <div class="flex">
-                    <router-link class="invisible group-hover:visible no-underline text-blue self-center p-2" :to="{name: 'page.edit', params: {id: item.id}}">Edit</router-link>
+                    <router-link class="invisible group-hover:visible no-underline text-blue self-center p-2" :to="{name: 'content.edit', params: {id: item.id}}">Edit</router-link>
                 </div>
             </div>
         </div>

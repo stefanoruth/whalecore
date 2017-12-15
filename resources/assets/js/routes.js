@@ -8,12 +8,12 @@ module.exports = [
         component: require('./views/404'),
     },
     {
-        path: '/pages',
-        component: require('./views/Pages'),
+        path: '/content',
+        component: require('./views/Content'),
     },
     {
-        path: '/pages/:id',
-        name: 'page.edit',
+        path: '/content/:id',
+        name: 'content.edit',
         component: require('./content-builder/ContentEditor'),
     },
     {

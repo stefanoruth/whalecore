@@ -7,7 +7,7 @@
        <div class="p-8 flex-1 flex flex-col justify-between">
            <ul class="list-reset">
                 <li>
-                    <router-link to="/pages" class="text-black no-underline hover:bg-blue py-2 mb-4 block hover:text-white px-2 rounded">Content</router-link>
+                    <router-link to="/content" class="text-black no-underline hover:bg-blue py-2 mb-4 block hover:text-white px-2 rounded">Content</router-link>
                 </li>
                 <li>
                     <router-link to="/templates" class="text-black no-underline hover:bg-blue py-2 mb-4 block hover:text-white px-2 rounded">Templates</router-link>
