@@ -3,7 +3,15 @@
         <div class="bg-blue absolute pin opacity-75" @click="$emit('close')"></div>
         <div class="flex flex-1 justify-center items-center" @click.stop>
             <div class="bg-white shadow rounded relative">
-                <slot></slot>
+                <header class="border-b text-xl py-2 px-4" v-if="$slots.header != null">
+                    <slot name="header"></slot>
+                </header>
+                <main class="py-2 px-4">
+                    <slot></slot>
+                </main>
+                <footer class="border-t py-2 px-4" v-if="$slots.footer != null">
+                    <slot name="footer"></slot>
+                </footer>
             </div>
         </div>
     </div>

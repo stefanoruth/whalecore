@@ -1,4 +1,45 @@
 @tailwind preflight;
+
+.btn {
+    @apply .py-1 .px-2 .rounded .cursor-pointer;
+}
+
+.btn-blue {
+    @apply .btn .bg-blue .text-white;
+
+    &:hover {
+        @apply .bg-blue-dark;
+    }
+}
+
+.btn-green {
+    @apply .btn .bg-green .text-white;
+
+    &:hover {
+        @apply .bg-green-dark;
+    }
+}
+
+.btn-red {
+    @apply .btn .bg-red .text-white;
+
+    &:hover {
+        @apply .bg-red-dark;
+    }
+}
+
+.field {
+    @apply .block .mb-3;
+}
+
+.label {
+    @apply .block .uppercase .text-xs .mb-1 .font-bold .tracking-wide .text-grey-darker;
+}
+
+.input {
+    @apply .appearance-none .w-full .bg-grey-lighter .text-grey-darker .border .rounded .py-2 .px-3;
+}
+
 @tailwind utilities;
 @import './node_modules/dropzone/dist/dropzone';
 

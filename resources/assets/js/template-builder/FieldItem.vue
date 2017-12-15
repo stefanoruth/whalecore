@@ -1,37 +1,25 @@
 <template>
-    <div class="card">
-        <div class="card-content">
-            <div class="level">
-                <div class="level-left">
-                    <div class="level-item">
-                        <div>
-                            <p class="title is-size-5">{{ field.title }}</p>
-                        <p class="heading">{{ field.type }}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="level-right">
-                    <div class="level-item">
-                        <button @click="showEdit = true" class="button is-small">Edit</button>
-                    </div>
-                </div>
+    <div class="border">
+        <div class="flex py-2 px-4 group hover:bg-blue-lightest">
+            <div class="flex-1">
+                <div class="text-xl">{{ field.title }}</div>
+                <div class="uppercase text-sm">{{ field.type }}</div>
             </div>
-            
-            <div class="card" v-if="hasSubFields()">
-                <div class="card-cotent">
-                    <template-field-item v-for="(subField, key) in field.fields" :key="key" :field="subField" @delete="deleteChild(key)"></template-field-item>
-                </div>
+            <div class="flex">
+                <a @click="showEdit = true" class="invisible group-hover:visible self-center text-blue no-underline cursor-pointer p-2">Edit</a>
             </div>
-
-            <div class="card-footer" v-if="hasSubFields()">
-                <div class="card-footer-item">
-                    <button @click="showNew = true" class="button is-primary">Add Sub</button>
-                    <template-field-new :show="showNew" @close="showNew = false" @newField="addField"></template-field-new>
-                </div>
-            </div> 
         </div>
 
-        <template-field-edit :show="showEdit" :field="field" @close="showEdit = false" @save="showEdit = false" @delete="deleteSelf"></template-field-edit>
+        <div class="py-2 px-4" v-if="hasSubFields()">
+            <template-field-item v-for="(subField, key) in field.fields" :key="key" :field="subField" @delete="deleteChild(key)"></template-field-item>
+        </div>
+
+        <div class="flex justify-end py-2 px-8" v-if="hasSubFields()">
+            <button @click="showNew = true" class="btn-blue">Add Sub</button>
+            <template-field-new v-show="showNew" @close="showNew = false" @newField="addField"></template-field-new>
+        </div>
+
+        <template-field-edit v-show="showEdit" :field="field" @close="showEdit = false" @save="showEdit = false" @delete="deleteSelf"></template-field-edit>
     </div>
 </template>
 
