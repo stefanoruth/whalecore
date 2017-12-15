@@ -1,28 +1,28 @@
 <template>
     <modal @close="$emit('close')">   
-        <h1>New Page</h1>            
+        <div slot="header">New Content</div>            
         <div>
-            <div class="field">
-                <label class="label" for="title">Page Title</label>
-                <div class="control">
-                    <input class="input" type="text" :class="{'border-red': errors != null}" v-model="title" autofocus placeholder="Title..">
-                    <p class="help is-danger" v-if="errors != null">{{ errors.title[0] }}</p>           
-                </div>
-            </div>
-            <div class="field">
-                <label for="" class="label"></label>
-                <div class="control">
-                    <div class="select is-fullwidth">
-                        <select v-model="template">
-                            <option value="" selected disabled>Choose one</option>
-                            <option v-for="template in templates" :key="template.id" :value="template.id">{{template.title}}</option>
-                        </select>
+            <label class="field">
+                <div class="label">Title</div>
+                <input type="text" class="input" v-model="input.title">
+            </label>
+
+            <label class="field">
+                <div class="label">Template</div>
+                <div class="inline-block relative w-full">
+                    <select v-model="input.template" class="input">
+                        <option value="" selected disabled>Choose one</option>
+                        <option v-for="template in templates" :key="template.id" :value="template.id">{{template.title}}</option>
+                    </select>
+                    <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                     </div>
-                    <p class="help is-danger" v-if="errors != null">{{ errors.template[0] }}</p>                                   
                 </div>
-            </div>
+            </label>
         </div>
-        <button class="button is-primary is-medium" @click="createItem">Create</button>
+        <div class="flex justify-end">
+            <button class="btn-blue" @click="createItem">Create</button>
+        </div>
     </modal>
 </template>
 
@@ -31,9 +31,11 @@
         data() {
             return {
                 errors: null,
-                title: null,
-                template: null,
                 templates: [],
+                input: {
+                    title: null,
+                    template: "",
+                },
             };
         },
 
@@ -45,7 +47,7 @@
 
         methods: {
             createItem() {
-                axios.post(route('items.store'), {title: this.pageTitle,template: this.pageTemplate}).then(response => {
+                axios.post(route('items.store'), {title: this.input.title, template: this.input.template}).then(response => {
                     this.$router.push('/pages/'+response.data.data.id);
                 }).catch(error => {
                     this.errors = error.response.data.errors;
