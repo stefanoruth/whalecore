@@ -1,23 +1,30 @@
 <template>
-    <div class="columns">
-        <div class="column is-narrow">
-            <aside class="menu">
-                <p class="menu-label">General</p>
-                <ul class="menu-list">
-                    <li @click="menuActive = 'options'"><a :class="{'is-active': menuActive == 'options'}">Options</a></li>
-                    <li @click="menuActive = 'collaborators'"><a :class="{'is-active': menuActive == 'collaborators'}">Collaborators</a></li>
-                    <li @click="menuActive = 'api'"><a :class="{'is-active': menuActive == 'api'}">Api</a></li>
-                    <li @click="menuActive = 'billing'"><a :class="{'is-active': menuActive == 'billing'}">Billing</a></li>
-                    <li @click="menuActive = 'language'"><a :class="{'is-active': menuActive == 'language'}">Languages</a></li>
-                </ul>
-            </aside>
-        </div>
+    <div>
+        <ul class="list-reset flex border-b">
+            <li class="mr-1" :class="{'-mb-px': menu == 'options'}">
+                <a class="cursor-pointer bg-white inline-block py-2 px-4 text-blue hover:text-blue-darker font-semibold" :class="{'text-blue-dark border-l border-t border-r rounded-t': menu == 'options'}" @click="menu = 'options'">Options</a>
+            </li>
+            <li class="mr-1" :class="{'-mb-px': menu == 'collaborators'}">
+                <a class="cursor-pointer bg-white inline-block py-2 px-4 text-blue hover:text-blue-darker font-semibold" :class="{'text-blue-dark border-l border-t border-r rounded-t': menu == 'collaborators'}" @click="menu = 'collaborators'">Collaborators</a>
+            </li>
+            <li class="mr-1" :class="{'-mb-px': menu == 'api'}">
+                <a class="cursor-pointer bg-white inline-block py-2 px-4 text-blue hover:text-blue-darker font-semibold" :class="{'text-blue-dark border-l border-t border-r rounded-t': menu == 'api'}" @click="menu = 'api'">Api</a>
+            </li>
+            <li class="mr-1" :class="{'-mb-px': menu == 'billing'}">
+                <a class="cursor-pointer bg-white inline-block py-2 px-4 text-blue hover:text-blue-darker font-semibold" :class="{'text-blue-dark border-l border-t border-r rounded-t': menu == 'billing'}" @click="menu = 'billing'">Billing</a>
+            </li>
+            <li class="mr-1" :class="{'-mb-px': menu == 'language'}">
+                <a class="cursor-pointer bg-white inline-block py-2 px-4 text-blue hover:text-blue-darker font-semibold" :class="{'text-blue-dark border-l border-t border-r rounded-t': menu == 'language'}" @click="menu = 'language'">Languages</a>
+            </li>
+        </ul>
 
-        <option-general :project="project" class="column" v-show="menuActive == 'options'"></option-general>
-        <option-members :project="project" class="column" v-show="menuActive == 'collaborators'"></option-members>
-        <option-api :project="project" class="column" v-show="menuActive == 'api'"></option-api>
-        <option-billing class="column" v-show="menuActive == 'billing'"></option-billing>
-        <option-language :project="project" class="column" v-show="menuActive == 'language'" ></option-language>
+        <div class="bg-white border-l border-r border-b shadow p-4 ">
+            <option-general  :project="project" class="column" v-show="menu == 'options'"></option-general>
+            <option-members  :project="project" class="column" v-show="menu == 'collaborators'"></option-members>
+            <option-api      :project="project" class="column" v-show="menu == 'api'"></option-api>
+            <option-billing  :project="project" class="column" v-show="menu == 'billing'"></option-billing>
+            <option-language :project="project" class="column" v-show="menu == 'language'" ></option-language>
+        </div>
     </div>
 </template>
 
@@ -26,7 +33,7 @@
         data() {
             return {
                 project: null,
-                menuActive: 'options',
+                menu: 'options',
             };
         },
 
