@@ -1,7 +1,7 @@
 <template>
     <div v-if="template != null" class="container mx-auto max-w-md">
         <div class="bg-white shadow rounded mb-2 p-4">
-            <div class="text-3xl">{{ template.title }}</div>
+            <input class="text-3xl w-full p-1" type="text" v-model="template.title">
         </div>
 
         <div class="bg-white shadow rounded mb-2">
