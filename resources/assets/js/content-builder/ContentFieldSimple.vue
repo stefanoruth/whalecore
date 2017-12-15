@@ -17,7 +17,7 @@
                     <button class="button is-small">Select Image</button>
                 </template>
                 
-                <file-modal :show="imageModal" @close="imageModal = false" @clearFile="content[field.id] = null" v-model="content[field.id]"></file-modal>
+                <file-modal v-show="imageModal" @close="imageModal = false" @clearFile="content[field.id] = null" v-model="content[field.id]"></file-modal>
             </div>
 
             <textarea v-else-if="field.type == 'textarea'" class="textarea is-small" v-model="content[field.id]"></textarea>

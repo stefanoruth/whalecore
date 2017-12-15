@@ -1,6 +1,6 @@
 <template>
-    <modal :show="show" @close="$emit('close')">
-        <div slot="title">Select file from Media Library</div>
+    <modal @close="$emit('close')">
+        <div>Select file from Media Library</div>
         <div class="columns is-multiline">
             <div v-for="file in files" :key="file.id" class="column is-narrow">
                 <div class="box" style="padding: 15px; cursor: pointer;" @click="updateValue(file.path)" :title="file.file_name">
@@ -9,14 +9,13 @@
                 </div>
             </div>
         </div>
-        <button slot="footer" class="button is-small is-danger" @click="$emit('clearFile'), $emit('close')">Remove file</button>
+        <button class="button is-small is-danger" @click="$emit('clearFile'), $emit('close')">Remove file</button>
     </modal>
 </template>
 
 <script>
     export default {
         props: [
-            'show',
             'value',
         ],
 
