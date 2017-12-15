@@ -1,44 +1,26 @@
 <template>
     <div>
-        <form :action="storeFile" class="dropzone" enctype="multipart/form-data">
+        <form :action="storeFile" class="dropzone mb-2" enctype="multipart/form-data">
             <input type="hidden" name="_token" :value="token">
             <div class="fallback">
                 <input name="file" type="file" multiple />
             </div>
         </form>
-        <div class="section">
-            <div class="columns">
-                <div class="column is-narrow">
-                    <aside class="menu">
-                        <template v-if="folders.length > 0">
-                            <p class="menu-label">Folders</p>
-                            <ul class="menu-list">
-                                <li v-for="(folder, i) in folders" :key="i"><a>{{ folder }}</a></li>
-                            </ul>
-                        </template>
-                        <template v-if="mimeTypes.length > 0">
-                            <p class="menu-label">Media Types</p>
-                            <ul class="menu-list">
-                                <li v-for="(mime, i) in mimeTypes" :key="i"><a @click="toggleMimeType(mime)" :class="{'is-active': selectedMime == mime}">{{ mime }}</a></li>
-                            </ul>
-                        </template>
-                    </aside>
-                </div>
-                <div class="column">
-                    <div class="columns is-multiline is-mobile">
-                        <div v-for="(file, i) in visibleFiles" :key="i" class="column is-3">
-                            <div class="card">
-                                <div v-if="isImage(file.mime_type)" class="card-image">
-                                    <figure class="image is-square">
-                                        <img :src="file.path" style="padding:15px;">
-                                    </figure>
-                                </div>
-                                <div v-else class="card-content" style="display: flex;align-items: center;justify-content: center;">
-                                    <i class="fa fa-file" style="font-size:40px;"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+        <ul class="list-reset flex border-b" v-if="mimeTypes.length > 0">
+            <li class="mr-1" :class="{'-mb-px':selectedMime == null}">
+                <a class="bg-white inline-block py-2 px-4 font-semibold no-underline text-blue cursor-pointer" :class="{'border-l border-t border-r rounded-t text-blue-dark': selectedMime == null}" @click="toggleMimeType(null)">All</a>
+            </li>
+
+            <li class="mr-1" v-for="mime in mimeTypes" :key="mime">
+                <a class="bg-white inline-block py-2 px-4 text-blue hover:text-blue-darker font-semibold cursor-pointer" :class="{'border-l border-t border-r rounded-t text-blue-dark': selectedMime == mime}" @click="toggleMimeType(mime)">{{ mime }}</a>
+            </li>
+        </ul>
+
+        <div class="flex flex-wrap -mx-2">
+            <div v-for="(file, i) in visibleFiles" :key="i" class="w-full sm:w-1/4 p-2">
+                <div class="bg-white rounded shadow p-1">
+                    <img :src="file.path" class="block">
                 </div>
             </div>
         </div>
@@ -78,7 +60,7 @@ export default {
         },
     },
 
-    mounted() {
+    created() {
         axios.get(route('media.index')).then(response => {
             this.files = response.data.data;
             this.mimeTypes = response.data.meta.mime_types;
@@ -87,11 +69,7 @@ export default {
 
     methods: {
         toggleMimeType(type) {
-            if (this.selectedMime == type) {
-                this.selectedMime = null;
-            } else {
-                this.selectedMime = type;
-            }
+            this.selectedMime = type;
         },
 
         isImage(type) {
