@@ -48,7 +48,7 @@
                 baseContent: [],
                 languages: [],
                 selectedLang: null,
-                showOutput: true,
+                showOutput: false,
             }
         },
 
