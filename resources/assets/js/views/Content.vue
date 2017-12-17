@@ -13,7 +13,7 @@
         </div>
 
         <div class="bg-white rounded shadow p-4 flex justify-end">
-            <button class="bg-blue text-white py-1 px-2 rounded hover:bg-blue-dark" @click="modal = true">New</button>
+            <button class="bg-blue text-white py-1 px-2 rounded hover:bg-blue-dark" @click="modal = true">New Item</button>
             <new-item v-show="modal" @close="modal = false"></new-item>         
         </div>
     </div>

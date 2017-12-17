@@ -1,63 +1,49 @@
 <template>
-    <div v-if="field.type == 'repeater' || field.type == 'section'" class="field card">
-        <div class="card-header">
-            <div class="card-header-title">{{ field.title }}</div>
-            <div class="card-header-icon" @click="openChilds = !openChilds">
-                <i v-if="!openChilds" class="fa fa-angle-down" aria-hidden="true"></i>
-                <i v-if="openChilds" class="fa fa-angle-up" aria-hidden="true"></i>
-            </div>
-        </div>
-
-        <div class="card-content" v-if="field.description">
-            <p>{{ field.description }}</p>
-        </div>
-    
-        <template v-if="field.type == 'repeater'">
-            <div class="card-content" v-show="openChilds">
-                <template v-if="field.dir == 'columns'">
-                    <div class="columns" style="overflow-x:auto;">
-                        <div v-for="(dataField, i) in content[field.id]" :key="i" class="column is-narrow">
-                            <div class="card">
-                                <div class="card-content">
-                                    <content-field v-for="(subField, key) in field.fields" :key="key" :field="subField" :baseContent="baseContent[field.id][0]" :content="content[field.id][i]" :lang="lang"></content-field>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="card-footer-item">
-                                        <button class="button is-danger is-small" @click="removeField(i)">X</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </template>
-                <template v-else>
-                    <div v-for="(dataField, i) in content[field.id]" :key="i" class="card">
-                        <div class="card-content">
-                            <content-field v-for="(subField, key) in field.fields" :key="key" :field="subField" :baseContent="baseContent[field.id][0]" :content="content[field.id][i]" :lang="lang"></content-field>
-                        </div>
-                        <div class="card-footer">
-                            <div class="card-footer-item">
-                                <button class="button is-danger is-small" @click="removeField(i)">X</button>
-                            </div>
-                        </div>
-                    </div>
-                </template>                
-            </div>
-            <div class="card-footer" v-show="openChilds">
-                <div class="card-footer-item">
-                    <button class="button is-primary is-small" @click="addCopy">Add Copy</button>
+    <div>
+        <div class="p-4 border" v-if="field.type == 'repeater' || field.type == 'section'">
+            <div class="flex">
+                <div class="text-lg uppercase flex-1">{{ field.title }}</div>
+                <div class="cursor-pointer flex items-center" @click="openChilds = !openChilds">
+                    <svg class="fill-current h-4 w-4 text-grey-darker" v-if="!openChilds" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                    <svg class="fill-current h-4 w-4 text-grey-darker" v-if="openChilds" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10.707 7.05L10 6.343 4.343 12l1.414 1.414L10 9.172l4.243 4.242L15.657 12z"/></svg>
                 </div>
             </div>
-        </template>
+        </div>
 
-        <template v-if="field.type == 'section'">
-            <div class="card-content" v-show="openChilds">
+        <div v-if="field.type == 'repeater' || field.type == 'section'" v-show="openChilds">
+            <div v-if="field.type == 'section'" class="p-4 border-l border-r border-b">
                 <content-field v-for="(subField, key) in field.fields" :key="key" :field="subField" :baseContent="baseContent[field.id]" :content="content[field.id]" :lang="lang"></content-field>
             </div>
-        </template>
-    </div>
 
-    <content-field-simple v-else :field="field" :content="content" :lang="lang"></content-field-simple>
+            <div v-else class="border-b border-l border-r">
+                <div v-if="field.dir == 'columns'" class="flex overflow-x-scroll">
+                    <div v-for="(dataField, i) in content[field.id]" :key="i" class="p-2 w-1/3 flex-none">
+                        <div class="p-4 border">
+                            <content-field v-for="(subField, key) in field.fields" :key="key" :field="subField" :baseContent="baseContent[field.id][0]" :content="content[field.id][i]" :lang="lang"></content-field>
+                            <div class="flex justify-center">
+                                <button class="btn-red" @click="removeField(i)">X</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div v-else v-for="(dataField, i) in content[field.id]" :key="i" class="p-4 border-b flex">
+                    <div class="flex-1 mr-4">
+                        <content-field v-for="(subField, key) in field.fields" :key="key" :field="subField" :baseContent="baseContent[field.id][0]" :content="content[field.id][i]" :lang="lang"></content-field>
+                    </div>
+                    <div class="flex items-start">
+                        <button class="btn-red" @click="removeField(i)">X</button>
+                    </div>
+                </div>
+
+                <div class="flex justify-center p-2">
+                    <button class="btn-blue" @click="addCopy">Add Copy</button>
+                </div>
+            </div>                
+        </div>
+
+        <content-field-simple v-else :field="field" :content="content" :lang="lang"></content-field-simple>
+    </div>
 </template>
 
 <script>

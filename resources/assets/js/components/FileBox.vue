@@ -1,15 +1,17 @@
 <template>
     <modal @close="$emit('close')">
-        <div>Select file from Media Library</div>
-        <div class="columns is-multiline">
-            <div v-for="file in files" :key="file.id" class="column is-narrow">
-                <div class="box" style="padding: 15px; cursor: pointer;" @click="updateValue(file.path)" :title="file.file_name">
-                    <img v-if="isImage(file.mime_type)" :src="file.path" style="max-height: 40px;">
-                    <i v-else class="fa fa-file" style="font-size: 40px;"></i>
+        <div slot="header">Media Library</div>
+        <div class="flex flex-wrap max-w-md">
+            <div v-for="file in files" :key="file.id" class="w-1/4 p-2">
+                <div class="flex justify-center" @click="updateValue(file.path)" :title="file.file_name">
+                    <img class="w-auto block h-24 shadow rounded cursor-pointer" v-if="isImage(file.mime_type)" :src="file.path">
+                    <svg v-else class="h-24 w-24 p-4 shadow rounded cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M4 18h12V6h-4V2H4v16zm-2 1V0h12l4 4v16H2v-1z"/></svg>
                 </div>
             </div>
         </div>
-        <button class="button is-small is-danger" @click="$emit('clearFile'), $emit('close')">Remove file</button>
+        <div slot="footer" class="flex justify-end">
+            <button class="btn-red">Remove file</button>
+        </div>
     </modal>
 </template>
 

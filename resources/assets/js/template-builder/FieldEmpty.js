@@ -4,7 +4,6 @@ module.exports = function(type) {
     this.type = typeof type !== 'undefined' ? type : null;
     this.fields = [];
     this.dir = 'rows';
-    this.description = null;
     this.placeholder = null;
     if (typeof type !== 'undefined' && type == 'checkbox') {
         this.default = false;

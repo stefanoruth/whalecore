@@ -1,51 +1,55 @@
 <template>
-    <div class="field">
-        <label class="label is-small">{{ field.title }}</label>
-        <p class="help">{{ field.description }}</p>
-        <div class="control">
-
-            <input v-if="field.type == 'text'" class="input is-small" type="text" v-model="content[field.id]" :placeholder="field.placeholder">
-
-            <div v-else-if="field.type == 'image'" class="file is-small has-name" @click="imageModal = true">
-                <template v-if="content[field.id] != null">
-                    <div class="box" style="padding: 15px;cursor: pointer;" title="Change File">
-                        <img v-if="isImage(content[field.id])" :src="content[field.id]" style="max-height:40px;">
-                        <i v-else class="fa fa-file" style="font-size: 40px;"></i>
-                    </div>
-                </template>
-                <template v-else>
-                    <button class="button is-small">Select Image</button>
-                </template>
-                
-                <file-modal v-show="imageModal" @close="imageModal = false" @clearFile="content[field.id] = null" v-model="content[field.id]"></file-modal>
-            </div>
-
-            <textarea v-else-if="field.type == 'textarea'" class="textarea is-small" v-model="content[field.id]"></textarea>
-
-            <tinymce v-else-if="field.type == 'text-editor'" :id="field.id+'-'+lang" v-model="content[field.id]"></tinymce>
-
-            <div v-else-if="field.type == 'select'" class="select">
-                <select v-model="content[field.id]">
-                    <option v-for="(value, i) in field.values" :key="i" :value="value.key">{{ value.label }}</option>
-                </select>
-            </div>
-
-            
-            <div v-else-if="field.type == 'multi-select'" class="select is-multiple">
-                <select multiple size="5">
-                    <option v-for="(value, i) in field.values" :key="i" :value="value.key">{{ value.label }}</option>
-                </select>
-            </div>
-
-            <div v-else-if="field.type == 'radio'" class="control">
-                <label v-for="(value, i) in field.values" :key="i" class="radio"><input type="radio" v-model="content[field.id]" v-bind:value="value.key">{{ value.label }}</label>
-            </div>
-            
-            <label v-else-if="field.type == 'checkbox'" class="checkbox"><input type="checkbox" v-model="content[field.id]">{{ field.title }}</label>
-            
-            <div v-else>Not yet whaled</div>
-        </div>
+    <div v-if="field.type == 'radio'" class="field">
+        <div class="label">{{ field.title }}</div>
+        <ul class="list-reset">
+            <li  v-for="(value, i) in field.values" :key="i">
+                <label class="cursor-pointer">
+                    <input type="radio" v-model="content[field.id]" v-bind:value="value.key">
+                    <span>{{ value.label }}</span>
+                </label>
+            </li>
+        </ul>
     </div>
+
+    <label v-else class="field">
+        <div class="label">{{ field.title }}</div>
+
+        <input v-if="field.type == 'text'" class="input" type="text" v-model="content[field.id]" :placeholder="field.placeholder">
+
+        <textarea v-else-if="field.type == 'textarea'" class="input" v-model="content[field.id]"></textarea>
+
+        <tinymce v-else-if="field.type == 'text-editor'" :id="field.id+'-'+lang" v-model="content[field.id]"></tinymce>
+
+        <div v-else-if="field.type == 'select'" class="inline-block relative w-full">
+            <select class="input">
+                <option v-for="(value, i) in field.values" :key="i" :value="value.key">{{ value.label }}</option>
+            </select>
+            <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
+                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+            </div>
+        </div>
+
+        <label v-else-if="field.type == 'checkbox'" class="">
+            <input type="checkbox" v-model="content[field.id]">
+            <span>{{ field.title }}</span>
+        </label>
+
+        <div v-else-if="field.type == 'image'" class="" @click="imageModal = true">
+            <template v-if="content[field.id] != null">
+                <div class="" title="Change File">
+                    <img v-if="isImage(content[field.id])" :src="content[field.id]">
+                    <div v-else class="">File</div>
+                </div>
+            </template>
+            <template v-else>
+                <button class="button is-small">Select Image</button>
+            </template>
+            
+            <file-modal v-show="imageModal" @close="imageModal = false" @clearFile="content[field.id] = null" v-model="content[field.id]"></file-modal>
+        </div>
+
+        <div v-else class="input">Not yet whaled ({{ field.type }})</div>
+    </label>
 </template>
 
 <script>

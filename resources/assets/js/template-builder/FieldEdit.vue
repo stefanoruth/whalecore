@@ -22,11 +22,6 @@
                 <input class="input" type="text" v-model="field.default">
             </label>
 
-            <label class="field" v-if="!hasSubFields()">
-                <div class="label">Description</div>
-                <textarea class="input" v-model="field.description"></textarea>
-            </label>
-
             <label class="field" v-if="hasSubFields()">
                 <div class="label">Direction</div>
                 <div class="inline-block relative w-full">
