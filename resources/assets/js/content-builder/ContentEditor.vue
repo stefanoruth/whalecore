@@ -1,5 +1,4 @@
 <template>
-                    <label class="label">Title</label>
     <div class="container mx-auto" v-if="model != null">
         <div class="bg-white shadow rounded mb-8 p-4">
             <div class="flex">
