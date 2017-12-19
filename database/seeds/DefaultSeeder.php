@@ -18,13 +18,6 @@ class DefaultSeeder extends Seeder
             \App\Role::updateOrCreate(['name' => $role]);
         }
 
-        // Template Types
-        $types = ['page', 'post', 'bucket'];
-
-        foreach ($types as $type) {
-            \App\TemplateType::updateOrCreate(['name' => $type]);
-        }
-
         // Language
         $languages = [
             'en' => 'English',

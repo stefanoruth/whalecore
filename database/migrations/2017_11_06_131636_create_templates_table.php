@@ -16,14 +16,12 @@ class CreateTemplatesTable extends Migration
         Schema::create('templates', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('project_id')->unsigned();
-            $table->integer('type_id')->unsigned();
             $table->string('title');
             $table->json('structure')->nullable();
             $table->timestamps();
             $table->softDeletes();
 
             $table->unique(['project_id', 'title']);
-            $table->foreign('type_id')->references('id')->on('template_types');
             $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
         });
     }

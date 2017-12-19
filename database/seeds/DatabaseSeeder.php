@@ -21,16 +21,8 @@ class DatabaseSeeder extends Seeder
             $site->members()->create(['user_id' => $this->admin->id, 'role_id' => 1]);
 
             // Pages
-            $pageTem = factory(App\Template::class)->states('page')->create(['project_id' => $site->id]);
-            factory(App\Item::class, 5)->create(['project_id' => $site->id, 'template_id' => $pageTem->id]);
-
-            // Posts
-            $postTem = factory(App\Template::class)->states('post')->create(['project_id' => $site->id]);
-            factory(App\Item::class, 2)->create(['project_id' => $site->id, 'template_id' => $postTem->id]);
-
-            // Bucket
-            $bucketTem = factory(App\Template::class)->states('bucket')->create(['project_id' => $site->id]);
-            factory(App\Item::class, 1)->create(['project_id' => $site->id, 'template_id' => $bucketTem->id]);
+            $temp = factory(App\Template::class)->create(['project_id' => $site->id]);
+            factory(App\Item::class, 5)->create(['project_id' => $site->id, 'template_id' => $temp->id]);
         });
     }
 }

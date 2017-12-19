@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\TemplateResource;
 use App\Template;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use App\Http\Resources\TemplateResource;
 
 class TemplateController extends Controller
 {
@@ -17,11 +17,7 @@ class TemplateController extends Controller
     public function index()
     {
         return TemplateResource::collection(
-            Template::with('type')->when(request('type'), function($query){
-                $query->whereHas('type', function($query){
-                    $query->where('name', request('type'));
-                });
-            })->get()
+            Template::all()
         );
     }
 
@@ -35,12 +31,10 @@ class TemplateController extends Controller
     {
         request()->validate([
             'title' => ['required',Rule::unique('templates')->where('project_id', session('tenant'))],
-            'type' => ['required'],
         ]);
 
         return TemplateResource::make(Template::create([
             'title' => request('title'),
-            'type_id' => request('type'),
             'project_id' => session('tenant'),
         ]));
     }

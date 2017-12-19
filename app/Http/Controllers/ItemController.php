@@ -19,9 +19,7 @@ class ItemController extends Controller
     public function index()
     {
         return ItemResource::collection(
-            Item::with('template.type')->when(request('type'), function ($query) {
-                $query->type(request('type'));
-            })->get()
+            Item::with('template')->get()
         );
     }
 
@@ -66,7 +64,7 @@ class ItemController extends Controller
     public function show($id)
     {
         return ItemResource::make(
-            Item::with('template.type', 'content', 'project.languages', 'project.defaultLanguage')->findOrFail($id)
+            Item::with('template', 'content', 'project.languages', 'project.defaultLanguage')->findOrFail($id)
         );
     }
 

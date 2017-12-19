@@ -4,7 +4,6 @@
             <div v-for="template in templates" :key="template.id" class="group flex justify-between mb-4 px-4 py-2 hover:bg-blue-lightest">
                 <div>
                     <div class="text-xl">{{ template.title }}</div>
-                    <div class="text-sm uppercase text-grey-darker">{{ template.type }}</div>
                 </div>
                 <div class="flex">
                     <router-link class="invisible group-hover:visible no-underline text-blue self-center p-2" :to="{name: 'template.edit', params: {id: template.id}}">Edit</router-link>

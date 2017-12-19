@@ -27,7 +27,6 @@ Route::middleware('auth')->prefix('api')->group(function () {
 
     Route::middleware('tenancy')->group(function () {
         Route::apiResource('items', 'ItemController');
-        Route::apiResource('templates/types', 'TemplateTypeController')->only(['index']);
         Route::apiResource('roles', 'RoleController')->only(['index']);
         Route::apiResource('templates', 'TemplateController');
         Route::apiResource('media', 'MediaController', ['parameters' => ['media'=>'id']])->only(['index','store','destroy']);
