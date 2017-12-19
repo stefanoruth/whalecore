@@ -1,6 +1,6 @@
 <template>
     <div class="flex items-center h-full">
-        <div class="flex justify-center items-center flex-wrap -mx-4">
+        <div class="flex justify-center items-center flex-wrap -mx-4 w-full">
             <div v-for="project in projects" :key="project.id" class="w-full sm:w-1/4 p-4">
                 <div class="bg-white p-4 rounded shadow cursor-pointer" @click="loginToProject(project.id)">{{ project.title }}</div>
             </div>
