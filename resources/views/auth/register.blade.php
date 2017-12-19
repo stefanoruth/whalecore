@@ -1,52 +1,47 @@
-@extends('app') @section('body')
-<section class="hero is-success is-fullheight">
-	<div class="hero-body">
-		<div class="container has-text-centered">
-			<div class="column is-4 is-offset-4">
-				<h3 class="title has-text-grey">Register</h3>
-				<div class="box">
-					<figure class="avatar">
-						<img class="image is-96x96" src="{{ asset('hvalborg.png') }}">
-					</figure>
-					<form method="post" action="{{ route('register') }}">
-                      {{ csrf_field() }}
-						<div class="field">
-							<div class="control">
-								<input class="input is-large {{ $errors->has('name') ? 'is-danger' : '' }}" name="name" placeholder="Your Name" autofocus=""> 
-                             	@if($errors->has('name'))
-								<p class="help is-danger">{{ $errors->first('name') }}</p>
-								@endif
-							</div>
-						</div>
-						<div class="field">
-							<div class="control">
-								<input class="input is-large {{ $errors->has('email') ? 'is-danger' : '' }}" type="email" name="email" placeholder="Your Email">
-                                @if($errors->has('email'))
-								<p class="help is-danger">{{ $errors->first('email') }}</p>
-								@endif
-							</div>
-						</div>
-						<div class="field">
-							<div class="control">
-								<input class="input is-large {{ $errors->has('password') ? 'is-danger' : '' }}" type="password" name="password" placeholder="Your Password">
-                                @if($errors->has('password'))
-								<p class="help is-danger">{{ $errors->first('password') }}</p>
-								@endif
-							</div>
-						</div>
-						<div class="field">
-							<div class="control">
-								<input class="input is-large {{ $errors->has('password_confirmation') ? 'is-danger' : '' }}" type="password" name="password_confirmation" placeholder="Confirm your Password">
-                                @if($errors->has('password_confirmation'))
-								<p class="help is-danger">{{ $errors->first('password_confirmation') }}</p>
-								@endif
-							</div>
-						</div>
-						<button type="submit" class="button is-block is-primary is-large">Create</a>
-					</form>
-				</div>
+@extends('app')
+@section('body')
+<div class="flex justify-center items-center h-screen bg-blue-lightest">
+	<div class="w-full max-w-xs">
+		<form class="bg-white shadow rounded px-8 pt-6 pb-8 mb-4" method="post" action="{{ route('register') }}">
+			{{ csrf_field() }}
+
+			<label class="field">
+				<div class="label">Name</div>
+				<input type="text" class="input {{ $errors->has('name') ? 'border-red' : '' }}" name="name" autofocus value="{{ old('name') }}">
+				@if($errors->has('name'))
+					<p class="text-red text-xs italic mt-1">{{ $errors->first('name') }}</p>
+				@endif
+			</label>
+
+			<label class="field">
+				<div class="label">Email</div>
+				<input type="text" class="input {{ $errors->has('email') ? 'border-red' : '' }}" name="email" value="{{ old('email') }}">
+				@if($errors->has('email'))
+					<p class="text-red text-xs italic mt-1">{{ $errors->first('email') }}</p>
+				@endif
+			</label>
+
+			<label class="field">
+				<div class="label">Password</div>
+				<input type="password" class="input {{ $errors->has('password') ? 'border-red' : '' }}" name="password">
+				@if($errors->has('password'))
+					<p class="text-red text-xs italic mt-1">{{ $errors->first('password') }}</p>
+				@endif
+			</label>
+
+			<label class="field">
+				<div class="label">Password Confirmation</div>
+				<input type="password" class="input {{ $errors->has('password_confirmation') ? 'border-red' : '' }}" name="password_confirmation">
+				@if($errors->has('password_confirmation'))
+					<p class="text-red text-xs italic mt-1">{{ $errors->first('password_confirmation') }}</p>
+				@endif
+			</label>
+
+			<div class="flex items-center justify-between">
+				<button class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded" type="submit">Create</button>
 			</div>
-		</div>
+		</form>
+		<p class="text-center text-grey text-xs">©{{ date('Y') }} {{ config('app.name') }}. All rights reserved.</p>
 	</div>
-</section>
+</div>
 @stop

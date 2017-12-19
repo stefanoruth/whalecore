@@ -31,7 +31,7 @@
         methods: {
             loginToProject(projectId) {
                 axios.post(route('tenant.store'), {projectId: projectId}).then(response => {
-                    this.$router.push('/pages');
+                    this.$router.push('/content');
                 });
             },
         },
