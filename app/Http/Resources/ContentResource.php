@@ -17,6 +17,7 @@ class ContentResource extends Resource
         return [
             'id'            => $this->id,
             'language_code' => $this->language_code,
+            'url'           => $this->url,
             'body'          => $this->body,
             'item'          => ItemResource::make($this->whenLoaded('items')),
             'project'       => ProjectResource::make($this->whenLoaded('project')),

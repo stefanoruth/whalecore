@@ -52,12 +52,27 @@ class Content extends Model
     }
 
     /**
-     * fetch and query revisions of the model
+     * Fetch and query revisions of the model
      * @return \Illuminate\Database\Eloquent\Relations\Relation
      */
     public function revisions()
     {
         return $this->hasMany(ContentRevision::class);
+    }
+
+    /**
+     * Build public api endpoint
+     *
+     * @return string
+     */
+    public function getUrlAttribute()
+    {
+        return sprintf(
+            '%s/content/%s/%s/',
+            config('app.url_api'),
+            $this->item->slug,
+            $this->language_code
+        );
     }
 
     /**
