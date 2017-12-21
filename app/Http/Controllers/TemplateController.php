@@ -24,10 +24,9 @@ class TemplateController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
         request()->validate([
             'title' => ['required',Rule::unique('templates')->where('project_id', session('tenant'))],
@@ -55,11 +54,10 @@ class TemplateController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
         $data = request()->validate([
             'title' => ['required',Rule::unique('templates')->where('project_id', session('tenant'))->ignore($id)],

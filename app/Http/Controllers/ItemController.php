@@ -26,16 +26,14 @@ class ItemController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
         request()->validate([
             'title'    => 'required',
             'template' => ['required', Rule::exists('templates', 'id')->where('project_id', session('tenant'))],
         ]);
-
 
         // Generate slug
         $slug = Str::slug(request('title'));
@@ -71,11 +69,10 @@ class ItemController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
         $data = request()->validate([
             'content' => ['required', 'array'],

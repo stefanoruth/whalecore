@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Resources\MediaResource;
 use App\Media;
 use App\Project;
-use App\Http\Resources\MediaResource;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class MediaController extends Controller
@@ -28,17 +28,16 @@ class MediaController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
         $file = request()->validate([
-            'file' => ['required']
+            'file' => ['required'],
         ])['file'];
 
 
-        $filename = sprintf("%s-%s.%s", Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)), time(), $file->getClientOriginalExtension());
+        $filename = sprintf('%s-%s.%s', Str::slug(pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME)), time(), $file->getClientOriginalExtension());
 
         $media = new Media([
             'project_id' => session('tenant'),
