@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Exceptions\ProjectSpecificAreaException;
 use App\Project;
 
 class TenantController extends Controller
@@ -23,7 +22,7 @@ class TenantController extends Controller
         })->where('id', request('projectId'))->first();
 
         if (is_null($project)) {
-            throw new ProjectSpecificAreaException('You need to be a part of the project to login', 403);
+            throw new \Exception('You need to be a part of the project to login', 403);
         }
 
         session(['tenant' => $project->id]);
