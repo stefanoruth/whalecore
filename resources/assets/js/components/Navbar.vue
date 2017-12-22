@@ -1,12 +1,26 @@
 <template>
-    <nav class="bg-blue text-white flex flex-col border-r border-blue-lighter select-none flex-no-shrink" v-if="$route.path != '/'">
+    <div v-if="$route.path == '/'" class="flex items-center h-full w-full">
+        <div class="flex justify-center items-center flex-wrap -mx-4 w-full">
+            <div v-for="project in projects" :key="project.id" class="w-full sm:w-1/4 p-4">
+                <div class="bg-white p-4 rounded shadow cursor-pointer" @click="loginToProject(project.id)">{{ project.title }}</div>
+            </div>
+
+            <div class="w-full sm:w-1/4 p-4">
+                <div class="bg-white p-4 rounded shadow cursor-pointer" @click="modal = true">New Project</div>
+                <new-project v-show="modal" @close="modal = false" @login="loginToProject"></new-project>
+            </div>
+        </div>
+    </div>
+
+    <nav v-else class="bg-blue text-white flex flex-col border-r border-blue-lighter select-none flex-no-shrink">
        <div class="flex flex-col items-center p-4">
            <img class="w-16 h-16 inline bg-white p-2 rounded-full mb-4" src="/hvalborg.png">
            <div class="rounded-lg bg-blue-light relative py-2 pr-6 pl-4 cursor-pointer w-full">
-               <div class="text-white">Project: Kumela</div>
+               <div class="text-white">Project: <span v-if="project != null">{{ project.title }}</span></div>
                <div class="pointer-events-none absolute pin-y pin-r flex items-center px-1 text-white">
                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                 </div>
+                <li v-for="item in projects" :key="item.id">{{ item.title }}</li>
            </div>
        </div>
        <div class="py-8 pl-6 flex-1 flex flex-col justify">
@@ -54,8 +68,34 @@
     export default {
         data() {
             return {
-                mobile: false
+                mobile: false,
+                modal: false,
+                projects: [],
+                project: null,
             };
-        }
+        },
+
+        mounted() {
+            axios.get(route('projects.index')).then(response => {
+                this.projects = response.data.data;
+            });
+
+            axios.get(route('tenant.index')).then(response => {
+                this.project = response.data.data;
+            });
+        },
+
+        methods: {
+            loginToProject(id) {
+                axios.post(route('tenant.store'), {projectId: id}).then(response => {
+                    this.project = response.data.data;
+                    this.$router.push('/content');
+                });
+            },
+        },
+
+        components: {
+            newProject: require('../modals/NewProject'),
+        },
     };
 </script>
