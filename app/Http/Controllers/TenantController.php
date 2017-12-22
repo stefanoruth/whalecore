@@ -2,10 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProjectResource;
 use App\Project;
 
 class TenantController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return ProjectResource::make(
+            Project::whereHas('users', function ($query) {
+                $query->where('id', auth()->id());
+            })->where('id', session('tenant'))->firstOrFail()
+        );
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -26,5 +41,7 @@ class TenantController extends Controller
         }
 
         session(['tenant' => $project->id]);
+
+        return ProjectResource::make($project);
     }
 }

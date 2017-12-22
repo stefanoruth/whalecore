@@ -22,7 +22,7 @@ Route::post('register', 'Auth\RegisterController@register')->middleware('guest')
 
 Route::middleware('auth')->prefix('api')->group(function () {
     Route::apiResource('projects', 'ProjectController');
-    Route::apiResource('tenant', 'TenantController')->only(['store']);
+    Route::apiResource('tenant', 'TenantController')->only(['store', 'index']);
     Route::apiResource('languages', 'LanguageController')->only(['index']);
 
     Route::middleware('tenancy')->group(function () {
