@@ -1,5 +1,9 @@
 <template>
     <div>
+        <div class="bg-white rounded shadow p-4 mb-2">
+            <div class="text-3xl w-full p-1">Settings</div>
+        </div>
+
         <ul class="list-reset flex border-b">
             <li class="mr-1" :class="{'-mb-px': menu == 'options'}">
                 <a class="cursor-pointer bg-white inline-block py-2 px-4 text-blue hover:text-blue-darker font-semibold" :class="{'text-blue-dark border-l border-t border-r rounded-t': menu == 'options'}" @click="menu = 'options'">Options</a>

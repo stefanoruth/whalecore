@@ -53,7 +53,7 @@
 
         computed: {
             authId() {
-                return window.user.id;
+                return window.auth;
             },
         },
 

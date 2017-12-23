@@ -41,7 +41,7 @@
 
             isImage(mime) {
                 return ['image/png', 'image/jpeg'].indexOf(mime) > -1;
-            }
+            },
         },
     }
 </script>

@@ -34,16 +34,14 @@
             <span>{{ field.title }}</span>
         </label>
 
-        <div v-else-if="field.type == 'image'" class="" @click="imageModal = true">
-            <template v-if="content[field.id] != null">
-                <div class="" title="Change File">
-                    <img v-if="isImage(content[field.id])" :src="content[field.id]">
-                    <div v-else class="">File</div>
-                </div>
-            </template>
-            <template v-else>
-                <button class="button is-small">Select Image</button>
-            </template>
+        <div v-else-if="field.type == 'image'">
+            <div >
+                    <div  v-if="content[field.id] != null" class="" title="Change File">
+                            <img v-if="isImage(content[field.id])" :src="content[field.id]">
+                            <div v-else class="">File</div>
+                        </div>
+                    <button v-else class="btn-blue">Select Image</button>
+            </div>
             
             <file-modal v-show="imageModal" @close="imageModal = false" @clearFile="content[field.id] = null" v-model="content[field.id]"></file-modal>
         </div>
@@ -62,7 +60,7 @@
 
         data() {
             return {
-                imageModal: false,
+                imageModal: true,
             };
         },
 
@@ -82,6 +80,11 @@
 
                 return bool;
             },
+
+            open() {
+                console.log('open');
+                this.imageModal = true;
+            }
         },
     }
 </script>

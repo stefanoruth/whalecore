@@ -18,7 +18,7 @@
                 </div>
                 <div class="card-footer-item">
                     <button class="button is-danger" @click="showDelete = true">Delete</button>
-                    <confirm-box :show="showDelete" @close="showDelete = false" @ok="deleteProject">Are you sure, you want to delete this project?</confirm-box>
+                    <confirm-box v-show="showDelete" @close="showDelete = false" @ok="deleteProject">Are you sure, you want to delete this project?</confirm-box>
                 </div>
             </div>
         </div>
