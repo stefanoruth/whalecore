@@ -36,6 +36,26 @@ class Item extends Model
     }
 
     /**
+     * Relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function parent()
+    {
+        return $this->belongsTo(Item::class, 'parent_id');
+    }
+
+    /**
+     * Relationship
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function childs()
+    {
+        return $this->hasMany(Item::class, 'parent_id');
+    }
+
+    /**
      * Scope the type of template
      *
      * @param \Illuminate\Database\Eloquent\Builder $query
