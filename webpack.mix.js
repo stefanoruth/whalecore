@@ -13,6 +13,7 @@ let tailwindcss = require('tailwindcss');
  */
 
 mix.js('resources/assets/js/app.js', 'public')
+   .js('resources/assets/js/sales.js', 'public')
    .sass('resources/assets/sass/app.scss', 'public')
    .copyDirectory('./node_modules/font-awesome/fonts', 'public/fonts')
    .copyDirectory('./node_modules/tinymce/skins/lightgray/fonts', 'public/fonts')

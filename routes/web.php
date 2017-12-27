@@ -11,7 +11,13 @@
 |
 */
 
-Route::view('/', 'app')->middleware('auth');
+Route::get('/', function () {
+    if (auth()->check()) {
+        return view('app');
+    }
+
+    return view('welcome');
+});
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login')->middleware('guest');
 Route::get('logout', 'Auth\LoginController@logout')->middleware('auth')->name('logout');

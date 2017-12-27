@@ -28,6 +28,10 @@
     }
 }
 
+.btn-white {
+    @apply .btn .bg-white .text-blue;
+}
+
 .field {
     @apply .block .mb-3;
 }
