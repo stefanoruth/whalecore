@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateContentTable extends Migration
 {
@@ -19,6 +19,7 @@ class CreateContentTable extends Migration
             $table->integer('item_id')->unsigned();
             $table->string('language_code');
             $table->json('body');
+            $table->json('meta')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

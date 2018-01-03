@@ -12,7 +12,7 @@
 
             <div class="bg-white shadow border rounded p-4 flex justify-end">
                 <button @click="showNewField = true" class="btn-blue">Add Field</button>
-                <template-field-new v-show="showNewField" @close="showNewField = false" @newField="addField"></template-field-new>
+                <template-field-new v-show="showNewField" :only="['section','repeater']" @close="showNewField = false" @newField="addField"></template-field-new>
             </div>
         </div>
 

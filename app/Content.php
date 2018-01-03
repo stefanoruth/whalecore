@@ -31,6 +31,7 @@ class Content extends Model
      */
     protected $casts = [
         'body' => 'json',
+        'meta' => 'json',
     ];
 
     /**
@@ -73,6 +74,16 @@ class Content extends Model
             $this->item->slug,
             $this->language_code
         );
+    }
+
+    /**
+     * Fetches the seo information for the content
+     *
+     * @return object
+     */
+    public function getSeoAttribute()
+    {
+        return $this->meta->seo ?? null;
     }
 
     /**

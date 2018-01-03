@@ -54,6 +54,7 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
     'url_api' => env('APP_URL_API', 'http://api.whalecore.net'),
+    'url_static' => env('APP_URL_STATIC', 'http://localhost'),
 
     /*
     |--------------------------------------------------------------------------
