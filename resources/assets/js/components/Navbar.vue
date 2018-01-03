@@ -17,11 +17,11 @@
            <img class="w-16 h-16 inline bg-white p-2 rounded-full mb-4" src="/logo.png">
            <div class="rounded-lg bg-blue-light relative py-2 pr-6 pl-4 cursor-pointer w-full group">
                <div class="text-white">Project: <span v-if="project != null">{{ project.title }}</span></div>
-               <div class="pointer-events-none absolute pin-y pin-r flex items-center px-1 text-white">
+               <div v-if="otherProjects.length > 0" class="pointer-events-none absolute pin-y pin-r flex items-center px-1 text-white">
                     <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                 </div>
-                <div class="absolute pin-to pin-l w-full hidden group-hover:block bg-white py-2 rounded shadow">
-                    <div v-for="item in projects" :key="item.id" class="mb-1">
+                <div v-if="otherProjects.length > 0" class="absolute pin-to pin-l w-full hidden group-hover:block bg-white py-2 rounded shadow">
+                    <div v-for="item in otherProjects" :key="item.id" class="mb-1">
                         <a class="text-black px-2 block" @click="loginToProject(item.id)">{{ item.title }}</a>
                     </div>
                 </div>
@@ -83,6 +83,18 @@
                 projects: [],
                 project: null,
             };
+        },
+
+        computed: {
+            otherProjects: function() {
+                if (this.project == null) {
+                    return [];
+                }
+
+                return _.filter(this.projects, (item) => {
+                    return item.id != this.project.id;
+                });
+            },
         },
 
         mounted() {
