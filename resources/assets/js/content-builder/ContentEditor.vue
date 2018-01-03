@@ -6,7 +6,7 @@
                 <a href="#" target="_blank" class="text-sm text-grey-darker no-underline" title="Slug">{{ model.slug }}</a>
             </div>
             <div class="flex items-center">
-                <div class="relative mr-4">
+                <div v-if="languages.length > 1" class="relative mr-4">
                     <select class="input pr-6" v-model="selectedLang">
                         <option v-for="lang in languages" :key="lang.code" :value="lang.code">{{ lang.name }}</option>
                     </select>
@@ -31,13 +31,13 @@
             <div v-if="showOutput" class="bg-white rounded p-4 w-full overflow-x-scroll">
                 <pre v-for="lang in languages" :key="lang.code" v-show="lang.code == selectedLang" class="text-xs text-grey-darkest">{{ content[lang.code] | pretty }}</pre>
             </div>
-            <div v-else class="flex">
-                <div class="flex-1">
+            <div v-else class="md:flex">
+                <div class="flex-1 md:mr-4">
                     <div v-for="lang in languages" :key="lang.code" v-show="lang.code == selectedLang">
                         <content-field v-for="(field, key) in template" :key="key" :field="field" :content="content[lang.code][key]" :baseContent="baseContent[key]" :lang="lang.code" class="bg-white rounded mb-4"></content-field>
                     </div>
                 </div>
-                <div class="px-4">
+                <div class="">
                     <div class="bg-white border">
                         <div class="p-4 border-b">
                             <div class="text-lg uppercase">Seo</div>
