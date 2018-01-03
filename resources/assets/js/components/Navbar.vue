@@ -14,7 +14,7 @@
 
     <nav v-else class="bg-blue text-white flex flex-col border-r border-blue-lighter select-none flex-no-shrink">
        <div class="flex flex-col items-center p-4">
-           <img class="w-16 h-16 inline bg-white p-2 rounded-full mb-4" src="/hvalborg.png">
+           <img class="w-16 h-16 inline bg-white p-2 rounded-full mb-4" src="/logo.png">
            <div class="rounded-lg bg-blue-light relative py-2 pr-6 pl-4 cursor-pointer w-full">
                <div class="text-white">Project: <span v-if="project != null">{{ project.title }}</span></div>
                <div class="pointer-events-none absolute pin-y pin-r flex items-center px-1 text-white">

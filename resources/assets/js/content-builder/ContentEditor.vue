@@ -1,37 +1,46 @@
 <template>
-    <div class="container mx-auto" v-if="model != null">
-        <div class="bg-white shadow rounded mb-8 p-4">
-            <div class="flex">
+    <div class="" v-if="model != null">
+        <div class="bg-white shadow px-8 py-4 flex justify-between">
+            <div class="mr-4 flex-1">
                 <input class="text-3xl w-full p-1" type="text" v-model="model.title">
-                <button class="btn-green ml-4" @click="saveContent">Publish</button>
-            </div>
-            <div class="mb-3">
                 <div class="text-sm text-grey-darker" title="Slug">{{ model.slug }}</div>
             </div>
-            <div class="flex justify-between">
-                <ul class="list-reset flex">
-                    <li class="mr-1" v-for="lang in languages" :key="lang.code">
-                        <div class="inline-block rounded py-1 px-3 cursor-pointer" :class="{'bg-blue text-white': selectedLang == lang.code, 'text-blue hover:bg-grey-lighter': selectedLang != lang.code}" @click="selectedLang = lang.code">{{ lang.name }}</div>
-                    </li>
-                </ul>
-                <ul class="list-reset flex">
-                    <li class="mr-1">
-                        <div class="inline-block rounded py-1 px-3 cursor-pointer" :class="{'bg-blue text-white': showOutput, 'text-blue hover:bg-grey-lighter': !showOutput}" @click="showOutput = true">Json</div>
-                    </li>
-                    <li class="">
-                        <div class="inline-block rounded py-1 px-3 cursor-pointer" :class="{'bg-blue text-white': !showOutput, 'text-blue hover:bg-grey-lighter': showOutput}" @click="showOutput = false">Content</div>
-                    </li>
-                </ul>
+            <div class="flex items-center">
+                <div class="relative mr-4">
+                    <select class="input pr-6" v-model="selectedLang">
+                        <option v-for="lang in languages" :key="lang.code" :value="lang.code">{{ lang.name }}</option>
+                    </select>
+                    <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                    </div>
+                </div>
+                <div class="relative mr-4">
+                    <select class="input pr-6" v-model="showOutput">
+                        <option :value="false">Content</option>
+                        <option :value="true">Json</option>
+                    </select>
+                    <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                    </div>
+                </div>
+                <button class="btn-green" @click="saveContent">Publish</button>
             </div>
         </div>
 
-        <div class="container mx-auto">
+        <div class="container p-8 mx-auto">
             <div v-if="showOutput" class="bg-white rounded shadow p-4 w-full overflow-x-scroll">
                 <pre v-for="lang in languages" :key="lang.code" v-show="lang.code == selectedLang" class="text-xs text-grey-darkest">{{ content[lang.code] | pretty }}</pre>
             </div>
-            <div v-else>
-                <div v-for="lang in languages" :key="lang.code" v-show="lang.code == selectedLang">
-                    <content-field v-for="(field, key) in template" :key="key" :field="field" :content="content[lang.code][key]" :baseContent="baseContent[key]" :lang="lang.code" class="bg-white shadow rounded mb-4"></content-field>
+            <div v-else class="flex">
+                <div class="flex-1">
+                    <div v-for="lang in languages" :key="lang.code" v-show="lang.code == selectedLang">
+                        <content-field v-for="(field, key) in template" :key="key" :field="field" :content="content[lang.code][key]" :baseContent="baseContent[key]" :lang="lang.code" class="bg-white shadow rounded mb-4"></content-field>
+                    </div>
+                </div>
+                <div class="px-4">
+                    <div class="bg-white rounded shadow px-6 py-4">
+                        <div class="text-lg">Seo</div>
+                    </div>
                 </div>
             </div>
         </div>

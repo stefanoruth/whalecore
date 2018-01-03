@@ -17,7 +17,7 @@
         @else
             <div id="app" class="flex h-screen bg-blue-lightest">
                 <navigation></navigation>
-                <main class="flex-grow p-8 overflow-y-scroll">
+                <main class="flex-grow overflow-y-scroll">
                     <router-view></router-view>
                 </main>
             </div>

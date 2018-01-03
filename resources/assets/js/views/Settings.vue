@@ -1,33 +1,35 @@
 <template>
     <div>
-        <div class="bg-white rounded shadow p-4 mb-2">
-            <div class="text-3xl w-full p-1">Settings</div>
+        <div class="bg-white shadow px-8 py-4">
+            <div class="text-3xl">Settings</div>
         </div>
 
-        <ul class="list-reset flex border-b">
-            <li class="mr-1" :class="{'-mb-px': menu == 'options'}">
-                <a class="cursor-pointer bg-white inline-block py-2 px-4 text-blue hover:text-blue-darker font-semibold" :class="{'text-blue-dark border-l border-t border-r rounded-t': menu == 'options'}" @click="menu = 'options'">Options</a>
-            </li>
-            <li class="mr-1" :class="{'-mb-px': menu == 'collaborators'}">
-                <a class="cursor-pointer bg-white inline-block py-2 px-4 text-blue hover:text-blue-darker font-semibold" :class="{'text-blue-dark border-l border-t border-r rounded-t': menu == 'collaborators'}" @click="menu = 'collaborators'">Collaborators</a>
-            </li>
-            <li class="mr-1" :class="{'-mb-px': menu == 'api'}">
-                <a class="cursor-pointer bg-white inline-block py-2 px-4 text-blue hover:text-blue-darker font-semibold" :class="{'text-blue-dark border-l border-t border-r rounded-t': menu == 'api'}" @click="menu = 'api'">Api</a>
-            </li>
-            <li class="mr-1" :class="{'-mb-px': menu == 'billing'}">
-                <a class="cursor-pointer bg-white inline-block py-2 px-4 text-blue hover:text-blue-darker font-semibold" :class="{'text-blue-dark border-l border-t border-r rounded-t': menu == 'billing'}" @click="menu = 'billing'">Billing</a>
-            </li>
-            <li class="mr-1" :class="{'-mb-px': menu == 'language'}">
-                <a class="cursor-pointer bg-white inline-block py-2 px-4 text-blue hover:text-blue-darker font-semibold" :class="{'text-blue-dark border-l border-t border-r rounded-t': menu == 'language'}" @click="menu = 'language'">Languages</a>
-            </li>
-        </ul>
+        <div class="p-8">
+            <ul class="list-reset flex border-b">
+                <li class="mr-1" :class="{'-mb-px': menu == 'options'}">
+                    <a class="cursor-pointer bg-white inline-block py-2 px-4 text-blue hover:text-blue-darker font-semibold" :class="{'text-blue-dark border-l border-t border-r rounded-t': menu == 'options'}" @click="menu = 'options'">Options</a>
+                </li>
+                <li class="mr-1" :class="{'-mb-px': menu == 'collaborators'}">
+                    <a class="cursor-pointer bg-white inline-block py-2 px-4 text-blue hover:text-blue-darker font-semibold" :class="{'text-blue-dark border-l border-t border-r rounded-t': menu == 'collaborators'}" @click="menu = 'collaborators'">Collaborators</a>
+                </li>
+                <li class="mr-1" :class="{'-mb-px': menu == 'api'}">
+                    <a class="cursor-pointer bg-white inline-block py-2 px-4 text-blue hover:text-blue-darker font-semibold" :class="{'text-blue-dark border-l border-t border-r rounded-t': menu == 'api'}" @click="menu = 'api'">Api</a>
+                </li>
+                <li class="mr-1" :class="{'-mb-px': menu == 'billing'}">
+                    <a class="cursor-pointer bg-white inline-block py-2 px-4 text-blue hover:text-blue-darker font-semibold" :class="{'text-blue-dark border-l border-t border-r rounded-t': menu == 'billing'}" @click="menu = 'billing'">Billing</a>
+                </li>
+                <li class="mr-1" :class="{'-mb-px': menu == 'language'}">
+                    <a class="cursor-pointer bg-white inline-block py-2 px-4 text-blue hover:text-blue-darker font-semibold" :class="{'text-blue-dark border-l border-t border-r rounded-t': menu == 'language'}" @click="menu = 'language'">Languages</a>
+                </li>
+            </ul>
 
-        <div class="bg-white border-l border-r border-b shadow p-4 ">
-            <option-general  :project="project" class="column" v-show="menu == 'options'"></option-general>
-            <option-members  :project="project" class="column" v-show="menu == 'collaborators'"></option-members>
-            <option-api      :project="project" class="column" v-show="menu == 'api'"></option-api>
-            <option-billing  :project="project" class="column" v-show="menu == 'billing'"></option-billing>
-            <option-language :project="project" class="column" v-show="menu == 'language'" ></option-language>
+            <div class="bg-white border-l border-r border-b shadow p-4 ">
+                <option-general  :project="project" class="column" v-show="menu == 'options'"></option-general>
+                <option-members  :project="project" class="column" v-show="menu == 'collaborators'"></option-members>
+                <option-api      :project="project" class="column" v-show="menu == 'api'"></option-api>
+                <option-billing  :project="project" class="column" v-show="menu == 'billing'"></option-billing>
+                <option-language :project="project" class="column" v-show="menu == 'language'" ></option-language>
+            </div>
         </div>
     </div>
 </template>
