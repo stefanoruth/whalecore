@@ -1,9 +1,9 @@
 <template>
     <div class="" v-if="model != null">
-        <div class="bg-white shadow px-8 py-4 flex justify-between">
+        <div class="bg-white border-b px-8 py-4 flex justify-between">
             <div class="mr-4 flex-1">
                 <input class="text-3xl w-full p-1" type="text" v-model="model.title">
-                <div class="text-sm text-grey-darker" title="Slug">{{ model.slug }}</div>
+                <a href="#" target="_blank" class="text-sm text-grey-darker no-underline" title="Slug">{{ model.slug }}</a>
             </div>
             <div class="flex items-center">
                 <div class="relative mr-4">
@@ -28,18 +28,44 @@
         </div>
 
         <div class="container p-8 mx-auto">
-            <div v-if="showOutput" class="bg-white rounded shadow p-4 w-full overflow-x-scroll">
+            <div v-if="showOutput" class="bg-white rounded p-4 w-full overflow-x-scroll">
                 <pre v-for="lang in languages" :key="lang.code" v-show="lang.code == selectedLang" class="text-xs text-grey-darkest">{{ content[lang.code] | pretty }}</pre>
             </div>
             <div v-else class="flex">
                 <div class="flex-1">
                     <div v-for="lang in languages" :key="lang.code" v-show="lang.code == selectedLang">
-                        <content-field v-for="(field, key) in template" :key="key" :field="field" :content="content[lang.code][key]" :baseContent="baseContent[key]" :lang="lang.code" class="bg-white shadow rounded mb-4"></content-field>
+                        <content-field v-for="(field, key) in template" :key="key" :field="field" :content="content[lang.code][key]" :baseContent="baseContent[key]" :lang="lang.code" class="bg-white rounded mb-4"></content-field>
                     </div>
                 </div>
                 <div class="px-4">
-                    <div class="bg-white rounded shadow px-6 py-4">
-                        <div class="text-lg">Seo</div>
+                    <div class="bg-white border">
+                        <div class="p-4 border-b">
+                            <div class="text-lg uppercase">Seo</div>
+                        </div>
+                        <div class="p-4">
+                            <label class="field">
+                                <div class="label">Title:</div>
+                                <input type="text" class="input">
+                            </label>
+                            <label class="field">
+                                <div class="label">Description:</div>
+                                <textarea class="input"></textarea>
+                            </label>
+                            <label class="field">
+                                <div class="label">Description:</div>
+                                <div>
+                                    <div>
+                                        <div v-if="seoImage != null" class="" title="Change File">
+                                            <img v-if="isImage(seoImage)" :src="seoImage">
+                                            <div v-else class="">File</div>
+                                        </div>
+                                        <button v-else class="btn-blue">Select Image</button>
+                                    </div>
+                                    
+                                    <file-modal v-show="seoImageModal" @close="seoImageModal = false" @clearFile="seoImage = null" v-model="seoImage"></file-modal>
+                                </div>
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -51,6 +77,8 @@
     export default {
         data() {
             return {
+                seoImage: null,
+                seoImageModal: false,
                 model: null,
                 template: [],
                 content: null,

@@ -2,7 +2,7 @@
     <div v-if="field.type == 'radio'" class="field">
         <div class="label">{{ field.title }}</div>
         <ul class="list-reset">
-            <li  v-for="(value, i) in field.values" :key="i">
+            <li v-for="(value, i) in field.values" :key="i">
                 <label class="cursor-pointer">
                     <input type="radio" v-model="content[field.id]" v-bind:value="value.key">
                     <span>{{ value.label }}</span>
@@ -35,12 +35,12 @@
         </label>
 
         <div v-else-if="field.type == 'image'">
-            <div >
-                    <div  v-if="content[field.id] != null" class="" title="Change File">
-                            <img v-if="isImage(content[field.id])" :src="content[field.id]">
-                            <div v-else class="">File</div>
-                        </div>
-                    <button v-else class="btn-blue">Select Image</button>
+            <div>
+                <div v-if="content[field.id] != null" class="" title="Change File">
+                        <img v-if="isImage(content[field.id])" :src="content[field.id]">
+                        <div v-else class="">File</div>
+                    </div>
+                <button v-else class="btn-blue">Select Image</button>
             </div>
             
             <file-modal v-show="imageModal" @close="imageModal = false" @clearFile="content[field.id] = null" v-model="content[field.id]"></file-modal>
