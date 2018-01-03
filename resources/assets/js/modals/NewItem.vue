@@ -48,7 +48,7 @@
         methods: {
             createItem() {
                 axios.post(route('items.store'), {title: this.input.title, template: this.input.template}).then(response => {
-                    this.$router.push('/pages/'+response.data.data.id);
+                    this.$router.push('/content/'+response.data.data.id);
                 }).catch(error => {
                     this.errors = error.response.data.errors;
                 });
