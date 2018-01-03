@@ -12,7 +12,7 @@
         </div>
     </div>
 
-    <nav v-else class="bg-blue text-white flex flex-col border-r border-blue-lighter select-none flex-no-shrink">
+    <nav v-else class="hidden md:flex bg-blue text-white flex-col border-r border-blue-lighter select-none flex-no-shrink">
        <div class="flex flex-col items-center p-4">
            <img class="w-16 h-16 inline bg-white p-2 rounded-full mb-4" src="/logo.png">
            <div class="rounded-lg bg-blue-light relative py-2 pr-6 pl-4 cursor-pointer w-full group">
