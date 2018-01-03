@@ -60,7 +60,7 @@
 
         data() {
             return {
-                imageModal: true,
+                imageModal: false,
             };
         },
 
