@@ -13,8 +13,8 @@
                 <li class="mr-4"><a href="#" class="py-4 block text-blue no-underline">Features</a></li>
                 <li class="mr-4"><a href="#" class="py-4 block text-blue no-underline">Pricing</a></li>
                 <li class="mr-4"><a href="#" class="py-4 block text-blue no-underline">Contact</a></li>
-                <li class="mr-4"><a href="#" class="py-4 block text-blue no-underline">Login</a></li>
-                <li class="mr-4"><a href="#" class="py-4 block text-blue no-underline">Get Started</a></li>
+                <li class="mr-4"><a href="{{ route('login') }}" class="py-4 block text-blue no-underline">Login</a></li>
+                <li class="mr-4"><a href="{{ route('register') }}" class="py-4 block text-blue no-underline">Get Started</a></li>              
             </ul>
         </nav>
 

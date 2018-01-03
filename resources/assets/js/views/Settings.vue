@@ -1,10 +1,31 @@
 <template>
+
     <div>
-        <div class="bg-white shadow px-8 py-4">
-            <div class="text-3xl">Settings</div>
+        <div class="bg-white shadow flex justify-between">
+            <div class="px-8 py-4 w-full">
+                <div class="text-3xl">Settings</div>
+            </div>
         </div>
 
-        <div class="p-8">
+        <div class="container p-8 mx-auto max-w-md">
+            <div class="bg-white py-4 mb-4">
+                <!-- I want a header section in here -->
+                <div class="border-b" style="height:400px">
+                </div>
+                 <div class="border-b" style="height:400px">
+                </div>
+                 <div class="border-b" style="height:400px">
+                </div>
+                 <div class="border-b" style="height:400px">
+                </div>
+
+                <!-- Here I want to add all of the options -->
+                <!-- An option should include a header and the specific alterations available -->
+                <!-- Every option including the header, should be divided by a grey area -->
+            </div>
+        </div>
+
+        <!-- <div class="p-8">
             <ul class="list-reset flex border-b">
                 <li class="mr-1" :class="{'-mb-px': menu == 'options'}">
                     <a class="cursor-pointer bg-white inline-block py-2 px-4 text-blue hover:text-blue-darker font-semibold" :class="{'text-blue-dark border-l border-t border-r rounded-t': menu == 'options'}" @click="menu = 'options'">Options</a>
@@ -30,7 +51,7 @@
                 <option-billing  :project="project" class="column" v-show="menu == 'billing'"></option-billing>
                 <option-language :project="project" class="column" v-show="menu == 'language'" ></option-language>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 
