@@ -3,35 +3,8 @@
         <modal v-show="showNew" @close="resetClose">
             <div slot="header">New Field</div>    
             <div class="flex flex-wrap max-w-md -mx-2">
-                <div class="w-1/3 p-2">
-                    <div class="bg-blue text-white py-2 px-4 cursor-pointer" @click="add('text')">Text</div>
-                </div>
-                <div class="w-1/3 p-2">
-                    <div class="bg-blue text-white py-2 px-4 cursor-pointer" @click="add('textarea')">Textarea</div>
-                </div>
-                <div class="w-1/3 p-2">
-                    <div class="bg-blue text-white py-2 px-4 cursor-pointer" @click="add('text-editor')">Text Editor (TinyMCE)</div>
-                </div>
-                <div class="w-1/3 p-2">
-                    <div class="bg-blue text-white py-2 px-4 cursor-pointer" @click="add('number')">Number</div>
-                </div>
-                <div class="w-1/3 p-2">
-                    <div class="bg-blue text-white py-2 px-4 cursor-pointer" @click="add('repeater')">Repeater</div>
-                </div>
-                <div class="w-1/3 p-2">
-                    <div class="bg-blue text-white py-2 px-4 cursor-pointer" @click="add('section')">Section</div>
-                </div>
-                <div class="w-1/3 p-2">
-                    <div class="bg-blue text-white py-2 px-4 cursor-pointer" @click="add('image')">Image</div>
-                </div>
-                <div class="w-1/3 p-2">
-                    <div class="bg-blue text-white py-2 px-4 cursor-pointer" @click="add('select')">Select</div>
-                </div>
-                <div class="w-1/3 p-2">
-                    <div class="bg-blue text-white py-2 px-4 cursor-pointer" @click="add('radio')">Radio</div>
-                </div>
-                <div class="w-1/3 p-2">
-                    <div class="bg-blue text-white py-2 px-4 cursor-pointer" @click="add('checkbox')">Checkbox</div>
+                <div v-for="(title, id) in fields" :key="id" class="w-1/3 p-2">
+                    <div class="bg-blue text-white py-2 px-4 cursor-pointer" @click="add(id)">{{ title }}</div>
                 </div>
             </div>
         </modal>
@@ -43,13 +16,44 @@
     import FieldEmpty from './FieldEmpty';
 
     export default {
-        props: ['show'],
+        props: {
+            only: {
+                default: function() {
+                    return [];
+                },
+                type: Array,
+            }
+        },
+
+        computed: {
+            fields: function() {
+                if (this.only.length == 0) {
+                    return this.fieldList;
+                }
+
+                return _.filter(this.fieldList, (item, id) => {
+                    return this.only.indexOf(id) > -1;
+                });
+            },
+        },
 
         data() {
             return {
                 showNew: true,
                 showEdit: false,
                 field: null,
+                fieldList: {
+                    text: 'Text',
+                    textarea: 'Textarea',
+                    'text-editor': 'Text Editor (TinyMCE)',
+                    number: 'Number',
+                    repeater: 'Repeater',
+                    section: 'Section',
+                    image: 'Image',
+                    select: 'Select',
+                    radio: 'Radio',
+                    checkbox: 'Checkbox',
+                }
             };
         },
 
