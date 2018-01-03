@@ -17,7 +17,7 @@ class CreateItemsTable extends Migration
             $table->increments('id');
             $table->integer('project_id')->unsigned();
             $table->integer('template_id')->unsigned();
-            $table->integer('parent_id')->unsigned();
+            $table->integer('parent_id')->nullable()->unsigned();
             $table->string('slug');
             $table->string('title');
             $table->timestamps();
