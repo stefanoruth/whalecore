@@ -34,7 +34,7 @@ class PublishContent implements ShouldQueue
      */
     public function handle()
     {
-        $this->content->load('project', 'item.template.type');
+        $this->content->load('project', 'item.template');
 
         if (is_null($this->content->project->api_key)) {
             throw new Exception('Project is missing apikey');
@@ -46,9 +46,8 @@ class PublishContent implements ShouldQueue
     public function key()
     {
         return sprintf(
-            'content.%s.%s.%s.%s',
+            'content.%s.%s.%s',
             $this->content->project->api_key,
-            $this->content->item->template->type->name,
             $this->content->item->slug,
             $this->content->language_code
         );
