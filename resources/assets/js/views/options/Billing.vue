@@ -1,5 +1,12 @@
 <template>
-    <div>
+    <div class="border-b py-3 flex h-full">
+        <h2 class="italic text-grey text-lg">Billing</h2>
+        <div class="flex my-3">
+            <div class="flex-1"></div>
+            <div class="flex-1 flex justify-end"></div>
+        </div>
+    </div>
+    <!-- <div>
         <div class="card">
             <div class="card-header">
                 <div class="card-header-title">Billing</div>
@@ -21,7 +28,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </template>
 
 <script>

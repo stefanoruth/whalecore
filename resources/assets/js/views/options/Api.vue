@@ -1,5 +1,16 @@
 <template>
-    <div>
+<div class="border-b py-3 h-full">
+    <div class="py-2">
+        <h2 class="italitc texr-grey text-lg py-1">Api</h2>
+        <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam laudantium ea, obcaecati dolor aliquid quis! Voluptatibus explicabo in harum pariatur quia, dolor corrupti obcaecati dolores quibusdam deleniti consectetur voluptas expedita.</span>
+        <div class="flex-my-3">
+            <div class="flex-1"></div>
+            <div class="flex-1 flex-justify-end"></div>
+        </div>
+    </div>
+</div>
+    
+    <!-- <div>
         <div class="card">
             <div class="card-header">
                 <div class="card-header-title">Api</div>
@@ -15,7 +26,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </template>
 
 <script>
