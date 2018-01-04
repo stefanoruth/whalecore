@@ -11,35 +11,35 @@
 |
 */
 
-Route::get('/', function () {
-    if (auth()->check()) {
-        return view('app');
-    }
-
-    return view('welcome');
-});
-
-Route::get('login', 'Auth\LoginController@showLoginForm')->name('login')->middleware('guest');
-Route::get('logout', 'Auth\LoginController@logout')->middleware('auth')->name('logout');
-Route::post('login', 'Auth\LoginController@login')->middleware('guest');
-Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register')->middleware('guest');
-Route::post('register', 'Auth\RegisterController@register')->middleware('guest');
-
-
-Route::middleware('auth')->prefix('api')->group(function () {
-    Route::apiResource('projects', 'ProjectController');
-    Route::apiResource('tenant', 'TenantController')->only(['store', 'index']);
-    Route::apiResource('languages', 'LanguageController')->only(['index']);
-
-    Route::middleware('tenancy')->group(function () {
-        Route::apiResource('items', 'ItemController');
-        Route::apiResource('roles', 'RoleController')->only(['index']);
-        Route::apiResource('templates', 'TemplateController');
-        Route::apiResource('media', 'MediaController', ['parameters' => ['media'=>'id']])->only(['index','store','destroy']);
-        Route::apiResource('subscriptions', 'SubscriptionController');
-        Route::apiResource('projects/members', 'ProjectMemberController')->only(['store', 'destroy', 'update']);
-        Route::apiResource('projects/api', 'ProjectApiController', ['as' => 'projects', 'parameters' => ['api' => 'id']])->only(['update']);
+Route::domain('app.'.config('app.url'))->group(function () {
+    Route::view('/', 'app')->middleware('auth');
+    
+    Route::get('login', 'Auth\LoginController@showLoginForm')->name('login')->middleware('guest');
+    Route::get('logout', 'Auth\LoginController@logout')->middleware('auth')->name('logout');
+    Route::post('login', 'Auth\LoginController@login')->middleware('guest');
+    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register')->middleware('guest');
+    Route::post('register', 'Auth\RegisterController@register')->middleware('guest');
+    
+    
+    Route::middleware('auth')->prefix('api')->group(function () {
+        Route::apiResource('projects', 'ProjectController');
+        Route::apiResource('tenant', 'TenantController')->only(['store', 'index']);
+        Route::apiResource('languages', 'LanguageController')->only(['index']);
+        
+        Route::middleware('tenancy')->group(function () {
+            Route::apiResource('items', 'ItemController');
+            Route::apiResource('roles', 'RoleController')->only(['index']);
+            Route::apiResource('templates', 'TemplateController');
+            Route::apiResource('media', 'MediaController', ['parameters' => ['media'=>'id']])->only(['index','store','destroy']);
+            Route::apiResource('subscriptions', 'SubscriptionController');
+            Route::apiResource('projects/members', 'ProjectMemberController')->only(['store', 'destroy', 'update']);
+            Route::apiResource('projects/api', 'ProjectApiController', ['as' => 'projects', 'parameters' => ['api' => 'id']])->only(['update']);
+        });
     });
+    
+    Route::post('stripe/webhook', '\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook');
 });
 
-Route::post('stripe/webhook', '\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook');
+Route::domain(config('app.url'))->group(function () {
+    Route::view('/', 'welcome');
+});
