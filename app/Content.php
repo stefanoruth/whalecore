@@ -5,6 +5,7 @@ namespace App;
 use App\Relations\BelongsToProject;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Auth;
 
 class Content extends Model
 {
@@ -97,7 +98,7 @@ class Content extends Model
         // Create revision on model update.
         static::updating(function ($model) {
             $model->revisions()->create([
-                'user_id' => function_exists('auth') && auth()->check() ? auth()->user()->id : null,
+                'user_id' => Auth::check() ? Auth::id() : null,
                 'before'  => array_intersect_key($model->fresh()->toArray(), $model->getDirty()),
                 'after'   => $model->getDirty(),
             ]);
