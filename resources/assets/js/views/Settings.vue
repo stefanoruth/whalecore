@@ -6,15 +6,15 @@
                 <div class="text-3xl">Settings</div>
             </div>
         </div>
-        <div class=" p-8 mx-auto max-w-xl">
-            <div class="bg-white py-4 px-4 mb-4">
-                <div class="border-b py-3 flex h-full">
+        <div class="p-8">
+            <div class="bg-white mx-auto max-w-xl">
+                <div class="border-b px-3 py-3 flex h-full">
                     <h1 class="italic text-grey text-xl">Administer your site settings</h1>
                 </div>
                 <option-general :project="project"></option-general> 
                 <option-members :project="project"></option-members>  
                 <option-api :project="project"></option-api>
-                <option-billing :project="project"></option-billing>
+                <option-billing></option-billing>
                 <option-language :project="project"></option-language>                 
             </div>
         </div>                        

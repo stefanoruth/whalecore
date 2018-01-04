@@ -1,5 +1,5 @@
 <template>
-    <div class="border-b py-3 h-full">
+    <div class="border-b py-3 px-3 h-full">
         <div class="py-2">
             <h2 class="italic text-grey text-lg py-1">Project settings</h2>
             <span>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Architecto cum, perferendis accusamus velit numquam quibusdam possimus vitae blanditiis, suscipit atque quasi ipsum optio consequatur consectetur. Similique repellendus nam tenetur adipisci?</span>

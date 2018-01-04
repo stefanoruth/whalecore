@@ -1,11 +1,14 @@
 <template>
-    <div class="border-b py-3 flex h-full">
-        <h2 class="italic text-grey text-lg">Billing</h2>
-        <div class="flex my-3">
-            <div class="flex-1"></div>
-            <div class="flex-1 flex justify-end"></div>
-        </div>
+<div class="border-b py-3 px-3 h-full">
+    <div class="py-2">
+        <h2 class="italic text-grey text-lg py-1">Billing</h2>
+        <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae, eius voluptates adipisci nemo porro dolorem architecto dolore est quam quisquam necessitatibus. Dolores, natus obcaecati perspiciatis voluptatum veniam fugiat quisquam voluptate.</span>
     </div>
+    <div class="flex-my-3">
+        <div class="flex-1"></div>
+        <div class="flex-1 flex-justify-end"></div>
+    </div>
+</div>
     <!-- <div>
         <div class="card">
             <div class="card-header">

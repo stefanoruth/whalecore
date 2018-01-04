@@ -1,11 +1,14 @@
 <template>
-    <div class="border-b py-3 flex h-full">
-        <h2 class="italic text-grey text-lg">Collaborators</h2>
-        <div class="flex my-3">
+<div class="border-b py-3 px-3 h-full">
+    <div class="py-2">
+        <h2 class="italic text-grey text-lg py-1">Collaborators</h2>
+        <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt porro consequatur aspernatur veritatis deserunt. Ratione, dolore velit, quasi numquam placeat consequatur perspiciatis eos suscipit odit quae molestias dicta architecto harum?</span>
+        <div class="flex-my-3">
             <div class="flex-1"></div>
-            <div class="flex-1 flex justify-end"></div>
+            <div class="flex-1 flex-justify-end"></div>
         </div>
     </div>
+</div>
     <!-- <div>
         <div class="card">
             <div class="card-header">
