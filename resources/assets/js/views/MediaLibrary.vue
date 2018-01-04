@@ -1,31 +1,51 @@
 <template>
     <div>
-        <div class="flex bg-white px-8 py-4 shadow">
-            <div class="text-3xl">Media</div>
+        <div class="flex bg-white border-b">
+            <div class="px-8 py-4 text-3xl">Media</div>
+            <div class="flex-1 mr-4 self-center">
+                <input class="w-full text-2xl p-1" type="text" placeholder="Search...">
+            </div>
+            <div class="self-center mr-4">
+                <div class="label">Filter:</div>
+                <div class="relative">
+                    <select class="input pr-6" v-model="showType">
+                        <option :value="null">All</option>
+                        <option v-for="mime in mimeTypes" :key="mime" :value="mime">{{ mime }}</option>
+                    </select>
+                    <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button class="btn-flat-blue" @click="showUpload = true">Upload</button>
+                <form v-show="showUpload" :action="storeFile" class="fixed pin bg-grey flex justify-center items-center flex-wrap p-8 overflow-y-scroll" enctype="multipart/form-data" ref="dropzoneBox">
+                    <input type="hidden" name="_token" :value="token">
+                    <div class="dz-message text-center">
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z"/></svg>
+                        </div>
+                        <div class="text-3xl uppercase font-bold">Drag & Drop</div>
+                        <div class="text-xl mb-2">Click to store your images, or browse</div>
+                        <div class="flex justify-center">
+                            <div class="text-sm border p-2 uppercase mr-2">jpeg</div>
+                            <div class="text-sm border p-2 uppercase mr-2">png</div>
+                            <div class="text-sm border p-2 uppercase">pdf</div>
+                        </div>
+                    </div>
+
+                    <div class="fixed pin-t pin-r p-8 cursor-pointer" @click="closeUpload">
+                        <svg class="h-8 w-8 fill-current text-grey-darkest" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"/></svg>
+                    </div>
+                </form>
+            </div>
         </div>
 
-        <div class="p-8">
-            <form :action="storeFile" class="dropzone mb-2" enctype="multipart/form-data" ref="dropzoneBox">
-                <input type="hidden" name="_token" :value="token">
-                <div class="fallback">
-                    <input name="file" type="file" multiple />
-                </div>
-            </form>
-
-            <ul class="list-reset flex border-b" v-if="mimeTypes.length > 0">
-                <li class="mr-1" :class="{'-mb-px':selectedMime == null}">
-                    <a class="bg-white inline-block py-2 px-4 font-semibold no-underline text-blue cursor-pointer" :class="{'border-l border-t border-r rounded-t text-blue-dark': selectedMime == null}" @click="toggleMimeType(null)">All</a>
-                </li>
-
-                <li class="mr-1" v-for="mime in mimeTypes" :key="mime">
-                    <a class="bg-white inline-block py-2 px-4 text-blue hover:text-blue-darker font-semibold cursor-pointer" :class="{'border-l border-t border-r rounded-t text-blue-dark': selectedMime == mime}" @click="toggleMimeType(mime)">{{ mime }}</a>
-                </li>
-            </ul>
-
+        <div class="p-8 container mx-auto">
             <div class="flex flex-wrap -mx-2">
-                <div v-for="(file, i) in visibleFiles" :key="i" class="w-full sm:w-1/4 p-2">
-                    <div class="bg-white rounded shadow p-1">
-                        <img :src="file.path" class="block">
+                <div v-for="(file, i) in visibleFiles" :key="i" class="p-2">
+                    <div class="bg-white border overflow-hidden h-32 w-32 flex items-center">
+                        <img :src="file.path" class="block w-full">
                     </div>
                 </div>
             </div>
@@ -38,11 +58,13 @@
 export default {
     data() {
         return {
+            showUpload: false,
             dropzone: null,
+            reloadFiles: false,
             files: [],
             mimeTypes: [],
             folders: [],
-            selectedMime: null,
+            showType: null,
         }
     },
 
@@ -57,8 +79,8 @@ export default {
 
         visibleFiles() {
             return _.filter(this.files, (file) => {
-                if (typeof this.selectedMime !== 'undefined' && this.selectedMime !== null) {
-                    return file.mime_type == this.selectedMime;
+                if (this.showType !== null) {
+                    return file.mime_type == this.showType;
                 }
 
                 return true;
@@ -67,23 +89,52 @@ export default {
     },
 
     mounted() {
-        axios.get(route('media.index')).then(response => {
-            this.files = response.data.data;
-            this.mimeTypes = response.data.meta.mime_types;
-        });
-
-        let Dropzone = require('dropzone');
-        Dropzone.autoDiscover = false;
-        this.dropzone = new Dropzone(this.$refs.dropzoneBox);
+        this.loadFiles();
+        this.initDropzone();
     },
 
     methods: {
-        toggleMimeType(type) {
-            this.selectedMime = type;
-        },
-
         isImage(type) {
             return ['image/png', 'image/jpeg'].indexOf(type) > -1
+        },
+
+        loadFiles() {
+            axios.get(route('media.index')).then(response => {
+                this.files = response.data.data;
+                this.mimeTypes = response.data.meta.mime_types;
+            });
+        },
+
+        initDropzone() {
+            let Dropzone = require('dropzone');
+            Dropzone.autoDiscover = false;
+
+            this.dropzone = new Dropzone(this.$refs.dropzoneBox,{
+                previewTemplate: `<div class="p-4 blur group">
+                    <div class="relative">
+                        <div class="overflow-hidden w-32 h-32">
+                            <img class="block w-full" data-dz-thumbnail />
+                        </div>
+                        <div class="absolute pin invisible opacity-75 group-hover:visible p-4 flex flex-col items-center justify-around">
+                            <div class="bg-grey p-1" data-dz-size></div>
+                            <div class="bg-grey p-1"><span data-dz-name></span></div>
+                        </div>
+                    </div>
+                </div>`,
+                success: () => {
+                    this.reloadFiles = true;
+                },
+            });
+        },
+
+        closeUpload() {
+            this.showUpload = false;
+            this.dropzone.removeAllFiles();
+
+            if (this.reloadFiles) {
+                this.reloadFiles = false;
+                this.loadFiles();
+            }
         },
     },
 }
