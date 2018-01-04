@@ -1,8 +1,8 @@
 <template>
 
     <div>
-        <div class="bg-white shadow flex justify-between">
-            <div class="px-8 py-4 w-full">
+        <div class="bg-white border-b flex">
+            <div class="px-8 py-4 flex-1">
                 <div class="text-3xl">Settings</div>
             </div>
         </div>

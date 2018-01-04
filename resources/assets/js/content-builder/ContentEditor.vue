@@ -1,8 +1,8 @@
 <template>
     <div class="" v-if="model != null">
-        <div class="bg-white border-b px-8 py-4 flex justify-between">
-            <div class="mr-4 flex-1">
-                <input class="text-3xl w-full p-1" type="text" v-model="model.title">
+        <div class="bg-white border-b flex">
+            <div class="px-8 py-4 flex-1">
+                <input class="text-2xl w-full p-1" type="text" v-model="model.title">
                 <a href="#" target="_blank" class="text-sm text-grey-darker no-underline" title="Slug">{{ model.slug }}</a>
             </div>
             <div class="flex items-center">
@@ -23,7 +23,7 @@
                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                     </div>
                 </div>
-                <button class="btn-green" @click="saveContent">Publish</button>
+                <button class="btn-flat-blue" @click="saveContent">Publish</button>
             </div>
         </div>
 
