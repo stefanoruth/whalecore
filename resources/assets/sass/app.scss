@@ -4,6 +4,18 @@
     @apply .py-1 .px-2 .cursor-pointer;
 }
 
+.btn-flat {
+    @apply .h-full .px-6 .cursor-pointer .uppercase;
+}
+
+.btn-flat-blue {
+    @apply .btn-flat .bg-blue .text-white;
+
+    &:hover {
+        @apply .bg-blue-dark;
+    }
+}
+
 .btn-blue {
     @apply .btn .bg-blue .text-white;
 
@@ -53,4 +65,13 @@
 
 .pin-to {
     top: 100%;
+}
+
+.dz-started .dz-message {
+    display: none;
+}
+
+.blur:hover img {
+    transform: scale(1.05, 1.05);
+    filter: blur(8px);
 }

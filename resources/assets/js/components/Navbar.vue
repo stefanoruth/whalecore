@@ -1,18 +1,5 @@
 <template>
-    <div v-if="$route.path == '/'" class="flex items-center h-full w-full">
-        <div class="flex justify-center items-center flex-wrap -mx-4 w-full">
-            <div v-for="project in projects" :key="project.id" class="w-full sm:w-1/4 p-4">
-                <div class="bg-white p-4 rounded shadow cursor-pointer" @click="loginToProject(project.id)">{{ project.title }}</div>
-            </div>
-
-            <div class="w-full sm:w-1/4 p-4">
-                <div class="bg-white p-4 rounded shadow cursor-pointer" @click="modal = true">New Project</div>
-                <new-project v-show="modal" @close="modal = false" @login="loginToProject"></new-project>
-            </div>
-        </div>
-    </div>
-
-    <nav v-else class="hidden md:flex bg-blue text-white flex-col border-r border-blue-lighter select-none flex-no-shrink">
+    <nav v-if="$route.path != '/'" class="hidden md:flex bg-blue text-white flex-col border-r border-blue-lighter select-none flex-no-shrink">
        <div class="flex flex-col items-center p-4">
            <img class="w-16 h-16 inline bg-white p-2 rounded-full mb-4" src="/logo.png">
            <div class="rounded-lg bg-blue-light relative py-2 pr-6 pl-4 cursor-pointer w-full group">
@@ -98,12 +85,12 @@
         },
 
         mounted() {
-            axios.get(route('projects.index')).then(response => {
-                this.projects = response.data.data;
-            });
-
             axios.get(route('tenant.index')).then(response => {
                 this.project = response.data.data;
+            });
+
+            axios.get(route('projects.index')).then(response => {
+                this.projects = response.data.data;
             });
         },
 

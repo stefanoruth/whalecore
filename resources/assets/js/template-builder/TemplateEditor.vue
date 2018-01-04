@@ -1,16 +1,20 @@
 <template>
     <div v-if="template != null" class="">
-        <div class="bg-white shadow py-4 px-8 flex justify-between">
-            <input class="text-3xl p-1 flex-1 mr-4" type="text" v-model="template.title">
-            <button @click="save" class="btn-green self-center">Save Template</button>
+        <div class="bg-white flex border-b">
+            <div class="py-4 flex-1 px-8">
+                <input class="text-2xl p-1 w-full" type="text" v-model="template.title">
+            </div>
+            <div>
+                <button @click="save" class="btn-flat-blue">Save Template</button>
+            </div>
         </div>
 
         <div class="container mx-auto p-8 max-w-md">
-            <div class="bg-white shadow rounded mb-2">
+            <div class="bg-white mb-2">
                 <template-field-item v-for="(field, key) in structure" :key="key" :field="field" @delete="deleteField(key)"></template-field-item>       
             </div>
 
-            <div class="bg-white shadow border rounded p-4 flex justify-end">
+            <div class="bg-white border p-4 flex justify-end">
                 <button @click="showNewField = true" class="btn-blue">Add Field</button>
                 <template-field-new v-show="showNewField" :only="['section','repeater']" @close="showNewField = false" @newField="addField"></template-field-new>
             </div>

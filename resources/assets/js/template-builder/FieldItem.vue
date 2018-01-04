@@ -14,7 +14,7 @@
             <template-field-item v-for="(subField, key) in field.fields" :key="key" :field="subField" @delete="deleteChild(key)"></template-field-item>
         </div>
 
-        <div class="flex justify-end py-2 px-8" v-if="hasSubFields()">
+        <div class="flex justify-end py-2 px-4" v-if="hasSubFields()">
             <button @click="showNew = true" class="btn-blue">Add Sub</button>
             <template-field-new v-show="showNew" @close="showNew = false" @newField="addField"></template-field-new>
         </div>
