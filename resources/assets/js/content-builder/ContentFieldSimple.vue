@@ -34,17 +34,7 @@
             <span>{{ field.title }}</span>
         </label>
 
-        <div v-else-if="field.type == 'image'">
-            <div>
-                <div v-if="content[field.id] != null" class="" title="Change File">
-                        <img v-if="isImage(content[field.id])" :src="content[field.id]">
-                        <div v-else class="">File</div>
-                    </div>
-                <button v-else class="btn-blue">Select Image</button>
-            </div>
-            
-            <file-modal v-show="imageModal" @close="imageModal = false" @clearFile="content[field.id] = null" v-model="content[field.id]"></file-modal>
-        </div>
+        <filebox v-else-if="field.type == 'image'" v-model="content[field.id]"></filebox>
 
         <div v-else class="input">Not yet whaled ({{ field.type }})</div>
     </label>
