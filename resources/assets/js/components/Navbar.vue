@@ -88,6 +88,10 @@
             axios.get(route('tenant.index')).then(response => {
                 this.project = response.data.data;
             });
+
+            axios.get(route('projects.index')).then(response => {
+                this.projects = response.data.data;
+            });
         },
 
         methods: {
