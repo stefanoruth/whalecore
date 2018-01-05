@@ -5,7 +5,7 @@
                 <div class="text-3xl">Templates</div>
             </div>           
             <div>
-                <button class="btn-flat-blue" @click="modal = true">New</button>
+                <button class="btn-flat-blue" @click="modal = true">New Template</button>
                 <new-template v-show="modal" @close="modal = false"></new-template>    
             </div>
         </div>
