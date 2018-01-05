@@ -76,6 +76,7 @@ class ItemController extends Controller
     {
         $data = request()->validate([
             'content' => ['required', 'array'],
+            'seo' => ['required', 'array'],
         ]);
 
         $item = Item::findOrFail($id);
@@ -86,6 +87,9 @@ class ItemController extends Controller
                 'language_code' => $langCode,
             ], [
                 'body' => $content,
+                'meta' => [
+                    'seo' => $data['seo'][$langCode],
+                ],
             ]);
 
             dispatch(new PublishContent($content));

@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Content;
+use App\Http\Resources\OutputResource;
 use Exception;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -34,13 +35,15 @@ class PublishContent implements ShouldQueue
      */
     public function handle()
     {
-        $this->content->load('project', 'item.template');
+        $this->content->load('project', 'item');
 
         if (is_null($this->content->project->api_key)) {
             throw new Exception('Project is missing apikey');
         }
 
-        Redis::set(config('cache.prefix').':'.$this->key(), json_encode($this->content->body));
+        Redis::set(config('cache.prefix').':'.$this->key(), json_encode(
+            OutputResource::make($this->content)->toArray(request())
+        ));
     }
 
     public function key()

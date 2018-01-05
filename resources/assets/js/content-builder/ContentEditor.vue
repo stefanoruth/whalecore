@@ -29,33 +29,35 @@
         </div>
 
         <div class="container p-8 mx-auto">
-            <div v-if="showOutput" class="bg-white rounded p-4 w-full overflow-x-scroll">
-                <pre v-for="lang in languages" :key="lang.code" v-show="lang.code == selectedLang" class="text-xs text-grey-darkest">{{ content[lang.code] | pretty }}</pre>
-            </div>
-            <div v-else class="md:flex">
-                <div class="flex-1 md:mr-4">
-                    <div v-for="lang in languages" :key="lang.code" v-show="lang.code == selectedLang">
+            <div v-for="lang in languages" :key="lang.code" v-show="lang.code == selectedLang">
+
+                <div v-if="showOutput" class="bg-white border p-4 w-full overflow-x-scroll">
+                    <pre class="text-xs text-grey-darkest">{{ content[lang.code] | pretty }}</pre>
+                </div>
+
+                <div v-else class="md:flex">
+                    <div class="flex-1 md:mr-4">
                         <content-field v-for="(field, key) in template" :key="key" :field="field" :content="content[lang.code][key]" :baseContent="baseContent[key]" :lang="lang.code" class="bg-white rounded mb-4"></content-field>
                     </div>
-                </div>
-                <div class="">
-                    <div class="bg-white border">
-                        <div class="p-4 border-b">
-                            <div class="text-lg uppercase">Seo</div>
-                        </div>
-                        <div class="p-4">
-                            <label class="field">
-                                <div class="label">Title:</div>
-                                <input type="text" class="input">
-                            </label>
-                            <label class="field">
-                                <div class="label">Description:</div>
-                                <textarea class="input"></textarea>
-                            </label>
-                            <label class="field">
-                                <div class="label">Description:</div>
-                                <filebox v-model="seoImage"></filebox>
-                            </label>
+                    <div class="flex-no-grow">
+                        <div class="bg-white border">
+                            <div class="p-4 border-b">
+                                <div class="text-lg uppercase">Seo</div>
+                            </div>
+                            <div class="p-4">
+                                <label class="field">
+                                    <div class="label">Title:</div>
+                                    <input type="text" class="input" v-model="seo[lang.code].title">
+                                </label>
+                                <label class="field">
+                                    <div class="label">Description:</div>
+                                    <textarea class="input"  v-model="seo[lang.code].description"></textarea>
+                                </label>
+                                <label class="field">
+                                    <div class="label">Image:</div>
+                                    <filebox v-model="seo[lang.code].image"></filebox>
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -68,8 +70,7 @@
     export default {
         data() {
             return {
-                seoImage: null,
-                seoImageModal: false,
+                seo: [],
                 model: null,
                 template: [],
                 content: null,
@@ -88,6 +89,7 @@
                 this.setLanguages(this.model.project);
                 this.baseContent = this.buildBase(this.template);
                 this.content = this.fillLanguageContent(response.data.data.content);
+                this.seo = this.fillSeo(response.data.data.content);
             });
         },
 
@@ -211,11 +213,42 @@
                 return original;
             },
 
+            fillSeo(contentList) {
+                let sets = {};
+                for (const key in this.languages) {
+                    const lang = this.languages[key];
+                    
+                    let data = JSON.parse(JSON.stringify({
+                        title: null,
+                        description: null,
+                        image: null,
+                    }));
+
+                    if (contentList.length > 0) {
+                        let old = _.find(contentList, function(content){
+                            return content.language_code == lang.code;
+                        });
+
+                        if (old != null) {
+                            data = this.fillContent(data, old.body);
+                        }
+                    }
+
+                    sets[lang.code] = data;
+                }
+
+                return sets;
+            },
+
             /**
              * Saves the current content
              */
             saveContent(event) {
-                axios.post(route('items.update', this.$route.params.id), {_method:'PUT',content: this.content});
+                axios.post(route('items.update', this.$route.params.id), {
+                    _method:'PUT',
+                    content: this.content,
+                    seo: this.seo,
+                });
             },
         },
     }

@@ -19,8 +19,7 @@ Route::domain('app.'.config('app.url'))->group(function () {
     Route::post('login', 'Auth\LoginController@login')->middleware('guest');
     Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register')->middleware('guest');
     Route::post('register', 'Auth\RegisterController@register')->middleware('guest');
-    
-    
+
     Route::middleware('auth')->prefix('api')->group(function () {
         Route::apiResource('projects', 'ProjectController');
         Route::apiResource('tenant', 'TenantController')->only(['store', 'index']);
@@ -40,6 +39,4 @@ Route::domain('app.'.config('app.url'))->group(function () {
     Route::post('stripe/webhook', '\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook');
 });
 
-Route::domain(config('app.url'))->group(function () {
-    Route::view('/', 'welcome');
-});
+Route::view('/', 'welcome');

@@ -19,6 +19,7 @@ class ContentResource extends Resource
             'language_code' => $this->language_code,
             'url'           => $this->url,
             'body'          => $this->body,
+            'seo'           => data_get($this->meta, 'seo'),
             'item'          => ItemResource::make($this->whenLoaded('items')),
             'project'       => ProjectResource::make($this->whenLoaded('project')),
         ];
