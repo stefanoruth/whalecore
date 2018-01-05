@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
 
 class PublishContent implements ShouldQueue
 {
@@ -40,7 +40,7 @@ class PublishContent implements ShouldQueue
             throw new Exception('Project is missing apikey');
         }
 
-        Cache::forever($this->key(), $this->content->body);
+        Redis::set(config('cache.prefix').':'.$this->key(), json_encode($this->content->body));
     }
 
     public function key()
