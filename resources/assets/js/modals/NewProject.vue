@@ -1,27 +1,26 @@
 <template>
     <modal @close="$emit('close')">   
-        <h1>New project</h1>            
+        <div slot="header">New project</div>
         <div>
-            <div class="field">
-                <label class="label" for="title">Project title</label>
-                <div class="control">
-                    <input class="input" type="text" :class="{'border-red': errors != null}" v-model="title" autofocus placeholder="Title..">
-                    <p class="help is-danger" v-if="errors != null && typeof errors.title !== 'undefined'">{{ errors.title[0] }}</p>           
-                </div>
-            </div>
-            <div class="field">
-                <label class="label">Language</label>
-                <div class="control">
-                    <div class="select">
-                        <select v-model="lang">
+            <label class="field">
+                <div class="label">Title</div>
+                <input type="text" class="input" v-model="title" autofocus>
+            </label>
+            <label class="field">
+                <div class="label">Language</div>
+                <div class="relative">
+                    <select class="input pr-6" v-model="lang">
                             <option v-for="lang in languages" :key="lang.code" :value="lang.code">{{ lang.name }}</option>
                         </select>
+                    <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
+                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                     </div>
-                    <p class="help is-danger" v-if="errors != null && typeof errors.language_code !== 'undefined'">{{ errors.language_code[0] }}</p>
                 </div>
-            </div>
+            </label>
         </div>
-        <button class="button is-primary is-medium" @click="createProject">Create</button>
+        <div slot="footer" class="flex justify-end">
+            <button class="btn-blue" @click="createProject">Create</button>
+        </div>
     </modal>
 </template>
 
