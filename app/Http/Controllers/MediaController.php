@@ -21,7 +21,7 @@ class MediaController extends Controller
 
 
         return MediaResource::collection($media)->additional(['meta' => [
-            'mime_types' => $media->pluck('mime_type')->unique()->values(),
+            'types' => $media->pluck('type')->unique()->values(),
         ]]);
     }
 

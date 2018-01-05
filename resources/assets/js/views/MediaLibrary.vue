@@ -3,14 +3,14 @@
         <div class="flex bg-white border-b">
             <div class="px-8 py-4 text-3xl">Media</div>
             <div class="flex-1 mr-4 self-center">
-                <input class="w-full text-2xl p-1" type="text" placeholder="Search...">
+                <input class="w-full text-2xl p-1" v-model="search" type="text" placeholder="Search...">
             </div>
             <div class="self-center mr-4">
                 <div class="label">Filter:</div>
                 <div class="relative">
-                    <select class="input pr-6" v-model="showType">
-                        <option :value="null">All</option>
-                        <option v-for="mime in mimeTypes" :key="mime" :value="mime">{{ mime }}</option>
+                    <select class="input pr-6 capitalize" v-model="showType">
+                        <option class="capitalize" :value="null">All</option>
+                        <option class="capitalize" v-for="item in types" :key="item" :value="item">{{ item }}</option>
                     </select>
                     <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
                         <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -41,12 +41,10 @@
             </div>
         </div>
 
-        <div class="p-8 container mx-auto">
-            <div class="flex flex-wrap -mx-2">
-                <div v-for="(file, i) in visibleFiles" :key="i" class="p-2">
-                    <div class="bg-white border overflow-hidden h-32 w-32 flex items-center">
-                        <img :src="file.path" class="block w-full">
-                    </div>
+        <div class="p-8 container mx-auto flex flex-wrap">
+            <div v-for="(file, i) in visibleFiles" :key="i" class="p-2">
+                <div class="bg-white border overflow-hidden h-32 w-32 flex items-center">
+                    <img :src="file.path" class="block w-full">
                 </div>
             </div>
         </div>
@@ -62,9 +60,10 @@ export default {
             dropzone: null,
             reloadFiles: false,
             files: [],
-            mimeTypes: [],
+            types: [],
             folders: [],
             showType: null,
+            search: null,
         }
     },
 
@@ -80,10 +79,16 @@ export default {
         visibleFiles() {
             return _.filter(this.files, (file) => {
                 if (this.showType !== null) {
-                    return file.mime_type == this.showType;
+                    return file.type == this.showType;
                 }
 
                 return true;
+            }).filter((file) => {
+                if (this.search == null || this.search == '') {
+                    return true;
+                }
+
+                return file.file_name.indexOf(this.search) > -1;
             });
         },
     },
@@ -101,7 +106,7 @@ export default {
         loadFiles() {
             axios.get(route('media.index')).then(response => {
                 this.files = response.data.data;
-                this.mimeTypes = response.data.meta.mime_types;
+                this.types = response.data.meta.types;
             });
         },
 

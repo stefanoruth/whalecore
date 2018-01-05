@@ -24,6 +24,7 @@ class Media extends Model
      */
     protected $appends = [
         'path',
+        'type',
     ];
 
     /**
@@ -38,5 +39,15 @@ class Media extends Model
         }
 
         return $this->project->ftp()->url($this->file_name);
+    }
+
+    /**
+     * Calculates the type of media
+     *
+     * @return string|null
+     */
+    public function getTypeAttribute()
+    {
+        return explode('/', $this->mime_type)[0] ?? null;
     }
 }

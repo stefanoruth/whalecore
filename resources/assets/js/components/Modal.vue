@@ -21,7 +21,7 @@
     export default {
         mounted() {
             document.addEventListener('keydown', e => {
-                if (this.show && e.keyCode == 27) {
+                if (e.keyCode == 27) {
                     this.$emit('close');
                 }
             });
