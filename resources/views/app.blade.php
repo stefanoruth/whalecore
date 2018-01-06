@@ -5,7 +5,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{{ config('app.name') }}</title>
-        <meta name="google-site-verification" content="CGkxEjC0JK5AF9INSdlOb3-oITtX8S3kzqi7zih-Ny0" />
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="stylesheet" href="{{ mix('app.css') }}">
         @if(auth()->check())
