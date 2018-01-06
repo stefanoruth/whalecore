@@ -1,4 +1,5 @@
-@layout('master')
+@extends('master')
+
 @section('body')
     <div id="app" class="flex h-screen bg-blue-lightest">
         <navigation></navigation>
