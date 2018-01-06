@@ -1,4 +1,5 @@
-@extends('app')
+@extends('master')
+
 @section('body')
 <div class="flex justify-center items-center h-screen bg-grey-light">
 	<div class="w-full max-w-sm sm:px-8">
