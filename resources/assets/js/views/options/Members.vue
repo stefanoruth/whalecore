@@ -1,52 +1,31 @@
 <template>
-<div class="border-b py-3 px-3 h-full">
-    <div class="py-2">
-        <h2 class="italic text-grey text-lg py-1">Collaborators</h2>
-        <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nesciunt porro consequatur aspernatur veritatis deserunt. Ratione, dolore velit, quasi numquam placeat consequatur perspiciatis eos suscipit odit quae molestias dicta architecto harum?</span>
-        <div class="flex-my-3">
-            <div class="flex-1"></div>
-            <div class="flex-1 flex-justify-end"></div>
+    <base-option>
+        <template slot="icon"><path d="M9 18v-7L0 2V0h20v2l-9 9v7l5 1v1H4v-1l5-1zm2-10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></template>
+        <div slot="title">Collaborators</div>
+        
+        <table class="mb-4 w-full">
+            <tr v-for="(member, i) in project.members" :key="i">
+                <td>{{ member.name }}</td>
+                <td>{{ member.email }}</td>
+                <td>
+                    <select class="input" v-model="member.role" @change="updateRole(member)">
+                        <option v-for="role in roles" :key="role.id" :value="role.name" :selected="role.name == member.role">{{ role.name }}</option>
+                    </select>
+                </td>
+                <td>
+                    <button class="btn-red" @click="deleteMember(member.user_id)">X</button>
+                </td>
+            </tr>
+        </table>
+        <label class="field mb-4">
+            <div class="label">Find member</div>
+            <input type="text" class="input max-w-xs" v-model="newMemberEmail">
+            <p v-if="errors != null">{{ errors.email[0] }}</p> 
+        </label>
+        <div>
+            <button class="btn-blue" @click="addMember">Add</button>
         </div>
-    </div>
-</div>
-    <!-- <div>
-        <div class="card">
-            <div class="card-header">
-                <div class="card-header-title">Collaborators</div>
-            </div>
-            <div class="card-content">
-                <table class="table is-fullwidth is-striped" v-if="project != null">
-                    <tr v-for="(member, i) in project.members" :key="i" v-if="member.user_id != authId">
-                        <td>{{ member.name }}</td>
-                        <td>{{ member.email }}</td>
-                        <td>
-                            <div class="select is-small">
-                                <select v-model="member.role" @change="updateRole(member)">
-                                    <option v-for="role in roles" :key="role.id" :value="role.name" :selected="role.name == member.role">{{ role.name }}</option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <button class="button is-danger is-small" @click="deleteMember(member.user_id)">X</button>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="card-footer">
-                <div class="card-footer-item">
-                    <div class="field has-addons">
-                        <div class="control is-expanded">
-                            <input class="input" type="text" v-model="newMemberEmail" placeholder="Find a member">
-                            <p class="help is-danger" v-if="errors != null">{{ errors.email[0] }}</p>  
-                        </div>
-                        <div class="control">
-                            <a class="button is-primary" @click="addMember">Add</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
+    </base-option>
 </template>
 
 <script>

@@ -1,37 +1,22 @@
 <template>
-<div class="border-b py-3 px-3 h-full">
-    <div class="py-2">
-        <h2 class="italic text-grey text-lg py-1">Billing</h2>
-        <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae, eius voluptates adipisci nemo porro dolorem architecto dolore est quam quisquam necessitatibus. Dolores, natus obcaecati perspiciatis voluptatum veniam fugiat quisquam voluptate.</span>
-    </div>
-    <div class="flex-my-3">
-        <div class="flex-1"></div>
-        <div class="flex-1 flex-justify-end"></div>
-    </div>
-</div>
-    <!-- <div>
-        <div class="card">
-            <div class="card-header">
-                <div class="card-header-title">Billing</div>
-            </div>
-            <div class="card-content">
-                <table class="table is-fullwidth is-striped">
-                    <tr v-for="(invoice, i) in invoices" :key="i">
-                        <td>{{ invoice.date }}</td>
-                        <td>{{ invoice.total }}</td>
-                        <td><a :href="showInvoice(invoice.id)" target="_blank">Invoice</a></td>
-                    </tr>
-                </table>
-            </div>
-            <div class="card-footer">
-                <div class="card-footer-item">
-                    <form :action="paymentLink" method="POST" id="stripeForm">
-                        <input type="hidden" name="_token" :value="token">
-                    </form>
-                </div>
-            </div>
+    <base-option>
+        <template slot="icon"><path d="M9 18v-7L0 2V0h20v2l-9 9v7l5 1v1H4v-1l5-1zm2-10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></template>
+        <div slot="title">Billing</div>
+        <div slot="desc">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Asperiores quia libero temporibus excepturi repudiandae, qui voluptate, optio reiciendis, quam doloremque officia! Adipisci eum ex veritatis facere, voluptatem asperiores quos dolores.</div>
+
+        <table class="mb-4">
+            <tr v-for="(invoice, i) in invoices" :key="i">
+                <td>{{ invoice.date }}</td>
+                <td>{{ invoice.total }}</td>
+                <td><a :href="showInvoice(invoice.id)" target="_blank">Invoice</a></td>
+            </tr>
+        </table>
+        <div>
+            <form :action="paymentLink" method="POST" id="stripeForm">
+                <input type="hidden" name="_token" :value="token">
+            </form>
         </div>
-    </div> -->
+    </base-option>
 </template>
 
 <script>

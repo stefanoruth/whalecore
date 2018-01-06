@@ -1,71 +1,31 @@
 <template>
-<div class="border-b py-3 px-3 h-full">
-    <div class="py-2">
-        <h2 class="italic text-grey text-lg py-1">Langauge</h2>
-        <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae, eius voluptates adipisci nemo porro dolorem architecto dolore est quam quisquam necessitatibus. Dolores, natus obcaecati perspiciatis voluptatum veniam fugiat quisquam voluptate.</span>
-    </div>
-    <div class="flex-my-3">
-        <div class="flex-1">
-            <div class="field">
-                <label class="label">Default Language</label>
-                <div class="control">
-                    <div class="select">
-                        <select v-model="defaultLang">
-                            <option v-for="lang in languages" :key="lang.code" :value="lang.code">{{ lang.name }}</option>
-                        </select>
-                    </div>
+    <base-option>
+        <template slot="icon"><path d="M9 18v-7L0 2V0h20v2l-9 9v7l5 1v1H4v-1l5-1zm2-10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></template>
+        <div slot="title">Langauge</div>
+
+        <label class="field mb-4 max-w-xs">
+            <div class="label">Default Language</div>
+            <div class="relative mr-4">
+                <select class="input pr-6" v-model="defaultLang">
+                    <option v-for="lang in languages" :key="lang.code" :value="lang.code">{{ lang.name }}</option>
+                </select>
+                <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
+                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
                 </div>
             </div>
-            <div class="field">
-                <label class="label">Available Languanges</label>
-                <div class="control">
-                    <div class="columns is-multiline">
-                        <div v-for="lang in languages" :key="lang.code" class="column is-3" v-show="lang.code != defaultLang">
-                            <label class="checkbox"><input type="checkbox" v-model="selectedLangs" :value="lang.code">{{ lang.name }}</label>
-                        </div>
-                    </div>
-                </div>
-            </div> 
+        </label>
+        <label class="field mb-4 max-w-xs">
+            <div class="label">Available Languanges</div>
+            <div class="relative mr-4">
+                <select class="input" multiple v-model="selectedLangs">
+                    <option v-for="lang in languages" :key="lang.code" :value="lang.code">{{ lang.name }}</option>
+                </select>
+            </div>
+        </label>
+        <div>
+            <button class="btn-blue" @click="save">Save</button>
         </div>
-        <div class="flex-1 flex justify-end items-end">
-            <button class="btn-green" @click="save">Save</button>
-        </div>
-    </div>
-</div>
-    <!-- <div>
-        <div class="card">
-            <div class="card-header">
-                <div class="card-header-title">Language</div>
-            </div>
-            <div class="card-content" v-if="project != null">
-                <div class="field">
-                    <label class="label">Default Language</label>
-                    <div class="control">
-                        <div class="select">
-                        <select v-model="defaultLang">
-                            <option v-for="lang in languages" :key="lang.code" :value="lang.code">{{ lang.name }}</option>
-                        </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="field">
-                    <label class="label">Available Languanges</label>
-                    <div class="control">
-                        <div class="columns is-multiline">
-                            <div v-for="lang in languages" :key="lang.code" class="column is-3" v-show="lang.code != defaultLang">
-                                <label class="checkbox"><input type="checkbox" v-model="selectedLangs" :value="lang.code">{{ lang.name }}</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card-footer">
-                <div class="card-footer-item">
-                    <button class="button is-primary" @click="save">Save</button>
-                </div>
-            </div>
-        </div>
-    </div> -->
+    </base-option>
 </template>
 
 <script>
@@ -82,8 +42,7 @@
 
         watch: {
             project(project) {
-                this.defaultLang = project.language_code;
-                this.selectedLangs = _.map(project.languages, 'code');
+                this.updateLangs(project);
             },
         },
 
@@ -91,6 +50,8 @@
             axios.get(route('languages.index')).then(response => {
                 this.languages = response.data;
             });
+
+            this.updateLangs(this.project);
         },
 
         methods: {
@@ -99,6 +60,11 @@
                     default_lang: this.defaultLang,
                     languages: this.selectedLangs,
                 });
+            },
+
+            updateLangs(project) {
+                this.defaultLang = project.language_code;
+                this.selectedLangs = _.map(project.languages, 'code');
             },
         }
     }
