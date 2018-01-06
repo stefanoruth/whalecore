@@ -52,95 +52,94 @@
 </template>
 
 <script>
-
-export default {
-    data() {
-        return {
-            showUpload: false,
-            dropzone: null,
-            reloadFiles: false,
-            files: [],
-            types: [],
-            folders: [],
-            showType: null,
-            search: null,
-        }
-    },
-
-    computed: {
-        storeFile() {
-            return route('media.store');
-        },
-
-        token() {
-            return document.head.querySelector('meta[name="csrf-token"]').content;
-        },
-
-        visibleFiles() {
-            return _.filter(this.files, (file) => {
-                if (this.showType !== null) {
-                    return file.type == this.showType;
-                }
-
-                return true;
-            }).filter((file) => {
-                if (this.search == null || this.search == '') {
-                    return true;
-                }
-
-                return file.file_name.indexOf(this.search) > -1;
-            });
-        },
-    },
-
-    mounted() {
-        this.loadFiles();
-        this.initDropzone();
-    },
-
-    methods: {
-        isImage(type) {
-            return ['image/png', 'image/jpeg'].indexOf(type) > -1
-        },
-
-        loadFiles() {
-            axios.get(route('media.index')).then(response => {
-                this.files = response.data.data;
-                this.types = response.data.meta.types;
-            });
-        },
-
-        initDropzone() {
-            let Dropzone = require('dropzone');
-            Dropzone.autoDiscover = false;
-
-            this.dropzone = new Dropzone(this.$refs.dropzoneBox,{
-                previewTemplate: `<div class="p-4 blur group">
-                    <div class="relative">
-                        <div class="overflow-hidden w-32 h-32">
-                            <img class="block w-full" data-dz-thumbnail />
-                        </div>
-                        <div class="absolute pin invisible opacity-75 group-hover:visible p-4 flex flex-col items-center justify-around">
-                            <div class="bg-grey p-1" data-dz-size></div>
-                            <div class="bg-grey p-1"><span data-dz-name></span></div>
-                        </div>
-                    </div>
-                </div>`,
-                success: () => {
-                    this.reloadFiles = true;
-                },
-            });
-        },
-
-        closeUpload() {
-            this.showUpload = false;
-            this.dropzone.removeAllFiles();
-
-            if (this.reloadFiles) {
-                this.reloadFiles = false;
-                this.loadFiles();
+    export default {
+        data() {
+            return {
+                showUpload: false,
+                dropzone: null,
+                reloadFiles: false,
+                files: [],
+                types: [],
+                folders: [],
+                showType: null,
+                search: null,
             }
         },
-    },
-}
+
+        computed: {
+            storeFile() {
+                return route('media.store');
+            },
+
+            token() {
+                return document.head.querySelector('meta[name="csrf-token"]').content;
+            },
+
+            visibleFiles() {
+                return _.filter(this.files, (file) => {
+                    if (this.showType !== null) {
+                        return file.type == this.showType;
+                    }
+
+                    return true;
+                }).filter((file) => {
+                    if (this.search == null || this.search == '') {
+                        return true;
+                    }
+
+                    return file.file_name.indexOf(this.search) > -1;
+                });
+            },
+        },
+
+        mounted() {
+            this.loadFiles();
+            this.initDropzone();
+        },
+
+        methods: {
+            isImage(type) {
+                return ['image/png', 'image/jpeg'].indexOf(type) > -1
+            },
+
+            loadFiles() {
+                axios.get(route('media.index')).then(response => {
+                    this.files = response.data.data;
+                    this.types = response.data.meta.types;
+                });
+            },
+
+            initDropzone() {
+                let Dropzone = require('dropzone');
+                Dropzone.autoDiscover = false;
+
+                this.dropzone = new Dropzone(this.$refs.dropzoneBox,{
+                    previewTemplate: `<div class="p-4 blur group">
+                        <div class="relative">
+                            <div class="overflow-hidden w-32 h-32">
+                                <img class="block w-full" data-dz-thumbnail />
+                            </div>
+                            <div class="absolute pin invisible opacity-75 group-hover:visible p-4 flex flex-col items-center justify-around">
+                                <div class="bg-grey p-1" data-dz-size></div>
+                                <div class="bg-grey p-1"><span data-dz-name></span></div>
+                            </div>
+                        </div>
+                    </div>`,
+                    success: () => {
+                        this.reloadFiles = true;
+                    },
+                });
+            },
+
+            closeUpload() {
+                this.showUpload = false;
+                this.dropzone.removeAllFiles();
+
+                if (this.reloadFiles) {
+                    this.reloadFiles = false;
+                    this.loadFiles();
+                }
+            },
+        },
+    }
 </script>
