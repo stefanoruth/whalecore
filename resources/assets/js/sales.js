@@ -12,4 +12,25 @@ Vue.config.productionTip = false;
 
 const app = new Vue({
     el: '#sales',
+    data() {
+        return {
+            mail: null,
+            successMsg: null,
+            errorMsg: null,
+        }
+    },
+
+    methods: {
+        subscribe() {
+            axios.post('mail/subscribe', {
+                mail: this.mail
+            }).then(response => {
+                this.errorMsg = null;
+                this.successMsg = 'Thanks for signing up.';
+            }).catch(error => {
+                this.successMsg = null;
+                this.errorMsg = error.response.data.errors.mail[0];
+            });
+        },
+    },
 });

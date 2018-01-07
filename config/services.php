@@ -35,4 +35,9 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'mailchimp' => [
+        'key' => env('MAILCHIMP_KEY', '930f8488fe3b633e98dec94b39927a16-us17'),
+        'list' => env('MAILCHIMP_LIST', '5625f72649'),
+    ],
+
 ];
