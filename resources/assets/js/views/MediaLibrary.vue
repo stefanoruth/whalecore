@@ -3,7 +3,7 @@
         <div class="flex bg-white border-b">
             <div class="px-8 py-4 text-3xl">Media</div>
             <div class="flex-1 mr-4 self-center">
-                <input class="w-full text-2xl p-1" v-model="search" type="text" placeholder="Search...">
+                <input class="w-full text-2xl p-1 outline-none" v-model="search" type="text" placeholder="Search...">
             </div>
             <div class="self-center mr-4">
                 <div class="label">Filter:</div>
@@ -42,8 +42,8 @@
         </div>
 
         <div class="p-8 container mx-auto flex flex-wrap">
-            <div v-for="(file, i) in visibleFiles" :key="i" class="p-2">
-                <div class="bg-white border overflow-hidden h-32 w-32 flex items-center">
+            <div @click="showImageInfo = true" v-for="(file, i) in visibleFiles" :key="i" class="p-2">
+                <div class="bg-white border overflow-hidden h-48 w-48 flex items-center">
                     <img :src="file.path" class="block w-full">
                 </div>
             </div>
@@ -56,6 +56,7 @@
         data() {
             return {
                 showUpload: false,
+                showImageInfo: false,
                 dropzone: null,
                 reloadFiles: false,
                 files: [],
