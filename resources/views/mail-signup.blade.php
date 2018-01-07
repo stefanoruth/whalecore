@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('body')
-    <div id="sales" class="bg-blue-lightest font-sans min-h-screen">
+    <div id="sales" class="bg-hero font-sans min-h-screen">
         <div class="h-3 bg-blue"></div>
         <div class="p-8">
             <div class="mt-8 mx-auto max-w-lg">
