@@ -13,7 +13,7 @@
                 <label class="mb-8 block">
                     <div class="mb-2 text-grey-dark">We will never send you spam!</div>   
                     <div class="mb-6 text-base text-grey-dark">
-                        <input class="w-full p-4 border-b-4 outline-none bg-transparent" v-model="mail" type="text" placeholder="Enter your email" @keyup.enter="subscribe">                            
+                        <input class="h-full w-full p-4 border-b-4 outline-none bg-transparent" v-model="mail" type="text" placeholder="Enter your email" @keyup.enter="subscribe">                            
                     </div>                 
                     <button class="bg-transparent hover:bg-blue text-blue-dark font-semibold hover:text-white py-2 px-8 border border-blue hover:border-transparent rounded-full" @click="subscribe">Signup</button>
                     <div class="mt-2 text-blue" v-if="successMsg != null">@{{ successMsg }}</div>
