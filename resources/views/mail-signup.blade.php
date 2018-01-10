@@ -11,7 +11,7 @@
                 <div class="text-3xl py-6">Whoops! This is slightly embarrassing</div>
                 <div class="mb-6 text-base text-grey-dark">We're just tidying up the last pieces and getting ready to help you all being amazing sailors! Sign up for our newsletter to receive the latest news</div>
                 <div class="mb-4 text-grey-dark">We will never send you spam!</div>   
-                <input class="w-full mb-6 py-1 leading-normal text-grey-darker border-b-4 outline-none bg-transparent" v-model="mail" type="text" placeholder="Enter your email" @keyup.enter="subscribe">                            
+                <input class="w-full mb-6 py-1 leading-normal text-grey-darker border-b-4 outline-none bg-transparent" v-model="mail" type="text" name="email" placeholder="Enter your email" @keyup.enter="subscribe">                            
                 <button class="hover:bg-blue text-grey-darker font-bold hover:text-white py-2 px-8 border border-blue rounded-full" @click="subscribe">Sign Up</button>
                 <div class="mt-2 text-blue" v-if="successMsg != null">@{{ successMsg }}</div>
                 <div class="mt-2 text-red-dark" v-if="errorMsg != null">@{{ errorMsg }}</div>
