@@ -10,7 +10,7 @@ Vue.config.productionTip = false;
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
+new Vue({
     el: '#sales',
     data() {
         return {
@@ -33,4 +33,8 @@ const app = new Vue({
             });
         },
     },
+
+    components: {
+        'sign-up': require('./views/SignUp'),
+    }
 });
