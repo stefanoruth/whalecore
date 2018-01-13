@@ -11,7 +11,7 @@
             <script>window.auth = {{ auth()->id() }};</script>
         @endif
     </head>
-    <body>
+    <body class="text-grey-darkest font-sans">
         @yield('body')
     </body>
 </html>
