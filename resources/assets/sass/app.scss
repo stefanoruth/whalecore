@@ -71,8 +71,8 @@
     outline: none;
 }
 
-// label.checkbox>input+span
-// label.radio>input+span
+// label.checkbox>input[type="checkbox"]+span
+// label.radio>input[type="radio"]+span
 .checkbox, .radio {
     @apply .inline-block .cursor-pointer;
 
