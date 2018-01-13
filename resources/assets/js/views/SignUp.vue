@@ -1,7 +1,7 @@
 <template>
     <div class="h-screen flex items-center justify-center bg-blue-lightest">
-        <div class="max-w-xl bg-white flex p-2 shadow-lg rounded-lg text-grey-darkest">
-            <div class="p-8 flex justify-between flex-col w-2/5">
+        <div class="max-w-lg w-full bg-white flex p-2 shadow-lg rounded-lg text-grey-darkest">
+            <div class="p-8 flex justify-between flex-col flex-1">
                 <div>
                     <div class="text-xl font-bold mt-4 mb-1">Start using Whalecore Today</div>
                     <div class="mb-6 text-sm">Just a few quick and easy steps to get you started</div>
@@ -78,7 +78,7 @@
                     </div>
                 </div>
             </div>
-            <div class="bg-grey-light p-8 w-3/5 flex-no-grow">
+            <div class="bg-grey-light p-8 flex-no-grow max-w-xs">
                 <img class="" src="/images/signup-step1.png">
             </div>
         </div>
@@ -101,6 +101,7 @@
                     }
                 },
                 step: 0,
+                stripe: null
             };
         },
 
@@ -124,12 +125,16 @@
             },
 
             initPayment() {
+                if (this.stripe != null) {
+                    return;
+                }
+
                 let srcTag = document.createElement('script');
                     srcTag.src = "https://js.stripe.com/v3/";
-                    srcTag.onload = function() {
+                    srcTag.onload = () => {
                     
-                    var stripe = Stripe('pk_test_azNOh1V3Y2k6vTSM0Y0FNNCV');
-                    var stripeElm = stripe.elements();
+                    this.stripe = Stripe('pk_test_azNOh1V3Y2k6vTSM0Y0FNNCV');
+                    var stripeElm = this.stripe.elements();
 
                     // Create an instance of the card Element
                     var card = stripeElm.create('card', {
@@ -153,7 +158,6 @@
 
                     // Add an instance of the card Element into the `card-element` <div>
                     card.mount('#card-element');
-                    console.log(stripe, stripeElm, card);
                 };
 
                 document.body.appendChild(srcTag);
