@@ -95,8 +95,7 @@
     input[type="radio"] + span {
         @apply .rounded-full;
     }   
-
-    &:hover input[type="checkbox"] + span,
+    
     input[type="checkbox"]:checked + span {
         background-image: url(data:image/svg+xml;base64,PHN2ZyBzdHlsZT0iZmlsbDojMzQ5MGRjO2NvbG9yOnJlZCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMjAgMjAiPjxwYXRoIGQ9Ik0wIDExbDItMiA1IDVMMTggM2wyIDJMNyAxOHoiLz48L3N2Zz4=);
         background-size: 10px;
