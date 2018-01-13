@@ -26,7 +26,7 @@
     }
 }
 
-.btn-blue {
+.btn-secondary {
     @apply .btn-raw .border-blue .text-blue;
 
     &:hover {
@@ -35,14 +35,6 @@
 
     &:active {
         @apply .bg-blue-dark .border-blue-dark .text-white;
-    }
-}
-
-.btn-red {
-    @apply .btn-raw .bg-red .text-white .border-red;
-
-    &:hover {
-        @apply .bg-red-dark;
     }
 }
 

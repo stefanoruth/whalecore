@@ -19,7 +19,7 @@
             </label>
         </div>
         <div slot="footer" class="flex justify-end">
-            <button class="btn-blue" @click="createProject">Create</button>
+            <button class="btn-primary" @click="createProject">Create</button>
         </div>
     </modal>
 </template>

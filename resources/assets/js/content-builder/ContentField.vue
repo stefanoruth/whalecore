@@ -21,7 +21,7 @@
                         <div class="p-4 border">
                             <content-field v-for="(subField, key) in field.fields" :key="key" :field="subField" :baseContent="baseContent[field.id][0]" :content="content[field.id][i]" :lang="lang"></content-field>
                             <div class="flex justify-center">
-                                <button class="btn-red" @click="removeField(i)">X</button>
+                                <button class="btn-secondary" @click="removeField(i)">X</button>
                             </div>
                         </div>
                     </div>
@@ -32,12 +32,12 @@
                         <content-field v-for="(subField, key) in field.fields" :key="key" :field="subField" :baseContent="baseContent[field.id][0]" :content="content[field.id][i]" :lang="lang"></content-field>
                     </div>
                     <div class="flex items-start">
-                        <button class="btn-red" @click="removeField(i)">X</button>
+                        <button class="btn-secondary" @click="removeField(i)">X</button>
                     </div>
                 </div>
 
                 <div class="flex justify-center p-2">
-                    <button class="btn-blue" @click="addCopy">Add Copy</button>
+                    <button class="btn-primary" @click="addCopy">Add Copy</button>
                 </div>
             </div>                
         </div>

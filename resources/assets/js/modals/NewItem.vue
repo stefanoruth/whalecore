@@ -21,7 +21,7 @@
             </label>
         </div>
         <div class="flex justify-end">
-            <button class="btn-blue" @click="createItem">Create</button>
+            <button class="btn-primary" @click="createItem">Create</button>
         </div>
     </modal>
 </template>

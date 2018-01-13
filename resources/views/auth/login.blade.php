@@ -27,7 +27,7 @@
 					@endif
 				</label>
 				
-				<button class="btn-blue py-2 font-bold w-full mb-4 mt-2 uppercase" type="submit">Sign In</button>
+				<button class="btn-primary py-2 font-bold w-full mb-4 mt-2 uppercase" type="submit">Sign In</button>
 				
 				<div class="text-center mb-4">
 					<span>Don't have an account?</span>

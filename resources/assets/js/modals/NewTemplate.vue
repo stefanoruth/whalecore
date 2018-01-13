@@ -10,7 +10,7 @@
         </div>
 
         <div slot="footer" class="flex justify-end">
-            <button class="btn-blue" @click="createTemplate">Create</button>
+            <button class="btn-primary" @click="createTemplate">Create</button>
         </div>
     </modal>
 </template>
