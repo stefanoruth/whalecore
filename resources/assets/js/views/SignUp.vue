@@ -29,7 +29,7 @@
 
                         <div class="flex justify-between">
                             <div class="text-xs mr-8">By proceeding you are agreeing to our <a href="#" class="text-blue">terms of service</a> and <a href="#" class="text-blue">privacy policy</a></div>
-                            <button @click.prevent="nextStep" class="btn-blue self-start">
+                            <button @click.prevent="nextStep" class="btn-primary self-start">
                                 <span>Next</span>
                                 <svg class="inline h-4 w-4 fill-current align-text-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/></svg>
                             </button>
@@ -49,9 +49,23 @@
                         </div>
                     </template>
                     <template v-if="step == 2">
-                        <div class="btn-blue">Cancel</div>
-                        <div class="btn-primary">Login</div>
-                        <button class="btn-blue">Dermo</button>
+                        <div>
+                            <form :action="paymentLink" method="post" id="payment-form">
+                                <input type="hidden" name="_token" :value="token">
+                                <div class="form-row">
+                                    <label for="card-element" class="label">Credit or debit card</label>
+                                    <div id="card-element"></div>
+                                    <div id="card-errors" role="alert"></div>
+                                </div>
+                                <button class="btn-primary">Submit Payment</button>
+                            </form>
+                        </div>  
+                        <div class="flex justify-end">
+                            <button @click.prevent="nextStep" class="btn-secondary self-start">
+                                <span>Skip</span>
+                                <svg class="inline h-4 w-4 fill-current align-text-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/></svg>
+                            </button>
+                        </div>
                     </template>
                 </div>
                 <div class="flex justify-center mt-4">
@@ -90,10 +104,75 @@
             };
         },
 
+        computed: {
+            paymentLink() {
+                return route('subscriptions.store');
+            },
+
+            token() {
+                return document.head.querySelector('meta[name="csrf-token"]').content;
+            },
+        },
+
         methods: {
             nextStep() {
                 this.step++;
+
+                if (this.step == 2) {
+                    this.initPayment();
+                }
             },
+
+            initPayment() {
+                let srcTag = document.createElement('script');
+                    srcTag.src = "https://js.stripe.com/v3/";
+                    srcTag.onload = function() {
+                    
+                    var stripe = Stripe('pk_test_azNOh1V3Y2k6vTSM0Y0FNNCV');
+                    var stripeElm = stripe.elements();
+
+                    // Create an instance of the card Element
+                    var card = stripeElm.create('card', {
+                        style: {
+                            base: {
+                                color: '#32325d',
+                                lineHeight: '18px',
+                                fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                                fontSmoothing: 'antialiased',
+                                fontSize: '16px',
+                                '::placeholder': {
+                                    color: '#aab7c4'
+                                }
+                            },
+                            invalid: {
+                                color: '#fa755a',
+                                iconColor: '#fa755a'
+                            }
+                        }
+                    });
+
+                    // Add an instance of the card Element into the `card-element` <div>
+                    card.mount('#card-element');
+                    console.log(stripe, stripeElm, card);
+                };
+
+                document.body.appendChild(srcTag);
+
+                // let tag = document.createElement('script');
+                // tag.src = "https://checkout.stripe.com/checkout.js";
+                // tag.className = 'stripe-button';
+                // tag.dataset['amount'] = 50000;
+                // tag.dataset['key'] = 'pk_test_azNOh1V3Y2k6vTSM0Y0FNNCV';
+                // tag.dataset['name'] = 'Whalecore';
+                // tag.dataset['description'] = 'Basic Subscription';
+                // tag.dataset['image'] = 'https://stripe.com/img/documentation/checkout/marketplace.png';
+                // tag.dataset['locale'] = 'auto';
+                // tag.dataset['zipCode'] = true;
+                // tag.dataset['currency'] = 'dkk';
+                // tag.dataset['label'] = 'Subscribe';
+
+                // document.getElementById('stripeForm').appendChild(tag);
+            }
         },
     }
 </script>
