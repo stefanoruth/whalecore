@@ -8,8 +8,8 @@
             <input class="input" type="text" v-model="project.title">
         </label>
         <div class="flex">
-            <button class="btn-blue mr-2" @click="updateProject">Save</button>    
-            <button class="btn-red" @click="showDelete = true">Delete project</button> 
+            <button class="btn-primary mr-2" @click="updateProject">Save</button>    
+            <button class="btn-secondary" @click="showDelete = true">Delete project</button> 
             <confirm-box v-show="showDelete" @close="showDelete = false" @ok="deleteProject">Are you sure, you want to delete this project?</confirm-box>
         </div>
     </base-option>

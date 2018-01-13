@@ -64,19 +64,19 @@
                             <input class="input" type="text" placeholder="Label" v-model="value.label">
                         </div>
                         <div class="flex items-center">
-                            <button class="btn-red" @click="removeValue(i)">X</button>
+                            <button class="btn-secondary" @click="removeValue(i)">X</button>
                         </div>
                     </div>
                 </div>
                 
                 <div class="flex justify-end">
-                    <button @click="addEmptyValue" class="btn-blue">Add Value</button>
+                    <button @click="addEmptyValue" class="btn-primary">Add Value</button>
                 </div>
             </div>
         </div>
 
         <div slot="footer" class="flex justify-between">
-            <button class="btn-red mr-2" @click="$emit('delete')">Delete</button>
+            <button class="btn-secondary mr-2" @click="$emit('delete')">Delete</button>
             <button class="btn-green" @click="save">Save</button>
         </div>
     </modal>

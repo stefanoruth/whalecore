@@ -7,7 +7,7 @@
             <input type="text" class="input" disabled v-model="project.api_key">
         </label>
         <div>
-            <a class="btn-blue" @click="generateNewKey">New Key</a>
+            <a class="btn-primary" @click="generateNewKey">New Key</a>
         </div>
     </base-option>
 </template>

@@ -23,7 +23,7 @@
             </div>
         </label>
         <div>
-            <button class="btn-blue" @click="save">Save</button>
+            <button class="btn-primary" @click="save">Save</button>
         </div>
     </base-option>
 </template>

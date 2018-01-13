@@ -1,6 +1,6 @@
 <template>
     <div class="flex">
-        <div v-if="value == null" class="btn-blue" @click="openModal">Select File</div>
+        <div v-if="value == null" class="btn-primary" @click="openModal">Select File</div>
 
         <div v-else class="flex justify-center flex-1">
             <div class="h-32 border" @click="openModal">
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div slot="footer" class="flex justify-end">
-                <div class="btn-red" @click="clearFile">Remove file</div>
+                <div class="btn-secondary" @click="clearFile">Remove file</div>
             </div>
         </modal>
     </div>

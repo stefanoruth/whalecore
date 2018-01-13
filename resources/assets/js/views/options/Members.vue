@@ -13,7 +13,7 @@
                     </select>
                 </td>
                 <td>
-                    <button class="btn-red" @click="deleteMember(member.user_id)">X</button>
+                    <button class="btn-secondary" @click="deleteMember(member.user_id)">X</button>
                 </td>
             </tr>
         </table>
@@ -23,7 +23,7 @@
             <p v-if="errors != null">{{ errors.email[0] }}</p> 
         </label>
         <div>
-            <button class="btn-blue" @click="addMember">Add</button>
+            <button class="btn-primary" @click="addMember">Add</button>
         </div>
     </base-option>
 </template>

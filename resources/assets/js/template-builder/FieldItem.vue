@@ -15,7 +15,7 @@
         </div>
 
         <div class="flex justify-end py-2 px-4" v-if="hasSubFields()">
-            <button @click="showNew = true" class="btn-blue">Add Sub</button>
+            <button @click="showNew = true" class="btn-primary">Add Sub</button>
             <template-field-new v-show="showNew" @close="showNew = false" @newField="addField"></template-field-new>
         </div>
 
