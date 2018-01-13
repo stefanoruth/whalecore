@@ -1,15 +1,21 @@
 @tailwind preflight;
-
-.btn {
-    @apply .py-1 .px-2 .cursor-pointer;
-}
-
-.btn-flat {
-    @apply .h-full .px-6 .cursor-pointer .uppercase;
-}
+@tailwind utilities;
+@import './node_modules/dropzone/dist/dropzone';
 
 .btn-flat-blue {
-    @apply .btn-flat .bg-blue .text-white;
+    @apply .h-full .px-6 .cursor-pointer .uppercase .bg-blue .text-white;
+
+    &:hover {
+        @apply .bg-blue-dark;
+    }
+}
+
+.btn-raw {
+    @apply .rounded-full .flex-no-shrink .py-1 .px-3 .cursor-pointer .items-start .text-center .leading-tight .inline-block .border;
+}
+
+.btn-primary {
+    @apply .btn-raw .bg-blue .text-white .border-blue;
 
     &:hover {
         @apply .bg-blue-dark;
@@ -17,31 +23,19 @@
 }
 
 .btn-blue {
-    @apply .btn .bg-blue .text-white;
+    @apply .btn-raw .border-blue .text-blue;
 
     &:hover {
-        @apply .bg-blue-dark;
-    }
-}
-
-.btn-green {
-    @apply .btn .bg-green .text-white;
-
-    &:hover {
-        @apply .bg-green-dark;
+        @apply .bg-blue .text-white;
     }
 }
 
 .btn-red {
-    @apply .btn .bg-red .text-white;
+    @apply .btn-raw .bg-red .text-white .border-red;
 
     &:hover {
         @apply .bg-red-dark;
     }
-}
-
-.btn-white {
-    @apply .btn .bg-white .text-blue;
 }
 
 .field {
@@ -55,9 +49,6 @@
 .input {
     @apply .appearance-none .w-full .bg-grey-lighter .text-grey-darker .border .rounded .py-2 .px-3;
 }
-
-@tailwind utilities;
-@import './node_modules/dropzone/dist/dropzone';
 
 .router-link-exact-active {
     @apply .bg-blue .text-white;
