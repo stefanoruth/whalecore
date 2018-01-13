@@ -20,6 +20,10 @@
     &:hover {
         @apply .bg-blue-dark;
     }
+
+    &:active {
+        @apply .bg-blue-darker .border-blue-darker;
+    }
 }
 
 .btn-blue {
@@ -27,6 +31,10 @@
 
     &:hover {
         @apply .bg-blue .text-white;
+    }
+
+    &:active {
+        @apply .bg-blue-dark .border-blue-dark .text-white;
     }
 }
 
@@ -69,4 +77,43 @@
 
 .outline-none{
     outline: none;
+}
+
+// label.checkbox>input+span
+// label.radio>input+span
+.checkbox, .radio {
+    @apply .inline-block .cursor-pointer;
+
+    input {
+        @apply .hidden;
+    }
+
+    span {
+        @apply .inline-block .h-4 .w-4 .border .border-blue .mr-1 .align-bottom .bg-center .bg-no-repeat .relative;
+    }
+
+    input[type="radio"] + span {
+        @apply .rounded-full;
+    }   
+
+    &:hover input[type="checkbox"] + span,
+    input[type="checkbox"]:checked + span {
+        background-image: url(data:image/svg+xml;base64,PHN2ZyBzdHlsZT0iZmlsbDojMzQ5MGRjO2NvbG9yOnJlZCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2aWV3Qm94PSIwIDAgMjAgMjAiPjxwYXRoIGQ9Ik0wIDExbDItMiA1IDVMMTggM2wyIDJMNyAxOHoiLz48L3N2Zz4=);
+        background-size: 10px;
+    }
+
+    &:hover input[type="radio"] + span:after,
+    input[type="radio"]:checked + span:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: block;
+        width: 6px;
+        height: 6px;
+        margin-top: -3px;
+        margin-left: -3px;
+        border-radius: 100%;
+        background-color:#3490dc;
+    }
 }
