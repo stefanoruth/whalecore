@@ -19,11 +19,11 @@
         props: ['project'],
 
         methods: {
-            updateNewsLetter() {
-                axios.put(route('projects.api.update', {id:'foobar'})).then(response => {
-                    this.project.api_key = response.data.api_key;
-                });
-            },
+            // updateNewsLetter() {
+            //     axios.put(route('projects.api.update', {id:'foobar'})).then(response => {
+            //         this.project.api_key = response.data.api_key;
+            //     });
+            // },
         }
     }
 </script>
