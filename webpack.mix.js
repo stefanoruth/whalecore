@@ -22,7 +22,7 @@ mix.js('resources/assets/js/app.js', 'public')
         processCssUrls: false,
         postCss: [ tailwindcss('./tailwind.js') ],
    })
-   .disableNotifications();
+   .disableSuccessNotifications();
 
 if (mix.inProduction()) {
     mix.version();
