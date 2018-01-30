@@ -1,6 +1,4 @@
 @tailwind preflight;
-@tailwind utilities;
-@import './node_modules/dropzone/dist/dropzone';
 
 .btn-flat-blue {
     @apply .h-full .px-6 .cursor-pointer .uppercase .bg-blue .text-white;
@@ -130,3 +128,6 @@
   .StripeElement--webkit-autofill {
     background-color: #fefde5 !important;
   }
+
+@tailwind utilities;
+@import './node_modules/dropzone/dist/dropzone';
