@@ -89,57 +89,23 @@
             </div>
         </section>
 
-        <section class="bg-grey-darker px-4 py-8">
+        <section class="bg-grey-darker px-4 py-16">
             <div class="mx-auto max-w-2xl">
                 <div class="mb-8 text-center">
-                    <div class="text-blue">Title here</div>
-                    <div class="text-white text-xl">Our Prices</div>
-                    <div></div>
-                    <div class="text-sm text-grey-lighter">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus placeat, nisi nemo nesciunt natus tempore optio consequatur officiis, itaque ipsa blanditiis animi fugit. Quaerat reprehenderit porro eos cum nemo necessitatibus.</div>
+                    <div class="text-blue mb-2">Title here</div>
+                    <div class="text-white mb-2 text-xl">Our Prices</div>
+                    <div class="devider bg-white"></div>
+                    <div class="text-sm mx-auto max-w-xs text-grey-lighter">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus placeat, nisi nemo nesciunt natus tempore optio consequatur officiis, itaque ipsa blanditiis animi fugit. Quaerat reprehenderit porro eos cum nemo necessitatibus.</div>
                 </div>
-                <div class="flex justify-between">
-                    <div class="rounded-md text-center bg-white">
-                        <div>
-                            <div>Beginner</div>
-                            <div>$10.99</div>
+                <div class="flex justify-around">
+                    <div v-for="(item, i) in pricePackages" :key="i" class="text-center rounded-2xl overflow-hidden bg-white">
+                        <div class="bg-blue text-white px-8 pt-8 pb-4">
+                            <div class="text-2xl">{{ item.title }}</div>
+                            <div class="text-base">${{ item.price }}</div>
                         </div>
-                        <div>
-                            <ul>
-                                <li>text 1</li>
-                                <li>text 2</li>
-                                <li>text 3</li>
-                            </ul>
-                            <div>
-                                <button class="bg-blue text-white rounded px-2 py-1">Get started</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="rounded-md text-center bg-white">
-                        <div>
-                            <div>Beginner</div>
-                            <div>$10.99</div>
-                        </div>
-                        <div>
-                            <ul>
-                                <li>text 1</li>
-                                <li>text 2</li>
-                                <li>text 3</li>
-                            </ul>
-                            <div>
-                                <button class="bg-blue text-white rounded px-2 py-1">Get started</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="rounded-md text-center bg-white">
-                        <div>
-                            <div>Beginner</div>
-                            <div>$10.99</div>
-                        </div>
-                        <div>
-                            <ul>
-                                <li>text 1</li>
-                                <li>text 2</li>
-                                <li>text 3</li>
+                        <div class="px-8 pb-4 pt-4">
+                            <ul class="list-reset mb-4">
+                                <li v-for="(option, oi) in item.options" :key="oi" class="mb-2">{{ option }}</li>
                             </ul>
                             <div>
                                 <button class="bg-blue text-white rounded px-2 py-1">Get started</button>
@@ -158,11 +124,41 @@
             return {
                 mobileMenu: false,
                 reviews: [
-                    "Someone said that",
-                    "I sais this",
-                    "We hope for this",
+                    'Someone said that',
+                    'I sais this',
+                    'We hope for this',
                 ],
                 reviewShow: 0,
+
+                pricePackages: [
+                    {
+                        title: 'Beginner',
+                        price: 14.99,
+                        options: [
+                            'What you get',
+                            'What you get',
+                            'What you get',
+                        ]
+                    },
+                    {
+                        title: 'Advanced',
+                        price: 24.99,
+                        options: [
+                            'What you get',
+                            'What you get',
+                            'What you get',
+                        ]
+                    },
+                    {
+                        title: 'Professional',
+                        price: 64.99,
+                        options: [
+                            'What you get',
+                            'What you get',
+                            'What you get',
+                        ]
+                    },
+                ]
             };
         },
 
