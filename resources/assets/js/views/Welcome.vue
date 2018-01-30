@@ -8,7 +8,6 @@
                             <img class=" mr-2 h-10 w-10 block" src="/logo.png" alt="Whaleborg">
                             <div class="text-white text-sm">Whalecore</div>
                         </div>
-                        <!-- <router-link to="/" class="flex-no-grow flex-no-shrink relative p-4 md:p-8 leading-normal text-black text-2xl font-black text-grey-darkest no-underline flex items-center">Podsai</router-link> -->
                         <button class="block md:hidden cursor-pointer ml-auto relative p-4" @click="mobileMenu = !mobileMenu">
                             <div class="h-6 w-6">
                                 <svg v-show="!mobileMenu" class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
@@ -19,7 +18,7 @@
 
                     <div class="md:flex md:items-stretch md:flex-no-shrink md:flex-grow border-b md:border-b-0" v-bind:class="{'hidden':!mobileMenu}">
                         <div class="md:flex md:items-stretch md:justify-end ml-auto">
-                            <a href="#" class="menu-item">Signup</a>
+                            <router-link to="/signup" class="menu-item">Signup</router-link>
                             <a href="#" class="menu-item">How it works</a>
                             <a href="#" class="menu-item">Contact</a>
                         </div>

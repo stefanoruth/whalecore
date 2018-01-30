@@ -39,6 +39,5 @@ Route::domain('app.'.config('app.url'))->group(function () {
     Route::post('stripe/webhook', '\Laravel\Cashier\Http\Controllers\WebhookController@handleWebhook');
 });
 
-Route::view('/', 'welcome');
-Route::view('signup', 'welcome');
 Route::apiResource('mail/subscribe', 'MailSubscriptionController')->only(['store', 'destroy']);
+Route::view('/', 'welcome');
