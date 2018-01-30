@@ -61,15 +61,15 @@
         </section>
 
         <section class="px-4 py-8">
-            <div class="flex">
-                <div class="flex-1">
-                    <img class="rounded-lg w-full" src="" alt="">
+            <div class="flex max-w-lg mx-auto flex-col-reverse md:flex-row">
+                <div class="flex-1 p-8">
+                    <img class="rounded-lg w-full" src="/images/300.png" alt="tmp image">
                 </div>
-                <div class="flex-1 flex justify-center items-center">
+                <div class="flex-1 flex justify-center items-center p-8">
                     <div class="text-center">
-                        <div class="text-blue">Title here</div>
-                        <div class="text-xl text-black">Some text here</div>
-                        <div></div>
+                        <div class="text-blue mb-2">Title here</div>
+                        <div class="text-xl text-black mb-4">Some text here</div>
+                        <div class="divider bg-blue"></div>
                         <div class="text-sm text-grey-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui, voluptatem adipisci beatae sunt nulla esse deserunt velit, dolores veniam quasi quibusdam veritatis sapiente rerum commodi necessitatibus voluptate magnam quos dolore.</div>
                     </div>
                 </div>
@@ -77,17 +77,17 @@
         </section>
 
         <section class="px-4 py-8">
-            <div class="flex">
-                <div class="flex-1 flex justify-center items-center">
+            <div class="md:flex max-w-lg mx-auto">
+                <div class="flex-1 flex justify-center items-center p-8">
                     <div class="text-center">
-                        <div class="text-blue">Title here</div>
-                        <div class="text-xl text-black">Some text here</div>
-                        <div></div>
+                        <div class="text-blue mb-2">Title here</div>
+                        <div class="text-xl text-black mb-4">Some text here</div>
+                        <div class="divider bg-blue"></div>
                         <div class="text-sm text-grey-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui, voluptatem adipisci beatae sunt nulla esse deserunt velit, dolores veniam quasi quibusdam veritatis sapiente rerum commodi necessitatibus voluptate magnam quos dolore.</div>
                     </div>
                 </div>
-                <div class="flex-1">
-                    <img class="rounded-lg w-full" src="" alt="">
+                <div class="flex-1 p-8">
+                    <img class="rounded-lg w-full" src="/images/300.png" alt="tmp image">
                 </div>
             </div>
         </section>
