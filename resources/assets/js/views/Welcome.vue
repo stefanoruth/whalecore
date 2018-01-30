@@ -45,17 +45,14 @@
                 <div class="text-xl mb-4">Reviews</div>
                 <div class="mb-6">See what others are saying!</div>
                 <div class="mb-6 text-black flex overflow-hidden">
-                    <div class="px-2 flex-no-shrink w-full">
-                        <div class="bg-white shadow rounded p-8">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                    </div>
-                    <div class="px-2 flex-no-shrink w-full">
-                        <div class="bg-white shadow rounded p-8">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+                    <div v-for="(review, i) in reviews" :key="i" v-show="reviewShow == i" class="px-2 flex-no-shrink w-full">
+                        <div class="bg-white shadow rounded p-8">{{ review }}</div>
                     </div>
                 </div>
                 <div class="flex justify-center">
-                    <span class="rounded-full h-2 w-2 border border-white mr-2 bg-white"></span>
-                    <span class="rounded-full h-2 w-2 border border-white mr-2"></span>
-                    <span class="rounded-full h-2 w-2 border border-white"></span>
+                    <span @click="reviewShow = 0" :class="{'bg-white': reviewShow == 0}" class="cursor-pointer rounded-full h-2 w-2 border border-white mr-2"></span>
+                    <span @click="reviewShow = 1" :class="{'bg-white': reviewShow == 1}" class="cursor-pointer rounded-full h-2 w-2 border border-white mr-2"></span>
+                    <span @click="reviewShow = 2" :class="{'bg-white': reviewShow == 2}" class="cursor-pointer rounded-full h-2 w-2 border border-white"></span>
                 </div>
             </div>
         </section>
@@ -160,6 +157,12 @@
         data() {
             return {
                 mobileMenu: false,
+                reviews: [
+                    "Someone said that",
+                    "I sais this",
+                    "We hope for this",
+                ],
+                reviewShow: 0,
             };
         },
 
