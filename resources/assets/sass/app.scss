@@ -48,10 +48,6 @@
     @apply .appearance-none .w-full .bg-grey-lighter .text-grey-darker .border .rounded .py-2 .px-3;
 }
 
-.router-link-exact-active {
-    @apply .bg-blue .text-white;
-}
-
 .pin-to {
     top: 100%;
 }
@@ -106,6 +102,9 @@
     }
 }
 
+@tailwind utilities;
+@import './node_modules/dropzone/dist/dropzone';
+
 .StripeElement {
     background-color: white;
     height: 40px;
@@ -115,19 +114,20 @@
     box-shadow: 0 1px 3px 0 #e6ebf1;
     -webkit-transition: box-shadow 150ms ease;
     transition: box-shadow 150ms ease;
-  }
-  
-  .StripeElement--focus {
-    box-shadow: 0 1px 3px 0 #cfd7df;
-  }
-  
-  .StripeElement--invalid {
-    border-color: #fa755a;
-  }
-  
-  .StripeElement--webkit-autofill {
-    background-color: #fefde5 !important;
-  }
+}
 
-@tailwind utilities;
-@import './node_modules/dropzone/dist/dropzone';
+.StripeElement--focus {
+    box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+    border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
+}
+
+.router-link-exact-active {
+    @apply .bg-blue .text-white;
+}
