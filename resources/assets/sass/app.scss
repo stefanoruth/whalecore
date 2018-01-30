@@ -102,6 +102,26 @@
     }
 }
 
+.menu-item {
+    @apply
+        .flex
+        .items-center
+        .flex-no-grow
+        .flex-no-shrink
+        .relative
+        .py-4
+        .px-4
+        .leading-normal
+        .text-white
+        .no-underline
+        .whitespace-no-wrap
+        .text-sm;
+
+    &:hover {
+        @apply .underline;
+    }
+}
+
 @tailwind utilities;
 @import './node_modules/dropzone/dist/dropzone';
 

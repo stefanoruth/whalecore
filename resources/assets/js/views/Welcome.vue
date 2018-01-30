@@ -1,17 +1,31 @@
 <template>
     <div>
-        <section class="bg-blue py-4">
-            <nav class="flex justify-between">
-                <div>
-                    <img src="/logo.png" alt="">
-                </div>
+        <section class="bg-blue">
+            <div class="">
+                <nav class="px-4 mx-auto relative select-none md:flex md:items-stretch">
+                    <div class="flex flex-no-shrink items-stretch">
+                        <div class="flex flex-no-grow flex-no-shrink items-center">
+                            <img class=" mr-2 h-10 w-10 block" src="/logo.png" alt="Whaleborg">
+                            <div class="text-white text-sm">Whalecore</div>
+                        </div>
+                        <!-- <router-link to="/" class="flex-no-grow flex-no-shrink relative p-4 md:p-8 leading-normal text-black text-2xl font-black text-grey-darkest no-underline flex items-center">Podsai</router-link> -->
+                        <button class="block md:hidden cursor-pointer ml-auto relative p-4" @click="mobileMenu = !mobileMenu">
+                            <div class="h-6 w-6">
+                                <svg v-show="!mobileMenu" class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+                                <svg v-show="mobileMenu" class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"/></svg>
+                            </div>
+                        </button>
+                    </div>
 
-                <ul class="flex list-reset">
-                    <li class="mr-4"><a class="block text-white no-underline px-6 py-3 hover:underline" href="#">Link 1</a></li>
-                    <li class="mr-4"><a class="block text-white no-underline px-6 py-3 hover:underline" href="#">Link 2</a></li>
-                    <li class="mr-4"><a class="block text-white no-underline px-6 py-3 hover:underline" href="#">Link 3</a></li>
-                </ul>
-            </nav>
+                    <div class="md:flex md:items-stretch md:flex-no-shrink md:flex-grow border-b md:border-b-0" v-bind:class="{'hidden':!mobileMenu}">
+                        <div class="md:flex md:items-stretch md:justify-end ml-auto">
+                            <a href="#" class="menu-item">Signup</a>
+                            <a href="#" class="menu-item">How it works</a>
+                            <a href="#" class="menu-item">Contact</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
         </section>
 
         <section class="bg-white py-8 px-4">
@@ -140,3 +154,21 @@
         </section>
     </div>
 </template>
+
+<script>
+    export default {
+        data() {
+            return {
+                mobileMenu: false,
+            };
+        },
+
+        mounted() {
+            // document.addEventListener('click', e => {
+            //     if (this.mobileMenu) {
+            //         this.mobileMenu = false;
+            //     }
+            // });
+        }
+    }
+</script>
