@@ -45,17 +45,14 @@
                 <div class="text-xl mb-4">Reviews</div>
                 <div class="mb-6">See what others are saying!</div>
                 <div class="mb-6 text-black flex overflow-hidden">
-                    <div class="px-2 flex-no-shrink w-full">
-                        <div class="bg-white shadow rounded p-8">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                    </div>
-                    <div class="px-2 flex-no-shrink w-full">
-                        <div class="bg-white shadow rounded p-8">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+                    <div v-for="(review, i) in reviews" :key="i" v-show="reviewShow == i" class="px-2 flex-no-shrink w-full">
+                        <div class="bg-white shadow rounded p-8">{{ review }}</div>
                     </div>
                 </div>
                 <div class="flex justify-center">
-                    <span class="rounded-full h-2 w-2 border border-white mr-2 bg-white"></span>
-                    <span class="rounded-full h-2 w-2 border border-white mr-2"></span>
-                    <span class="rounded-full h-2 w-2 border border-white"></span>
+                    <span @click="reviewShow = 0" :class="{'bg-white': reviewShow == 0}" class="cursor-pointer rounded-full h-2 w-2 border border-white mr-2"></span>
+                    <span @click="reviewShow = 1" :class="{'bg-white': reviewShow == 1}" class="cursor-pointer rounded-full h-2 w-2 border border-white mr-2"></span>
+                    <span @click="reviewShow = 2" :class="{'bg-white': reviewShow == 2}" class="cursor-pointer rounded-full h-2 w-2 border border-white"></span>
                 </div>
             </div>
         </section>
@@ -92,60 +89,28 @@
             </div>
         </section>
 
-        <section class="bg-grey-darker px-4 py-8">
-            <div class="mx-auto max-w-2xl">
+        <section class="bg-grey-darkest px-4 py-16">
+            <div class="mx-auto max-w-lg    ">
                 <div class="mb-8 text-center">
-                    <div class="text-blue">Title here</div>
-                    <div class="text-white text-xl">Our Prices</div>
-                    <div></div>
-                    <div class="text-sm text-grey-lighter">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus placeat, nisi nemo nesciunt natus tempore optio consequatur officiis, itaque ipsa blanditiis animi fugit. Quaerat reprehenderit porro eos cum nemo necessitatibus.</div>
+                    <div class="text-blue mb-2">Title here</div>
+                    <div class="text-white mb-2 text-xl">Our Prices</div>
+                    <div class="devider bg-white"></div>
+                    <div class="text-sm mx-auto max-w-xs text-grey-lighter">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus placeat, nisi nemo nesciunt natus tempore optio consequatur officiis, itaque ipsa blanditiis animi fugit. Quaerat reprehenderit porro eos cum nemo necessitatibus.</div>
                 </div>
-                <div class="flex justify-between">
-                    <div class="rounded-md text-center bg-white">
-                        <div>
-                            <div>Beginner</div>
-                            <div>$10.99</div>
-                        </div>
-                        <div>
-                            <ul>
-                                <li>text 1</li>
-                                <li>text 2</li>
-                                <li>text 3</li>
-                            </ul>
-                            <div>
-                                <button class="bg-blue text-white rounded px-2 py-1">Get started</button>
+                <div class="flex justify-center">
+                    <div v-for="(item, i) in pricePackages" :key="i" class="flex-1 text-center">
+                        <div class="px-4">
+                            <div class="bg-blue text-white px-8 pt-8 pb-6 rounded-t-xl">
+                                <div class="text-2xl mb-2">{{ item.title }}</div>
+                                <div class="text-base">${{ item.price }}</div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="rounded-md text-center bg-white">
-                        <div>
-                            <div>Beginner</div>
-                            <div>$10.99</div>
-                        </div>
-                        <div>
-                            <ul>
-                                <li>text 1</li>
-                                <li>text 2</li>
-                                <li>text 3</li>
-                            </ul>
-                            <div>
-                                <button class="bg-blue text-white rounded px-2 py-1">Get started</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="rounded-md text-center bg-white">
-                        <div>
-                            <div>Beginner</div>
-                            <div>$10.99</div>
-                        </div>
-                        <div>
-                            <ul>
-                                <li>text 1</li>
-                                <li>text 2</li>
-                                <li>text 3</li>
-                            </ul>
-                            <div>
-                                <button class="bg-blue text-white rounded px-2 py-1">Get started</button>
+                            <div class="px-8 bg-white pb-4 pt-4 rounded-b-xl">
+                                <ul class="list-reset mb-6 pt-2">
+                                    <li v-for="(option, oi) in item.options" :key="oi" class="mb-2">{{ option }}</li>
+                                </ul>
+                                <div>
+                                    <button class="btn-primary">Get started</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -160,15 +125,64 @@
         data() {
             return {
                 mobileMenu: false,
+                reviews: [
+                    'Someone said that',
+                    'I sais this',
+                    'We hope for this',
+                ],
+                reviewShow: 0,
+
+                pricePackages: [
+                    {
+                        title: 'Beginner',
+                        price: 14.99,
+                        options: [
+                            'What you get',
+                            'What you get',
+                            'What you get',
+                        ]
+                    },
+                    {
+                        title: 'Advanced',
+                        price: 24.99,
+                        options: [
+                            'What you get',
+                            'What you get',
+                            'What you get',
+                        ]
+                    },
+                    {
+                        title: 'Professional',
+                        price: 64.99,
+                        options: [
+                            'What you get',
+                            'What you get',
+                            'What you get',
+                        ]
+                    },
+                ]
             };
         },
 
         mounted() {
+            this.changeReview();
             // document.addEventListener('click', e => {
             //     if (this.mobileMenu) {
             //         this.mobileMenu = false;
             //     }
             // });
+        },
+
+        methods: {
+            changeReview() {
+                setInterval(() => {
+                    this.reviewShow++;
+
+                    if (this.reviewShow > 2) {
+                        this.reviewShow = 0;
+                    }
+                },5000);
+            }
         }
     }
 </script>
