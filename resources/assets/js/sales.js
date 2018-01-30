@@ -1,8 +1,10 @@
 require('./bootstrap');
 
 import Vue from 'vue';
+import VueRouter from 'vue-router';
 window.Vue = Vue;
 Vue.config.productionTip = false;
+Vue.use(VueRouter);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -12,29 +14,12 @@ Vue.config.productionTip = false;
 
 new Vue({
     el: '#sales',
-    data() {
-        return {
-            mail: null,
-            successMsg: null,
-            errorMsg: null,
-        }
-    },
-
-    methods: {
-        subscribe() {
-            axios.post('mail/subscribe', {
-                mail: this.mail
-            }).then(response => {
-                this.errorMsg = null;
-                this.successMsg = 'Thanks for signing up.';
-            }).catch(error => {
-                this.successMsg = null;
-                this.errorMsg = error.response.data.errors.mail[0];
-            });
-        },
-    },
-
-    components: {
-        'sign-up': require('./views/SignUp'),
-    }
+    router: new VueRouter({
+        routes: [
+            {
+                path: '/',
+                component: require('./views/Welcome'),
+            }
+        ]
+    }),
 });
