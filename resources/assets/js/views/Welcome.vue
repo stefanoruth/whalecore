@@ -94,11 +94,11 @@
                 <div class="mb-8 text-center">
                     <div class="text-blue mb-2">Title here</div>
                     <div class="text-white mb-2 text-xl">Our Prices</div>
-                    <div class="devider bg-white"></div>
+                    <div class="divider bg-white"></div>
                     <div class="text-sm mx-auto max-w-xs text-grey-lighter">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus placeat, nisi nemo nesciunt natus tempore optio consequatur officiis, itaque ipsa blanditiis animi fugit. Quaerat reprehenderit porro eos cum nemo necessitatibus.</div>
                 </div>
-                <div class="flex justify-center">
-                    <div v-for="(item, i) in pricePackages" :key="i" class="flex-1 text-center">
+                <div class="md:flex justify-center">
+                    <div v-for="(item, i) in pricePackages" :key="i" class="flex-1 text-center mb-4">
                         <div class="px-4">
                             <div class="bg-blue text-white px-8 pt-8 pb-6 rounded-t-xl">
                                 <div class="text-2xl mb-2">{{ item.title }}</div>
