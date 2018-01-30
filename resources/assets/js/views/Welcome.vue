@@ -26,18 +26,21 @@
             </div>
         </section>
 
-        <section class="bg-blue text-white px-4 py-8">
+        <section class="bg-blue bg-clip text-white px-4 py-18">
             <div class="mx-auto max-w-xs text-center">
-                <div>Reviews</div>
-                <div>See what others are saying!</div>
-                <div>
-                    <div class="bg-white p-8 w-full">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                    <div class="bg-white p-8 w-full">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
-                    <div class="bg-white p-8 w-full">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+                <div class="text-xl mb-4">Reviews</div>
+                <div class="mb-6">See what others are saying!</div>
+                <div class="mb-6 text-black flex overflow-hidden">
+                    <div class="px-2 flex-no-shrink w-full">
+                        <div class="bg-white shadow rounded p-8">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+                    </div>
+                    <div class="px-2 flex-no-shrink w-full">
+                        <div class="bg-white shadow rounded p-8">Lorem ipsum dolor sit amet consectetur adipisicing elit.</div>
+                    </div>
                 </div>
                 <div class="flex justify-center">
-                    <span class="rounded-full h-2 w-2 border border-white bg-white"></span>
-                    <span class="rounded-full h-2 w-2 border border-white"></span>
+                    <span class="rounded-full h-2 w-2 border border-white mr-2 bg-white"></span>
+                    <span class="rounded-full h-2 w-2 border border-white mr-2"></span>
                     <span class="rounded-full h-2 w-2 border border-white"></span>
                 </div>
             </div>

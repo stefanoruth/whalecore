@@ -131,3 +131,7 @@
 .router-link-exact-active {
     @apply .bg-blue .text-white;
 }
+
+.bg-clip {
+    clip-path: polygon(0 21%, 100% 0%, 100% 79%, 0% 100%);
+}
