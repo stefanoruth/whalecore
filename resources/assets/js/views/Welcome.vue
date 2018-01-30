@@ -19,8 +19,8 @@
                     <div class="md:flex md:items-stretch md:flex-no-shrink md:flex-grow border-b md:border-b-0" v-bind:class="{'hidden':!mobileMenu}">
                         <div class="md:flex md:items-stretch md:justify-end ml-auto">
                             <router-link to="/signup" class="menu-item">Signup</router-link>
-                            <a href="#" class="menu-item">How it works</a>
-                            <a href="#" class="menu-item">Contact</a>
+                            <a href="mailto:hello.whalecore@gmail.com" class="menu-item">Contact</a>
+                            <a :href="loginUrl" class="bg-white text-blue flex-no-grow flex-no-shrink no-underline self-center rounded px-2 py-1">Login</a>
                         </div>
                     </div>
                 </nav>
@@ -161,6 +161,12 @@
                     },
                 ]
             };
+        },
+
+        computed: {
+            loginUrl() {
+                return route('login');
+            },
         },
 
         mounted() {
