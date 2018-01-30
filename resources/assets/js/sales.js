@@ -19,7 +19,11 @@ new Vue({
             {
                 path: '/',
                 component: require('./views/Welcome'),
-            }
+            },
+            {
+                path: '/signup',
+                component: require('./views/SignUp'),
+            },
         ]
     }),
 });
