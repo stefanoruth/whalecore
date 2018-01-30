@@ -122,6 +122,10 @@
     }
 }
 
+.divider{
+    @apply .mb-6 .h-1 .mx-auto .w-12;
+}
+
 @tailwind utilities;
 @import './node_modules/dropzone/dist/dropzone';
 
