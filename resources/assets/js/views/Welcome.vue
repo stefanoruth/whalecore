@@ -89,26 +89,28 @@
             </div>
         </section>
 
-        <section class="bg-grey-darker px-4 py-16">
-            <div class="mx-auto max-w-2xl">
+        <section class="bg-grey-darkest px-4 py-16">
+            <div class="mx-auto max-w-lg    ">
                 <div class="mb-8 text-center">
                     <div class="text-blue mb-2">Title here</div>
                     <div class="text-white mb-2 text-xl">Our Prices</div>
                     <div class="devider bg-white"></div>
                     <div class="text-sm mx-auto max-w-xs text-grey-lighter">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus placeat, nisi nemo nesciunt natus tempore optio consequatur officiis, itaque ipsa blanditiis animi fugit. Quaerat reprehenderit porro eos cum nemo necessitatibus.</div>
                 </div>
-                <div class="flex justify-around">
-                    <div v-for="(item, i) in pricePackages" :key="i" class="text-center rounded-2xl overflow-hidden bg-white">
-                        <div class="bg-blue text-white px-8 pt-8 pb-4">
-                            <div class="text-2xl">{{ item.title }}</div>
-                            <div class="text-base">${{ item.price }}</div>
-                        </div>
-                        <div class="px-8 pb-4 pt-4">
-                            <ul class="list-reset mb-4">
-                                <li v-for="(option, oi) in item.options" :key="oi" class="mb-2">{{ option }}</li>
-                            </ul>
-                            <div>
-                                <button class="bg-blue text-white rounded px-2 py-1">Get started</button>
+                <div class="flex justify-center">
+                    <div v-for="(item, i) in pricePackages" :key="i" class="flex-1 text-center">
+                        <div class="px-4">
+                            <div class="bg-blue text-white px-8 pt-8 pb-6 rounded-t-xl">
+                                <div class="text-2xl mb-2">{{ item.title }}</div>
+                                <div class="text-base">${{ item.price }}</div>
+                            </div>
+                            <div class="px-8 bg-white pb-4 pt-4 rounded-b-xl">
+                                <ul class="list-reset mb-6 pt-2">
+                                    <li v-for="(option, oi) in item.options" :key="oi" class="mb-2">{{ option }}</li>
+                                </ul>
+                                <div>
+                                    <button class="btn-primary">Get started</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -163,11 +165,24 @@
         },
 
         mounted() {
+            this.changeReview();
             // document.addEventListener('click', e => {
             //     if (this.mobileMenu) {
             //         this.mobileMenu = false;
             //     }
             // });
+        },
+
+        methods: {
+            changeReview() {
+                setInterval(() => {
+                    this.reviewShow++;
+
+                    if (this.reviewShow > 2) {
+                        this.reviewShow = 0;
+                    }
+                },5000);
+            }
         }
     }
 </script>
