@@ -28,14 +28,14 @@
             </div>
         </section>
 
-        <section class="bg-white py-8 px-4">
-            <div class="mx-auto max-w-2xl w-full text-center">
-                <div class="text-blue">CMS Flow</div>
-                <div class="text-black text-xl">How does our Content Management system work?</div>
-                <div></div>
-                <div class="text-grey-dark text-sm">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate dolore tenetur qui quasi minus accusamus inventore tempora, ut odit nam similique omnis quod facere ducimus pariatur aut sunt? Cupiditate.</div>
-                <div class="w-full">
-                    <img class="w-full rounded-lg" src="">
+        <section class="bg-white py-12 px-4">
+            <div class="mx-auto max-w-lg w-full text-center">
+                <div class="text-blue py-2">CMS Flow</div>
+                <div class="text-black py-2 text-xl">How does our Content Management system work?</div>
+                <div class="divider bg-blue"></div>
+                <div class="text-grey-dark text-sm mb-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate dolore tenetur qui quasi minus accusamus inventore tempora, ut odit nam similique omnis quod facere ducimus pariatur aut sunt? Cupiditate.</div>
+                <div class="">
+                    <img class="w-full rounded-xl" alt="flow-img" src="/images/680x240.png">
                 </div>
             </div>
         </section>
