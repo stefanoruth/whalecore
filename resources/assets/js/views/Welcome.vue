@@ -101,14 +101,15 @@
                         <div class="px-4">
                             <div class="bg-blue text-white px-8 pt-8 pb-6 rounded-t-xl">
                                 <div class="text-2xl mb-2">{{ item.title }}</div>
-                                <div class="text-base">${{ item.price }}</div>
+                                <div class="text-base">{{ item.price }}</div>
                             </div>
                             <div class="px-8 bg-white pb-4 pt-4 rounded-b-xl">
                                 <ul class="list-reset mb-6 pt-2">
                                     <li v-for="(option, oi) in item.options" :key="oi" class="mb-2">{{ option }}</li>
                                 </ul>
                                 <div>
-                                    <button class="btn-primary">Get started</button>
+                                    <button v-if="i == 2" class="btn-primary">Contact us</button>
+                                    <button v-else class="btn-primary">Get started</button>
                                 </div>
                             </div>
                         </div>
@@ -133,30 +134,29 @@
 
                 pricePackages: [
                     {
-                        title: 'Beginner',
-                        price: 14.99,
+                        title: 'Free',
+                        price: null,
                         options: [
-                            'What you get',
-                            'What you get',
-                            'What you get',
-                        ]
-                    },
-                    {
-                        title: 'Advanced',
-                        price: 24.99,
-                        options: [
-                            'What you get',
-                            'What you get',
-                            'What you get',
+                            'Unlimited templates',
+                            'Unlimited content pages',
+                            'Downloadable JSON content',
                         ]
                     },
                     {
                         title: 'Professional',
-                        price: 64.99,
+                        price: '$24.99/month',
                         options: [
-                            'What you get',
-                            'What you get',
-                            'What you get',
+                            'Unlimited content hosting',
+                            'One click publish',
+                            'Access to the Whalecore API',
+                        ]
+                    },
+                    {
+                        title: 'Whitelabel',
+                        price: "Coming soon",
+                        options: [
+                            'Same as Professional',
+                            'Your company logo on all pages',
                         ]
                     },
                 ]
