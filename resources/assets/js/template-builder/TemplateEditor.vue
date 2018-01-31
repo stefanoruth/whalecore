@@ -19,8 +19,6 @@
                 <template-field-new v-show="showNewField" :only="['section','repeater']" @close="showNewField = false" @newField="addField"></template-field-new>
             </div>
         </div>
-
-        
     </div>
 </template>
 

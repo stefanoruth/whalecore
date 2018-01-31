@@ -31,7 +31,7 @@
                     return this.fieldList;
                 }
 
-                return _.filter(this.fieldList, (item, id) => {
+                return _.pickBy(this.fieldList, (item, id) => {
                     return this.only.indexOf(id) > -1;
                 });
             },
