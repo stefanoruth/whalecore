@@ -1,5 +1,5 @@
 <template>
-    <nav v-if="$route.path != '/'" class="hidden md:flex bg-primary text-white flex-col border-r border-primary-lighter select-none flex-no-shrink">
+    <nav v-if="$route.path != '/'" class="hidden md:flex bg-gradient text-white flex-col border-r border-primary-lighter select-none flex-no-shrink">
        <div class="flex flex-col items-center p-4">
            <img class="w-16 h-16 inline bg-white p-2 rounded-full mb-4" src="/logo.png">
            <div class="rounded-lg bg-primary-light relative py-2 pr-6 pl-4 cursor-pointer w-full group">
