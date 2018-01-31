@@ -31,7 +31,7 @@
 				
 				<div class="text-center mb-4">
 					<span>Don't have an account?</span>
-					<a class="text-blue no-underline" href="{{ route('register') }}">Sign up</a>
+					<a class="text-primary no-underline" href="{{ route('register') }}">Sign up</a>
 				</div>
 			</form>
 			<p class="text-center text-grey-dark text-xs">©{{ date('Y') }} {{ config('app.name') }}. All rights reserved.</p>

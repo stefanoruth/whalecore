@@ -1,5 +1,5 @@
 <template>
-    <div class="h-screen flex items-center justify-center bg-blue-lightest">
+    <div class="h-screen flex items-center justify-center bg-primary-lightest">
         <div class="max-w-lg w-full bg-white flex p-2 shadow-lg rounded-lg text-grey-darkest">
             <div class="p-8 flex justify-between flex-col flex-1">
                 <div>
@@ -28,7 +28,7 @@
                         </label>
 
                         <div class="flex justify-between">
-                            <div class="text-xs mr-8">By proceeding you are agreeing to our <a href="#" class="text-blue">terms of service</a> and <a href="#" class="text-blue">privacy policy</a></div>
+                            <div class="text-xs mr-8">By proceeding you are agreeing to our <a href="#" class="text-primary">terms of service</a> and <a href="#" class="text-primary">privacy policy</a></div>
                             <button @click.prevent="nextStep" class="btn-primary self-start">
                                 <span>Next</span>
                                 <svg class="inline h-4 w-4 fill-current align-text-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/></svg>
@@ -70,11 +70,11 @@
                 </div>
                 <div class="flex justify-center mt-4">
                     <div class="flex justify-around w-16">
-                        <span class="h-2 w-2 rounded-full bg-grey block" :class="{'bg-blue': step == 0}"></span>
-                        <span class="h-2 w-2 rounded-full bg-grey block" :class="{'bg-blue': step == 1}"></span>
-                        <span class="h-2 w-2 rounded-full bg-grey block" :class="{'bg-blue': step == 2}"></span>
-                        <span class="h-2 w-2 rounded-full bg-grey block" :class="{'bg-blue': step == 3}"></span>
-                        <span class="h-2 w-2 rounded-full bg-grey block" :class="{'bg-blue': step == 4}"></span>
+                        <span class="h-2 w-2 rounded-full bg-grey block" :class="{'bg-primary': step == 0}"></span>
+                        <span class="h-2 w-2 rounded-full bg-grey block" :class="{'bg-primary': step == 1}"></span>
+                        <span class="h-2 w-2 rounded-full bg-grey block" :class="{'bg-primary': step == 2}"></span>
+                        <span class="h-2 w-2 rounded-full bg-grey block" :class="{'bg-primary': step == 3}"></span>
+                        <span class="h-2 w-2 rounded-full bg-grey block" :class="{'bg-primary': step == 4}"></span>
                     </div>
                 </div>
             </div>

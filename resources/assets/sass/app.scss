@@ -4,11 +4,11 @@ html {
     font-size: 16px;
 }
 
-.btn-flat-blue {
-    @apply .h-full .px-6 .cursor-pointer .uppercase .bg-blue .text-white;
+.btn-flat-primary {
+    @apply .h-full .px-6 .cursor-pointer .uppercase .bg-primary .text-white;
 
     &:hover {
-        @apply .bg-blue-dark;
+        @apply .bg-primary-dark;
     }
 }
 
@@ -17,26 +17,26 @@ html {
 }
 
 .btn-primary {
-    @apply .btn-raw .bg-blue .text-white .border-blue;
+    @apply .btn-raw .bg-primary .text-white .border-primary;
 
     &:hover {
-        @apply .bg-blue-dark;
+        @apply .bg-primary-dark;
     }
 
     &:active {
-        @apply .bg-blue-darker .border-blue-darker;
+        @apply .bg-primary-dark .border-primary-dark;
     }
 }
 
 .btn-secondary {
-    @apply .btn-raw .border-blue .text-blue;
+    @apply .btn-raw .border-primary .text-primary;
 
     &:hover {
-        @apply .bg-blue .text-white;
+        @apply .bg-primary .text-white;
     }
 
     &:active {
-        @apply .bg-blue-dark .border-blue-dark .text-white;
+        @apply .bg-primary-dark .border-primary-dark .text-white;
     }
 }
 
@@ -79,7 +79,7 @@ html {
     }
 
     span {
-        @apply .inline-block .h-4 .w-4 .border .border-blue .mr-1 .align-bottom .bg-center .bg-no-repeat .relative;
+        @apply .inline-block .h-4 .w-4 .border .border-primary .mr-1 .align-bottom .bg-center .bg-no-repeat .relative;
     }
 
     input[type="radio"] + span {
@@ -157,7 +157,7 @@ html {
 }
 
 .router-link-exact-active {
-    @apply .bg-blue .text-white;
+    @apply .bg-primary .text-white;
 }
 
 .bg-clip {

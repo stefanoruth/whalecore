@@ -9,7 +9,7 @@
         <label class="checkbox mb-4"><input type="checkbox"><span></span>Yes I would love to recieve awesome news monthly!</label>
         <input type="checkbox">
         <div>
-            <a class="btn-blue" @click="updateNewsLetter">Save</a>
+            <a class="btn-primary" @click="updateNewsLetter">Save</a>
         </div>
     </base-option>
 </template>

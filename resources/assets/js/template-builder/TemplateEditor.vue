@@ -5,7 +5,7 @@
                 <input class="text-2xl p-1 w-full" type="text" v-model="template.title">
             </div>
             <div>
-                <button @click="save" class="btn-flat-blue">Save Template</button>
+                <button @click="save" class="btn-flat-primary">Save Template</button>
             </div>
         </div>
 

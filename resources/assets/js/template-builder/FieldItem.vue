@@ -1,12 +1,12 @@
 <template>
     <div class="border">
-        <div class="flex py-2 px-4 group hover:bg-blue-lightest">
+        <div class="flex py-2 px-4 group hover:bg-primary-lightest">
             <div class="flex-1">
                 <div class="text-xl">{{ field.title }}</div>
                 <div class="uppercase text-xs">{{ field.type }}</div>
             </div>
             <div class="flex">
-                <a @click="showEdit = true" class="invisible group-hover:visible self-center text-blue no-underline cursor-pointer p-2">Edit</a>
+                <a @click="showEdit = true" class="invisible group-hover:visible self-center text-primary no-underline cursor-pointer p-2">Edit</a>
             </div>
         </div>
 
