@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="bg-primary">
+        <section class="h-screen bg-gradient">
             <div class="">
                 <nav class="px-4 mx-auto relative select-none md:flex md:items-stretch">
                     <div class="flex flex-no-shrink items-stretch">
