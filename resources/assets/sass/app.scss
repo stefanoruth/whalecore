@@ -130,6 +130,10 @@ html {
     @apply .mb-6 .h-1 .mx-auto .w-12;
 }
 
+.bg-gradient{
+    background: linear-gradient(config('colors.primary-light'), config('colors.primary-dark'))
+}
+
 @tailwind utilities;
 @import './node_modules/dropzone/dist/dropzone';
 
