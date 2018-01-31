@@ -45,11 +45,11 @@ html {
 }
 
 .label {
-    @apply .block .uppercase .text-xs .mb-1 .font-bold .tracking-wide .text-grey-darker;
+    @apply .block .uppercase .text-xs .mb-1 .font-bold .tracking-wide .text-black;
 }
 
 .input {
-    @apply .appearance-none .w-full .bg-grey-lighter .text-grey-darker .border .rounded .py-2 .px-3;
+    @apply .appearance-none .w-full .bg-white .text-black .border .border-primary .rounded .py-2 .px-3;
 }
 
 .pin-to {
