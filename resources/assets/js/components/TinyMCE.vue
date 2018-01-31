@@ -4,18 +4,16 @@
 
 <script>
     export default {
-        props : {
-            id: {
-                type: String,
-                required: true
-            },
-            value: String,
+        props : ['value'],
+
+        data() {
+            return {
+                generatedId: null,
+            };
         },
 
-        computed: {
-            generatedId: function() {
-                return 'tinyMce-'+this.id;
-            },
+        beforeMount() {
+            this.generatedId = 'tinyMCE'+window.generateID();
         },
         
         mounted () {
