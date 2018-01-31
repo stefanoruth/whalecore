@@ -1,7 +1,6 @@
 <template>
     <div>
         <section class="h-screen bg-gradient">
-            <div class="">
                 <nav class="px-4 mx-auto relative select-none md:flex md:items-stretch">
                     <div class="flex flex-no-shrink items-stretch">
                         <div class="flex flex-no-grow flex-no-shrink items-center">
@@ -24,7 +23,19 @@
                         </div>
                     </div>
                 </nav>
-            </div>
+                <div class="h-full flex justify-center items-center">
+                    <div>
+                        <h1 class="mb-4 text-white text-center">Whalecore a CMS for Developers by Developers</h1>
+                        <div class="text-center text-white leading-normal mx-auto mb-4">
+                           <p>With a headless architecture and a user-friendly editor, we believe we have created something truely awesome.</p>
+                           <p>Signup and start creating the web applications of tommorow!</p>
+                        </div>
+                        <div class="flex justify-center">
+                            <router-link to="/signup" class="mr-4 py-2 px-8 border border-white rounded-full text-white no-underline">Signup</router-link>                       
+                            <a :href='loginUrl' class="py-2 px-8 border border-white rounded-full text-white no-underline">Login</a>
+                        </div>
+                    </div>
+                </div>
         </section>
 
         <section class="bg-white py-12 px-4">
@@ -88,7 +99,7 @@
             </div>
         </section>
 
-        <section class="bg-grey-darkest px-4 py-16">
+        <section class="bg-primary-darkest px-4 py-16">
             <div class="mx-auto max-w-lg    ">
                 <div class="mb-8 text-center">
                     <div class="text-primary mb-2">Title here</div>
@@ -99,7 +110,7 @@
                 <div class="md:flex justify-center">
                     <div v-for="(item, i) in pricePackages" :key="i" class="flex-1 text-center mb-4">
                         <div class="px-4">
-                            <div class="bg-primary text-white px-8 pt-8 pb-6 rounded-t-xl">
+                            <div class="bg-gradient text-white px-8 pt-8 pb-6 rounded-t-xl">
                                 <div class="text-2xl mb-2">{{ item.title }}</div>
                                 <div class="text-base">{{ item.price }}</div>
                             </div>
