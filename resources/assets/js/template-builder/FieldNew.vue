@@ -4,7 +4,7 @@
             <div slot="header">New Field</div>    
             <div class="flex flex-wrap max-w-md -mx-2">
                 <div v-for="(title, id) in fields" :key="id" class="w-1/3 p-2">
-                    <div class="bg-blue text-white py-2 px-4 cursor-pointer" @click="add(id)">{{ title }}</div>
+                    <div class="bg-primary text-white py-2 px-4 cursor-pointer" @click="add(id)">{{ title }}</div>
                 </div>
             </div>
         </modal>
@@ -31,7 +31,7 @@
                     return this.fieldList;
                 }
 
-                return _.filter(this.fieldList, (item, id) => {
+                return _.pickBy(this.fieldList, (item, id) => {
                     return this.only.indexOf(id) > -1;
                 });
             },

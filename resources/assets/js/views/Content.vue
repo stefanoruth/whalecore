@@ -5,13 +5,13 @@
                 <div class="text-3xl">Content</div>
             </div>
             <div>
-                <button class="btn-flat-blue" @click="modal = true">New Item</button>
+                <button class="btn-flat-primary" @click="modal = true">New Item</button>
                 <new-item v-show="modal" @close="modal = false"></new-item>  
             </div>
         </div>
         <div class="container p-8 mx-auto max-w-md">
             <div v-if="items.length > 0" class="bg-white border py-4 mb-4">
-                <div v-for="item in items" :key="item.id" class="group flex justify-between mb-4 hover:bg-blue-lightest">
+                <div v-for="item in items" :key="item.id" class="group flex justify-between mb-4 hover:bg-primary-lightest">
                     <div class="cursor-pointer flex-1 mr-4 pl-4 py-2" @click="$router.push({name:'content.edit', params:{id:item.id}})">
                         <div class="text-xl">{{ item.title }}</div>
                         <div class="text-sm uppercase text-grey-darker">{{ item.template.title }}</div>

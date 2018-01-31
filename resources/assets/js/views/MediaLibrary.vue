@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div>
-                <button class="btn-flat-blue" @click="showUpload = true">Upload</button>
+                <button class="btn-flat-primary" @click="showUpload = true">Upload</button>
                 <form v-show="showUpload" :action="storeFile" class="fixed pin bg-grey flex justify-center items-center flex-wrap p-8 overflow-y-scroll" enctype="multipart/form-data" ref="dropzoneBox">
                     <input type="hidden" name="_token" :value="token">
                     <div class="dz-message text-center">

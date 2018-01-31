@@ -18,7 +18,7 @@
 
         <textarea v-else-if="field.type == 'textarea'" class="input" v-model="content[field.id]"></textarea>
 
-        <tinymce v-else-if="field.type == 'text-editor'" :id="field.id+'-'+lang" v-model="content[field.id]"></tinymce>
+        <tinymce v-else-if="field.type == 'text-editor'" v-model="content[field.id]"></tinymce>
 
         <div v-else-if="field.type == 'select'" class="inline-block relative w-full">
             <select class="input">

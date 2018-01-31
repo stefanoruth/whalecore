@@ -5,18 +5,18 @@
                 <div class="text-3xl">Templates</div>
             </div>           
             <div>
-                <button class="btn-flat-blue" @click="modal = true">New Template</button>
+                <button class="btn-flat-primary" @click="modal = true">New Template</button>
                 <new-template v-show="modal" @close="modal = false"></new-template>    
             </div>
         </div>
         <div class="container p-8 mx-auto max-w-md">
             <div class="bg-white border py-4 mb-4">
-                <div v-for="template in templates" :key="template.id" class="group flex justify-between mb-4 px-4 py-2 hover:bg-blue-lightest">
+                <div v-for="template in templates" :key="template.id" class="group flex justify-between mb-4 px-4 py-2 hover:bg-primary-lightest">
                     <div>
                         <div class="text-xl">{{ template.title }}</div>
                     </div>
                     <div class="flex">
-                        <router-link class="invisible group-hover:visible no-underline text-blue self-center p-2" :to="{name: 'template.edit', params: {id: template.id}}">Edit</router-link>
+                        <router-link class="invisible group-hover:visible no-underline text-primary self-center p-2" :to="{name: 'template.edit', params: {id: template.id}}">Edit</router-link>
                     </div>
                 </div>
             </div>

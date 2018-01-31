@@ -5,7 +5,7 @@
                 <input class="text-2xl p-1 w-full" type="text" v-model="template.title">
             </div>
             <div>
-                <button @click="save" class="btn-flat-blue">Save Template</button>
+                <button @click="save" class="btn-flat-primary">Save Template</button>
             </div>
         </div>
 
@@ -19,8 +19,6 @@
                 <template-field-new v-show="showNewField" :only="['section','repeater']" @close="showNewField = false" @newField="addField"></template-field-new>
             </div>
         </div>
-
-        
     </div>
 </template>
 
