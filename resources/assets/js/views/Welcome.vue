@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="bg-blue">
+        <section class="bg-primary">
             <div class="">
                 <nav class="px-4 mx-auto relative select-none md:flex md:items-stretch">
                     <div class="flex flex-no-shrink items-stretch">
@@ -20,7 +20,7 @@
                         <div class="md:flex md:items-stretch md:justify-end ml-auto">
                             <router-link to="/signup" class="menu-item">Signup</router-link>
                             <a href="mailto:hello.whalecore@gmail.com" class="menu-item">Contact</a>
-                            <a :href="loginUrl" class="bg-white text-blue flex-no-grow flex-no-shrink no-underline self-center rounded px-2 py-1">Login</a>
+                            <a :href="loginUrl" class="bg-white text-primary flex-no-grow flex-no-shrink no-underline self-center rounded px-2 py-1">Login</a>
                         </div>
                     </div>
                 </nav>
@@ -29,9 +29,9 @@
 
         <section class="bg-white py-12 px-4">
             <div class="mx-auto max-w-lg w-full text-center">
-                <div class="text-blue py-2">CMS Flow</div>
+                <div class="text-primary py-2">CMS Flow</div>
                 <div class="text-black py-2 text-xl">How does our Content Management system work?</div>
-                <div class="divider bg-blue"></div>
+                <div class="divider bg-primary"></div>
                 <div class="text-grey-dark text-sm mb-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate dolore tenetur qui quasi minus accusamus inventore tempora, ut odit nam similique omnis quod facere ducimus pariatur aut sunt? Cupiditate.</div>
                 <div class="">
                     <img class="w-full rounded-xl" alt="flow-img" src="/images/680x240.png">
@@ -39,7 +39,7 @@
             </div>
         </section>
 
-        <section class="bg-blue bg-clip text-white px-4 py-18">
+        <section class="bg-primary bg-clip text-white px-4 py-18">
             <div class="mx-auto max-w-xs text-center">
                 <div class="text-xl mb-4">Reviews</div>
                 <div class="mb-6">See what others are saying!</div>
@@ -63,9 +63,9 @@
                 </div>
                 <div class="flex-1 flex justify-center items-center p-8">
                     <div class="text-center">
-                        <div class="text-blue mb-2">Title here</div>
+                        <div class="text-primary mb-2">Title here</div>
                         <div class="text-xl text-black mb-4">Some text here</div>
-                        <div class="divider bg-blue"></div>
+                        <div class="divider bg-primary"></div>
                         <div class="text-sm text-grey-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui, voluptatem adipisci beatae sunt nulla esse deserunt velit, dolores veniam quasi quibusdam veritatis sapiente rerum commodi necessitatibus voluptate magnam quos dolore.</div>
                     </div>
                 </div>
@@ -76,9 +76,9 @@
             <div class="md:flex max-w-lg mx-auto">
                 <div class="flex-1 flex justify-center items-center p-8">
                     <div class="text-center">
-                        <div class="text-blue mb-2">Title here</div>
+                        <div class="text-primary mb-2">Title here</div>
                         <div class="text-xl text-black mb-4">Some text here</div>
-                        <div class="divider bg-blue"></div>
+                        <div class="divider bg-primary"></div>
                         <div class="text-sm text-grey-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui, voluptatem adipisci beatae sunt nulla esse deserunt velit, dolores veniam quasi quibusdam veritatis sapiente rerum commodi necessitatibus voluptate magnam quos dolore.</div>
                     </div>
                 </div>
@@ -91,7 +91,7 @@
         <section class="bg-grey-darkest px-4 py-16">
             <div class="mx-auto max-w-lg    ">
                 <div class="mb-8 text-center">
-                    <div class="text-blue mb-2">Title here</div>
+                    <div class="text-primary mb-2">Title here</div>
                     <div class="text-white mb-2 text-xl">Our Prices</div>
                     <div class="divider bg-white"></div>
                     <div class="text-sm mx-auto max-w-xs text-grey-lighter">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus placeat, nisi nemo nesciunt natus tempore optio consequatur officiis, itaque ipsa blanditiis animi fugit. Quaerat reprehenderit porro eos cum nemo necessitatibus.</div>
@@ -99,7 +99,7 @@
                 <div class="md:flex justify-center">
                     <div v-for="(item, i) in pricePackages" :key="i" class="flex-1 text-center mb-4">
                         <div class="px-4">
-                            <div class="bg-blue text-white px-8 pt-8 pb-6 rounded-t-xl">
+                            <div class="bg-primary text-white px-8 pt-8 pb-6 rounded-t-xl">
                                 <div class="text-2xl mb-2">{{ item.title }}</div>
                                 <div class="text-base">{{ item.price }}</div>
                             </div>
