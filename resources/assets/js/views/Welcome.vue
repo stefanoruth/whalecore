@@ -1,7 +1,7 @@
 <template>
     <div>
-        <section class="h-screen bg-gradient">
-                <nav class="px-4 mx-auto relative select-none md:flex md:items-stretch">
+        <section class="h-screen bg-gradient flex flex-col">
+                <nav class="px-4 mx-auto w-full relative select-none md:flex md:items-stretch">
                     <div class="flex flex-no-shrink items-stretch">
                         <div class="flex flex-no-grow flex-no-shrink items-center">
                             <img class=" mr-2 h-10 w-10 block" src="/logo.png" alt="Whaleborg">
@@ -23,7 +23,7 @@
                         </div>
                     </div>
                 </nav>
-                <div class="h-full flex justify-center items-center">
+                <div class="flex-1 flex justify-center items-center">
                     <div>
                         <h1 class="mb-4 text-white text-center">Whalecore a CMS for Developers by Developers</h1>
                         <div class="text-center text-white leading-normal mx-auto mb-4">
@@ -36,6 +36,26 @@
                         </div>
                     </div>
                 </div>
+
+                <div>
+                    <svg class="block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3840 496">
+                        <path d="M2829,375c0,0 144.151,-3.241 261,-49c116.849,-45.759 402.155,-189.395 493,-222c90.845,-32.605 170.118,-53.307 257,-52l0,336l-1011,-13Z" style="fill:url(#_Linear1);"/>
+                        <path d="M536,286c0,0 -97.731,-20.765 -166,-89c-68.269,-68.235 -120.308,-110.166 -161,-134c-40.692,-23.834 -88.556,-55.791 -209,-63l0,284l536,2Z" style="fill:url(#_Linear2);"/>
+                        <path d="M0,118c0,0 179.667,16.191 322,89c142.333,72.809 203.125,111.826 414,37c210.875,-74.826 356.899,-152.535 658,-27c301.101,125.535 478.777,193.987 708,135c229.223,-58.987 337.998,-58.281 480,-44c200.08,20.121 234.853,116.52 505,27c623.842,-206.725 753,-188 753,-188l0,349l-3840,0l0,-378Z" style="fill:#fff;"/>
+                        <defs>
+                            <linearGradient id="_Linear1" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(1011,0,0,336.058,2829,219.971)">
+                                <stop offset="0" style="stop-color:#1397cd;stop-opacity:1"/>
+                                <stop offset="1" style="stop-color:#26c2e3;stop-opacity:1"/>
+                            </linearGradient>
+                            <linearGradient id="_Linear2" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(532,0,0,284,2.27374e-13,142)">
+                                <stop offset="0" style="stop-color:#1bacdd;stop-opacity:1"/>
+                                <stop offset="1" style="stop-color:#63d3ff;stop-opacity:1"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+
+
         </section>
 
         <section class="bg-white py-12 px-4">
