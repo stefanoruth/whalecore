@@ -119,8 +119,8 @@
             </div>
         </section>
 
-        <section class="bg-primary-darkest px-4 py-16">
-            <div class="mx-auto max-w-lg    ">
+        <section class="bg-primary-darkest">
+            <div class="mx-auto max-w-lg px-4 py-16">
                 <div class="mb-8 text-center">
                     <div class="text-primary mb-2">Alright - whats the damage?</div>
                     <div class="text-white mb-2 text-xl">Our Prices</div>
@@ -128,25 +128,29 @@
                     <div class="text-sm mx-auto max-w-xs text-grey-lighter">As we said, we created Whalecore in an attempt to combine the best of both worlds. This is something we truely and dearly believe in. But.. We need to keep our services running, have food on the table and sometimes we gotta check to the whales too! We don't have an investor or anyother form of backing, but we did try and keep our prices to a minimum!</div>
                 </div>
                 <div class="md:flex justify-center">
-                    <div v-for="(item, i) in pricePackages" :key="i" class="flex-1 text-center mb-4">
-                        <div class="px-4">
-                            <div class="bg-gradient text-white px-8 pt-8 pb-6 rounded-t-xl">
-                                <div class="text-2xl mb-2">{{ item.title }}</div>
-                                <div class="text-base">{{ item.price }}</div>
-                            </div>
-                            <div class="px-8 bg-white pb-4 pt-4 rounded-b-xl">
-                                <ul class="list-reset mb-6 pt-2">
-                                    <li v-for="(option, oi) in item.options" :key="oi" class="mb-2">{{ option }}</li>
-                                </ul>
-                                <div>
-                                    <button v-if="i == 2" class="btn-primary">Contact us</button>
-                                    <button v-else class="btn-primary">Get started</button>
-                                </div>
-                            </div>
+                    <div v-for="(item, i) in pricePackages" :key="i" class="flex-1 flex flex-col text-center mb-4 mx-4 bg-white rounded-xl overflow-hidden">
+                        <div class="bg-gradient text-white px-8 pt-8 pb-6">
+                            <div class="text-2xl mb-2">{{ item.title }}</div>
+                            <div class="text-base">&nbsp;{{ item.price }}</div>
+                        </div>
+                        <ul class="px-8 list-reset py-4">
+                            <li v-for="(option, oi) in item.options" :key="oi" class="mb-2">{{ option }}</li> 
+                        </ul>
+                        <div class="px-8 pb-4 mt-auto">
+                            <button v-if="i == 2" class="btn-primary">Contact us</button>
+                            <button v-else class="btn-primary">Get started</button>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <svg class="block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3840 442">
+                <path d="M0,62c0,0 193.777,24.272 306,83c112.223,58.728 177.307,91.297 259,84c81.693,-7.297 158.345,-33.268 190,-46c31.655,-12.732 239.845,-89.282 318,-87c78.155,2.282 144.033,-0.88 309,61c164.967,61.88 287.988,130.083 460,154c172.012,23.917 461.924,-82.352 563,-89c133.596,-8.787 231.185,11.314 380,62c127.29,43.354 301.681,-8.726 397,-52c95.319,-43.274 304.071,-141.702 365,-167c60.929,-25.298 210.754,-64.186 293,-65l0,442l-3840,0l0,-380Z" style="fill:#04a1e3;"/>
+            </svg>
+        </section>
+
+        <section class="bg-primary text-white px-4 py-6">
+            <div class="text-center">@2018 Whalecore and some more for Jonas</div>
         </section>
     </div>
 </template>
