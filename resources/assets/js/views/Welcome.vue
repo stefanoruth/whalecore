@@ -150,7 +150,7 @@
         </section>
 
         <section class="bg-primary text-white px-4 py-6">
-            <div class="text-center">@2018 Whalecore and some more for Jonas</div>
+            <div class="text-center">@2018 Whalecore and some more for Jonas & add signup for newsletter</div>
         </section>
     </div>
 </template>
