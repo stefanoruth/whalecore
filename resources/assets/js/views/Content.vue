@@ -20,7 +20,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="item in items" :key="item.id" class="group hover:bg-grey border-t border-b">
+                        <tr v-for="item in items" :key="item.id" class="group hover:bg-grey-light border-t border-b">
                             <td class="py-4 px-4 text-left">{{ item.title }}</td>
                             <td class="py-4 px-4 text-left">{{ item.template.title }}</td>
                             <td class="py-4 px-4 text-right">

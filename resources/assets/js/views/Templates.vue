@@ -19,7 +19,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="template in templates" :key="template.id" class="group hover:bg-grey border-t border-b">
+                        <tr v-for="template in templates" :key="template.id" class="group hover:bg-grey-light border-t border-b">
                             <td class="p-4 text-left">{{ template.title }}</td>
                             <td class="p-4 text-right">
                                 <div class="group-hover:visible invisible whitespace-no-wrap">
