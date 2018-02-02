@@ -31,8 +31,8 @@
                            <p>Signup and let us help you create the web applications of tommorow!</p>
                         </div>
                         <div class="flex justify-center">
-                            <router-link to="/signup" class="mr-4 py-2 px-8 border border-white rounded-full text-white no-underline">Signup</router-link>                       
-                            <a :href='loginUrl' class="py-2 px-8 border border-white rounded-full text-white no-underline">Login</a>
+                            <router-link to="/signup" class="mr-4 py-2 px-8 border border-white rounded-full text-white no-underline hover:bg-white hover:text-primary">Signup</router-link>                       
+                            <a :href='loginUrl' class="py-2 px-8 border border-white rounded-full text-white no-underline hover:bg-white hover:text-primary">Login</a>
                         </div>
                     </div>
                 </div>

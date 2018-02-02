@@ -1,5 +1,5 @@
 <template>
-    <div class="h-screen flex items-center justify-center bg-primary-lightest">
+    <div class="h-screen flex items-center justify-center bg-gradient">
         <div class="max-w-lg w-full bg-white flex p-2 shadow-lg rounded-lg text-grey-darkest">
             <div class="p-8 flex justify-between flex-col flex-1">
                 <div>
