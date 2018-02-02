@@ -27,8 +27,8 @@
                     <div>
                         <h1 class="mb-4 text-white text-center">Whalecore a CMS for Developers by Developers</h1>
                         <div class="text-center text-white leading-normal mx-auto mb-4">
-                           <p>With a headless architecture and a user-friendly editor, we believe we have created something truely awesome.</p>
-                           <p>Signup and start creating the web applications of tommorow!</p>
+                           <p>With a headless architecture and a user-friendly editor, we believe we've created something truely awesome.</p>
+                           <p>Signup and let us help you create the web applications of tommorow!</p>
                         </div>
                         <div class="flex justify-center">
                             <router-link to="/signup" class="mr-4 py-2 px-8 border border-white rounded-full text-white no-underline">Signup</router-link>                       
@@ -63,7 +63,7 @@
                 <div class="text-primary py-2">CMS Flow</div>
                 <div class="text-black py-2 text-xl">How does our Content Management system work?</div>
                 <div class="divider bg-primary"></div>
-                <div class="text-grey-dark text-sm mb-6">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quas cupiditate dolore tenetur qui quasi minus accusamus inventore tempora, ut odit nam similique omnis quod facere ducimus pariatur aut sunt? Cupiditate.</div>
+                <div class="text-grey-dark text-sm mb-6">Our CMS is based around a headless structure. We use a super quick Node.js API to deliever your data, which is stored in our Redis database. Simply call the end point of the desired page and ye shall recieve content. Smart right?</div>
                 <div class="">
                     <img class="w-full rounded-xl" alt="flow-img" src="/images/680x240.png">
                 </div>
@@ -72,8 +72,8 @@
 
         <section class="bg-primary bg-clip text-white px-4 py-18">
             <div class="mx-auto max-w-xs text-center">
-                <div class="text-xl mb-4">Reviews</div>
-                <div class="mb-6">See what others are saying!</div>
+                <div class="text-xl mb-4">Not convinced yet?</div>
+                <div class="mb-6">Well then take a look at what these guys felt!</div>
                 <div class="mb-6 text-black flex overflow-hidden">
                     <div v-for="(review, i) in reviews" :key="i" v-show="reviewShow == i" class="px-2 flex-no-shrink w-full">
                         <div class="bg-white shadow rounded p-8">{{ review }}</div>
@@ -94,10 +94,10 @@
                 </div>
                 <div class="flex-1 flex justify-center items-center p-8">
                     <div class="text-center">
-                        <div class="text-primary mb-2">Title here</div>
-                        <div class="text-xl text-black mb-4">Some text here</div>
+                        <div class="text-primary mb-2">You keep saying Headles..</div>
+                        <div class="text-xl text-black mb-4">What does that even mean?</div>
                         <div class="divider bg-primary"></div>
-                        <div class="text-sm text-grey-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui, voluptatem adipisci beatae sunt nulla esse deserunt velit, dolores veniam quasi quibusdam veritatis sapiente rerum commodi necessitatibus voluptate magnam quos dolore.</div>
+                        <div class="text-sm text-grey-dark">We're glad you asked! Headless is an architecture which allows us to serve your content, with out having to restrict the way you code your application. Pretty sweet right?</div>
                     </div>
                 </div>
             </div>
@@ -107,10 +107,10 @@
             <div class="md:flex max-w-lg mx-auto">
                 <div class="flex-1 flex justify-center items-center p-8">
                     <div class="text-center">
-                        <div class="text-primary mb-2">Title here</div>
-                        <div class="text-xl text-black mb-4">Some text here</div>
+                        <div class="text-primary mb-2">Developers should develop</div>
+                        <div class="text-xl text-black mb-4">And editors should edit!</div>
                         <div class="divider bg-primary"></div>
-                        <div class="text-sm text-grey-dark">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Qui, voluptatem adipisci beatae sunt nulla esse deserunt velit, dolores veniam quasi quibusdam veritatis sapiente rerum commodi necessitatibus voluptate magnam quos dolore.</div>
+                        <div class="text-sm text-grey-dark">We created Whalecore because we felt that developers and content editors should be able to work together in a way that benefits both. Our CMS allows content editors to write awesome content and engange with the costumers, and it allows developers to be crazy and experiment with the latest technologies</div>
                     </div>
                 </div>
                 <div class="flex-1 p-8">
@@ -122,10 +122,10 @@
         <section class="bg-primary-darkest px-4 py-16">
             <div class="mx-auto max-w-lg    ">
                 <div class="mb-8 text-center">
-                    <div class="text-primary mb-2">Title here</div>
+                    <div class="text-primary mb-2">Alright - whats the damage?</div>
                     <div class="text-white mb-2 text-xl">Our Prices</div>
                     <div class="divider bg-white"></div>
-                    <div class="text-sm mx-auto max-w-xs text-grey-lighter">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus placeat, nisi nemo nesciunt natus tempore optio consequatur officiis, itaque ipsa blanditiis animi fugit. Quaerat reprehenderit porro eos cum nemo necessitatibus.</div>
+                    <div class="text-sm mx-auto max-w-xs text-grey-lighter">As we said, we created Whalecore in an attempt to combine the best of both worlds. This is something we truely and dearly believe in. But.. We need to keep our services running, have food on the table and sometimes we gotta check to the whales too! We don't have an investor or anyother form of backing, but we did try and keep our prices to a minimum!</div>
                 </div>
                 <div class="md:flex justify-center">
                     <div v-for="(item, i) in pricePackages" :key="i" class="flex-1 text-center mb-4">
@@ -157,9 +157,9 @@
             return {
                 mobileMenu: false,
                 reviews: [
-                    'Someone said that',
-                    'I sais this',
-                    'We hope for this',
+                    'Whalecore is super simple to use!',
+                    'Their content builder is otherwordly!',
+                    'Data arrives quick, prices are small and I LOVE the whale!',
                 ],
                 reviewShow: 0,
 
