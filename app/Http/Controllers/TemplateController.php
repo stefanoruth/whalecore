@@ -17,7 +17,7 @@ class TemplateController extends Controller
     public function index()
     {
         return TemplateResource::collection(
-            Template::all()
+            Template::orderBy('title', 'ASC')->get()
         );
     }
 

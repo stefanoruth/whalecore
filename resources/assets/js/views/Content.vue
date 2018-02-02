@@ -9,23 +9,30 @@
                 <new-item v-show="modal" @close="modal = false"></new-item>  
             </div>
         </div>
-        <div class="container p-8 mx-auto max-w-md">
-            <div v-if="items.length > 0" class="bg-white border py-4 mb-4">
-                <div v-for="item in items" :key="item.id" class="group flex justify-between mb-4 hover:bg-primary-lightest">
-                    <div class="cursor-pointer flex-1 mr-4 pl-4 py-2" @click="$router.push({name:'content.edit', params:{id:item.id}})">
-                        <div class="text-xl">{{ item.title }}</div>
-                        <div class="text-sm uppercase text-grey-darker">{{ item.template.title }}</div>
-                    </div>
-                    <div class="flex items-center invisible group-hover:visible">
-                        <div class="relative">
-                            <svg class="fill-current h-4 w-4 cursor-pointer text-grey-darker" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
-                            <div class="absolute pin-t bg-white hidden shadow">
-                                <div>Edit</div>
-                                <div>Delete</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="p-4">
+            <div class="container bg-white shadow max-w-lg mx-auto w-full">
+                <table class="border-collapse w-full">
+                    <thead>
+                        <tr>
+                            <th class="px-4 text-left py-4">Content</th>
+                            <th class="px-4 text-left py-4">Template</th>
+                            <th class="px-4 text-left py-4"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in items" :key="item.id" class="group hover:bg-grey border-t border-b">
+                            <td class="py-4 px-4 text-left">{{ item.title }}</td>
+                            <td class="py-4 px-4 text-left">{{ item.template.title }}</td>
+                            <td class="py-4 px-4 text-right">
+                                <div class="group-hover:visible invisible whitespace-no-wrap">
+                                    <router-link :to="{name:'content.edit', params:{id:item.id}}" class="no-underline text-primary hover:text-primary-dark" href="#">Edit</router-link>
+                                    <span>|</span>
+                                    <a class="no-underline text-primary hover:text-primary-dark" href="#">Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

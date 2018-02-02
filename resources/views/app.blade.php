@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('body')
-    <div id="app" class="flex h-screen bg-primary-lightest">
+    <div id="app" class="flex h-screen bg-grey-lightest">
         <navigation></navigation>
         <main class="flex-grow overflow-y-scroll">
             <router-view></router-view>

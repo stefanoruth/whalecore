@@ -19,7 +19,7 @@ class ItemController extends Controller
     public function index()
     {
         return ItemResource::collection(
-            Item::with('template')->get()
+            Item::with('template')->orderBy('title', 'ASC')->get()
         );
     }
 

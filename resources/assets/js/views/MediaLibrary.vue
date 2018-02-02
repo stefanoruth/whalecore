@@ -43,7 +43,7 @@
 
         <div class="p-8 container mx-auto flex flex-wrap">
             <div @click="showImageInfo = true" v-for="(file, i) in visibleFiles" :key="i" class="p-2">
-                <div class="bg-white border overflow-hidden h-48 w-48 flex items-center">
+                <div class="bg-white shadow overflow-hidden h-48 w-48 flex items-center">
                     <img :src="file.path" class="block w-full">
                 </div>
             </div>

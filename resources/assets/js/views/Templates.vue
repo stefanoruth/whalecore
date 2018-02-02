@@ -9,16 +9,28 @@
                 <new-template v-show="modal" @close="modal = false"></new-template>    
             </div>
         </div>
-        <div class="container p-8 mx-auto max-w-md">
-            <div class="bg-white border py-4 mb-4">
-                <div v-for="template in templates" :key="template.id" class="group flex justify-between mb-4 px-4 py-2 hover:bg-primary-lightest">
-                    <div>
-                        <div class="text-xl">{{ template.title }}</div>
-                    </div>
-                    <div class="flex">
-                        <router-link class="invisible group-hover:visible no-underline text-primary self-center p-2" :to="{name: 'template.edit', params: {id: template.id}}">Edit</router-link>
-                    </div>
-                </div>
+        <div class="p-4">
+            <div class="container bg-white shadow max-w-lg mx-auto w-full">
+                <table class="border-collapse w-full">
+                    <thead>
+                        <tr>
+                            <th class="p-4 text-left">Template</th>
+                            <th class="p-4 text-left"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="template in templates" :key="template.id" class="group hover:bg-grey border-t border-b">
+                            <td class="p-4 text-left">{{ template.title }}</td>
+                            <td class="p-4 text-right">
+                                <div class="group-hover:visible invisible whitespace-no-wrap">
+                                    <router-link class="no-underline text-primary hover:text-primary-dark" :to="{name: 'template.edit', params: {id: template.id}}">Edit</router-link>
+                                    <span>|</span>
+                                    <a class="no-underline text-primary hover:text-primary-dark" href="#">Delete</a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

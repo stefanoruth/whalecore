@@ -5,7 +5,7 @@ html {
 }
 
 .btn-flat-primary {
-    @apply .h-full .px-6 .cursor-pointer .uppercase .bg-primary .text-white;
+    @apply .h-full .px-6 .cursor-pointer .uppercase .bg-primary .text-white .select-none;
 
     &:hover {
         @apply .bg-primary-dark;
@@ -166,4 +166,8 @@ html {
 
 .bg-clip {
     clip-path: polygon(0 21%, 100% 0%, 100% 79%, 0% 100%);
+}
+
+.border-collapse {
+    border-collapse: collapse;
 }
