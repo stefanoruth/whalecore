@@ -17,7 +17,6 @@ Route::domain('app.'.config('app.url'))->group(function () {
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login')->middleware('guest');
     Route::get('logout', 'Auth\LoginController@logout')->middleware('auth')->name('logout');
     Route::post('login', 'Auth\LoginController@login')->middleware('guest');
-    Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register')->middleware('guest');
     Route::post('register', 'Auth\RegisterController@register')->middleware('guest');
 
     Route::middleware('auth')->prefix('api')->group(function () {

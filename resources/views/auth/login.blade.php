@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('body')
-	<div class="flex justify-center items-center h-screen bg-grey-light">
+	<div class="flex justify-center items-center h-screen bg-primary">
 		<div class="w-full max-w-xs">
 			<form class="bg-white rounded px-8 py-6 mb-4" method="post" action="{{ route('login') }}">
 				{{ csrf_field() }}
@@ -16,25 +16,20 @@
 				<label class="field mb-4">
 					<input class="apperance-none border-b w-full py-2" name="email" type="text" placeholder="Email">
 					@if($errors->has('email'))
-						<p class="text-red-dark text-xs italic mt-1">{{ $errors->first('email') }}</p>
+						<p class="text-red text-xs italic mt-1">{{ $errors->first('email') }}</p>
 					@endif
 				</label>
 
 				<label class="field mb-4">
 					<input class="apperance-none border-b w-full py-2" name="password" type="password" placeholder="******************">
 					@if($errors->has('password'))
-						<p class="text-red-dark text-xs italic mt-1">{{ $errors->first('password') }}</p>
+						<p class="text-red text-xs italic mt-1">{{ $errors->first('password') }}</p>
 					@endif
 				</label>
 				
 				<button class="btn-primary py-2 font-bold w-full mb-4 mt-2 uppercase" type="submit">Sign In</button>
-				
-				<div class="text-center mb-4">
-					<span>Don't have an account?</span>
-					<a class="text-primary no-underline" href="{{ route('register') }}">Sign up</a>
-				</div>
 			</form>
-			<p class="text-center text-grey-dark text-xs">©{{ date('Y') }} {{ config('app.name') }}. All rights reserved.</p>
+			<p class="text-center text-white text-xs">©{{ date('Y') }} {{ config('app.name') }}. All rights reserved.</p>
 		</div>
 	</div>
 @stop
