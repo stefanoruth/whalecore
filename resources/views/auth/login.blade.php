@@ -1,9 +1,9 @@
 @extends('master')
 
 @section('body')
-	<div class="flex justify-center items-center h-screen bg-primary">
+	<div class="flex justify-center items-center h-screen bg-gradient">
 		<div class="w-full max-w-xs">
-			<form class="bg-white rounded px-8 py-6 mb-4" method="post" action="{{ route('login') }}">
+			<form class="bg-white rounded-lg shadow-lg px-8 py-6" method="post" action="{{ route('login') }}">
 				{{ csrf_field() }}
 				<div class="flex justify-center mb-6 pt-8">
 					<div class="bg-white rounded-full p-2">
@@ -27,9 +27,8 @@
 					@endif
 				</label>
 				
-				<button class="btn-primary py-2 font-bold w-full mb-4 mt-2 uppercase" type="submit">Sign In</button>
+				<button class="btn-primary" type="submit">Sign In</button>
 			</form>
-			<p class="text-center text-white text-xs">©{{ date('Y') }} {{ config('app.name') }}. All rights reserved.</p>
 		</div>
 	</div>
 @stop
