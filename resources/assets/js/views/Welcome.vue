@@ -1,29 +1,16 @@
 <template>
     <div>
         <section class="h-screen bg-gradient flex flex-col">
-                <nav class="px-4 mx-auto w-full relative select-none md:flex md:items-stretch">
+                <nav class="px-4 py-4 mx-auto w-full relative select-none md:flex md:items-stretch">
                     <div class="flex flex-no-shrink items-stretch">
-                        <div class="flex flex-no-grow flex-no-shrink items-center">
-                            <img class=" mr-2 h-10 w-10 block" src="/logo.png" alt="Whaleborg">
-                            <div class="text-white text-sm">Whalecore</div>
-                        </div>
-                        <button class="block md:hidden cursor-pointer ml-auto relative p-4" @click="mobileMenu = !mobileMenu">
-                            <div class="h-6 w-6">
-                                <svg v-show="!mobileMenu" class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
-                                <svg v-show="mobileMenu" class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 8.586L2.929 1.515 1.515 2.929 8.586 10l-7.071 7.071 1.414 1.414L10 11.414l7.071 7.071 1.414-1.414L11.414 10l7.071-7.071-1.414-1.414L10 8.586z"/></svg>
-                            </div>
-                        </button>
-                    </div>
-
-                    <div class="md:flex md:items-stretch md:flex-no-shrink md:flex-grow border-b md:border-b-0" v-bind:class="{'hidden':!mobileMenu}">
-                        <div class="md:flex md:items-stretch md:justify-end ml-auto">
-                            <router-link to="/signup" class="menu-item">Signup</router-link>
-                            <a href="mailto:hello.whalecore@gmail.com" class="menu-item">Contact</a>
-                            <a :href="loginUrl" class="bg-white text-primary flex-no-grow flex-no-shrink no-underline self-center rounded px-2 py-1">Login</a>
-                        </div>
+                        <a href="/" class="flex flex-no-grow flex-no-shrink items-center no-underline">
+                            <img class="mr-2 h-12 w-12 block bg-white p-2 rounded-full" src="/logo.png" alt="Whaleborg">
+                            <div class="text-white">Whalecore</div>
+                        </a>
                     </div>
                 </nav>
-                <div class="flex-1 flex justify-center items-center">
+
+                <div class="px-2 flex-1 flex justify-center items-center">
                     <div>
                         <h1 class="mb-4 text-white text-center">Whalecore a CMS for Developers by Developers</h1>
                         <div class="text-center text-white leading-normal mx-auto mb-4">
@@ -150,7 +137,44 @@
         </section>
 
         <section class="bg-primary text-white px-4 py-6">
-            <div class="text-center">@2018 Whalecore and some more for Jonas & add signup for newsletter</div>
+            <div class="container mx-auto">
+                <div class="md:flex justify-between">
+                    <div class="flex justify-between md:justify-start mb-4">
+                        <div class="mr-8">
+                            <div class="mb-2 uppercase text-primary-darkest font-bold text-xs">Getting Started</div>
+                            <ul class="list-reset">
+                                <li class="mb-1"><a class="block text-white no-underline hover:underline" href="#">Documentation</a></li>
+                                <li class="mb-1"><a class="block text-white no-underline hover:underline" href="#">Api</a></li>
+                            </ul>
+                        </div>
+                        <div class="mr-8">
+                            <div class="mb-2 uppercase text-primary-darkest font-bold text-xs">About</div>
+                            <ul class="list-reset">
+                                <li class="mb-1"><a class="block text-white no-underline hover:underline" href="#">Terms of Service</a></li>
+                                <li class="mb-1"><a class="block text-white no-underline hover:underline" href="#">Privacy Policy</a></li>
+                            </ul>
+                        </div>
+                        <div class="mr-8">
+                            <div class="mb-2 uppercase text-primary-darkest font-bold text-xs">Connect</div>
+                            <ul class="list-reset">
+                                <li class="mb-1"><a class="block text-white no-underline hover:underline" href="mailto:hello.whalecore@gmail.com">Contact Us</a></li>
+                                <li class="mb-1"><a class="block text-white no-underline hover:underline" href="https://www.facebook.com/WhalecoreCms/" target="_blank">Facebook</a></li>
+                                <li class="mb-1"><a class="block text-white no-underline hover:underline" href="https://twitter.com/WhalecoreCms" target="_blank">Twitter</a></li>
+                                <li class="mb-1"><a class="block text-white no-underline hover:underline" href="#">Instagram</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <div class="uppercase text-primary-darkest font-bold text-xs mb-2">Join our Newsletter</div>
+                        <div class="flex">
+                            <input class="px-4 py-2 text-black font-sans" type="email" name="email">
+                            <button class="uppercase text-white bg-primary-darkest px-4 py-2">Join</button>
+                            <div v-if="">{{ }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-left">@2018 Whalecore</div>
+            </div>
         </section>
     </div>
 </template>
