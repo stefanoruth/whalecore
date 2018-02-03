@@ -165,12 +165,7 @@
                         </div>
                     </div>
                     <div class="mb-4">
-                        <div class="uppercase text-primary-darkest font-bold text-xs mb-2">Join our Newsletter</div>
-                        <div class="flex">
-                            <input class="px-4 py-2 text-black font-sans" type="email" name="email">
-                            <button class="uppercase text-white bg-primary-darkest px-4 py-2">Join</button>
-                            <div v-if="">{{ }}</div>
-                        </div>
+                        <newsletter-signup></newsletter-signup>
                     </div>
                 </div>
                 <div class="text-left">@2018 Whalecore</div>
@@ -247,6 +242,10 @@
                     }
                 },5000);
             }
-        }
+        },
+
+        components: {
+            'newsletter-signup': require('../components/NewsletterSignup'),
+        },
     }
 </script>
