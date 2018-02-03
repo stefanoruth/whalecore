@@ -17,8 +17,7 @@ Route::domain('app.'.config('app.url'))->group(function () {
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login')->middleware('guest');
     Route::get('logout', 'Auth\LoginController@logout')->middleware('auth')->name('logout');
     Route::post('login', 'Auth\LoginController@login')->middleware('guest');
-    Route::post('register', 'Auth\RegisterController@register')->middleware('guest');
-
+    
     Route::middleware('auth')->prefix('api')->group(function () {
         Route::apiResource('projects', 'ProjectController');
         Route::apiResource('tenant', 'TenantController')->only(['store', 'index']);
@@ -39,4 +38,5 @@ Route::domain('app.'.config('app.url'))->group(function () {
 });
 
 Route::apiResource('mail/subscribe', 'MailSubscriptionController')->only(['store', 'destroy']);
+Route::post('register', 'Auth\RegisterController@register')->middleware('guest')->name('register');
 Route::view('/', 'welcome');
