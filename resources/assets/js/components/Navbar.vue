@@ -50,17 +50,9 @@
        </div>
 
        <div class="py-4 px-6">
-           <div class="rounded-lg bg-primary relative py-2 pr-6 pl-4 cursor-pointer w-full group hover:bg-primary-dark">
-               <div class="text-white">Project: <span v-if="project != null">{{ project.title }}</span></div>
-               <div v-if="otherProjects.length > 0" class="pointer-events-none absolute pin-y pin-r flex items-center px-1 text-white">
-                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-                </div>
-                <div v-if="otherProjects.length > 0" class="absolute pin-to pin-l w-full hidden group-hover:block bg-white py-2 rounded shadow">
-                    <div v-for="item in otherProjects" :key="item.id" class="mb-1">
-                        <a class="text-black px-2 block" @click="loginToProject(item.id)">{{ item.title }}</a>
-                    </div>
-                </div>
-           </div>
+            <router-link to="/" v-if="project != null" class="flex text-white no-underline bg-primary-dark hover:bg-primary py-2 block px-4 rounded">
+                <span>Project: {{ project.title }}</span>
+            </router-link>
        </div>
     </nav>
 </template>
