@@ -16,7 +16,6 @@
                     <option-members class="border-b" :project="project"></option-members>
                     <option-api class="border-b" :project="project"></option-api>
                     <option-billing class="border-b"></option-billing>
-                    <option-newsletter class="border-b" :project="project"></option-newsletter>
                     <option-language :project="project"></option-language>
                 </div>                
             </div>
@@ -44,7 +43,6 @@
             'option-general': require('./options/General'),
             'option-api': require('./options/Api'),
             'option-language': require('./options/Language'),
-            'option-newsletter': require('./options/Newsletter'),
         }
     };
 </script>
