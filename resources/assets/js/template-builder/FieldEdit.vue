@@ -86,6 +86,14 @@
     export default {
         props: ['field'],
 
+        watch: {
+            'field.title': function(newVal, oldVal) {
+                if (newVal != null && (oldVal == null || this.field.id == this.$options.filters.slugify(oldVal))) {
+                    this.field.id = this.$options.filters.slugify(newVal);
+                }
+            },
+        },
+
         methods: {
             hasSubFields() {
                 return ['section', 'repeater'].indexOf(this.field.type) > -1;

@@ -32,6 +32,15 @@ Vue.filter('pretty', function(value) {
     return JSON.stringify(value, null, 2);
 });
 
+Vue.filter('slugify', function(text) {
+    return text.toString().toLowerCase()
+        .replace(/\s+/g, '-')           // Replace spaces with -
+        .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+        .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+        .replace(/^-+/, '')             // Trim - from start of text
+        .replace(/-+$/, '');            // Trim - from end of text
+});
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
