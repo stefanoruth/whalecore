@@ -7,21 +7,27 @@
             </div>
 
             <div class="flex items-center">
-                <div v-if="languages.length > 1" class="relative mr-4">
-                    <select class="input pr-6" v-model="selectedLang">
-                        <option v-for="lang in languages" :key="lang.code" :value="lang.code">{{ lang.name }}</option>
-                    </select>
-                    <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
-                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                <div class="self-center mr-4">
+                    <div class="label">Language</div>
+                    <div v-if="languages.length > 1" class="relative">
+                        <select class="input pr-6" v-model="selectedLang">
+                            <option v-for="lang in languages" :key="lang.code" :value="lang.code">{{ lang.name }}</option>
+                        </select>
+                        <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                        </div>
                     </div>
                 </div>
-                <div class="relative mr-4">
-                    <select class="input pr-6" v-model="showOutput">
-                        <option :value="false">Content</option>
-                        <option :value="true">Json</option>
-                    </select>
-                    <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
-                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                <div class="self-center mr-4">
+                    <div class="label">Display</div>
+                    <div class="relative">
+                        <select class="input pr-6" v-model="showOutput">
+                            <option :value="false">Content</option>
+                            <option :value="true">Json</option>
+                        </select>
+                        <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+                        </div>
                     </div>
                 </div>
                 <button class="btn-flat-primary" @click="saveContent">Publish</button>
