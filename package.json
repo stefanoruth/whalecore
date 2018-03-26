@@ -14,10 +14,10 @@
         "cross-env": "^5.0.1",
         "dropzone": "^5.2.0",
         "font-awesome": "^4.7.0",
-        "laravel-mix": "^1.0",
-        "laravel-mix-purgecss": "^1.0.4",
+        "laravel-mix": "^2.1.11",
+        "laravel-mix-purgecss": "^2.0.0-rc.1",
         "lodash": "^4.17.4",
-        "tailwindcss": "^0.4.0",
+        "tailwindcss": "^0.5.1",
         "tinymce": "^4.7.2",
         "vue": "^2.1.10",
         "vue-router": "^3.0.1"
