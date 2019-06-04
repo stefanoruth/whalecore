@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f7aa28418cf3f047d4e3e70fc57d3fe6",
+    "content-hash": "a3fd80e66a04684e6e728a14957f1ca9",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2856,24 +2856,24 @@
         },
         {
             "name": "tightenco/ziggy",
-            "version": "v0.6.2",
+            "version": "v0.7.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tightenco/ziggy.git",
-                "reference": "cb7a08c8ef5492711ddbff4003d1e53a9fb3431f"
+                "reference": "aa4c42aaec9516da892bc2e9f6e992582646af77"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tightenco/ziggy/zipball/cb7a08c8ef5492711ddbff4003d1e53a9fb3431f",
-                "reference": "cb7a08c8ef5492711ddbff4003d1e53a9fb3431f",
+                "url": "https://api.github.com/repos/tightenco/ziggy/zipball/aa4c42aaec9516da892bc2e9f6e992582646af77",
+                "reference": "aa4c42aaec9516da892bc2e9f6e992582646af77",
                 "shasum": ""
             },
             "require": {
-                "laravel/framework": "^5.4.29"
+                "laravel/framework": "~5.4"
             },
             "require-dev": {
                 "mikey179/vfsstream": "^1.6",
-                "orchestra/testbench": "~3.4"
+                "orchestra/testbench": "~3.6"
             },
             "type": "library",
             "extra": {
@@ -2903,7 +2903,7 @@
                 }
             ],
             "description": "Generates a Blade directive exporting all of your named Laravel routes. Also provides a nice route() helper function in JavaScript.",
-            "time": "2018-02-17T05:58:12+00:00"
+            "time": "2019-04-26T22:03:47+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
