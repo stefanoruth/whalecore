@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "08d2bac6f928e0e2b8ea8137452bf416",
@@ -330,16 +330,16 @@
         },
         {
             "name": "erusev/parsedown",
-            "version": "1.7.1",
+            "version": "1.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/erusev/parsedown.git",
-                "reference": "92e9c27ba0e74b8b028b111d1b6f956a15c01fc1"
+                "reference": "6d893938171a817f4e9bc9e86f2da1e370b7bcd7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/erusev/parsedown/zipball/92e9c27ba0e74b8b028b111d1b6f956a15c01fc1",
-                "reference": "92e9c27ba0e74b8b028b111d1b6f956a15c01fc1",
+                "url": "https://api.github.com/repos/erusev/parsedown/zipball/6d893938171a817f4e9bc9e86f2da1e370b7bcd7",
+                "reference": "6d893938171a817f4e9bc9e86f2da1e370b7bcd7",
                 "shasum": ""
             },
             "require": {
@@ -372,7 +372,7 @@
                 "markdown",
                 "parser"
             ],
-            "time": "2018-03-08T01:11:30+00:00"
+            "time": "2019-03-17T18:48:37+00:00"
         },
         {
             "name": "fideloper/proxy",
@@ -1361,16 +1361,16 @@
         },
         {
             "name": "phenx/php-svg-lib",
-            "version": "v0.3",
+            "version": "v0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PhenX/php-svg-lib.git",
-                "reference": "a85f7fe9fe08d093a4a8583cdd306b553ff918aa"
+                "reference": "8f543ede60386faec9b0012833536de4b6083bb9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PhenX/php-svg-lib/zipball/a85f7fe9fe08d093a4a8583cdd306b553ff918aa",
-                "reference": "a85f7fe9fe08d093a4a8583cdd306b553ff918aa",
+                "url": "https://api.github.com/repos/PhenX/php-svg-lib/zipball/8f543ede60386faec9b0012833536de4b6083bb9",
+                "reference": "8f543ede60386faec9b0012833536de4b6083bb9",
                 "shasum": ""
             },
             "require": {
@@ -1397,7 +1397,7 @@
             ],
             "description": "A library to read, parse and export to PDF SVG files.",
             "homepage": "https://github.com/PhenX/php-svg-lib",
-            "time": "2017-05-24T10:07:27+00:00"
+            "time": "2018-04-14T14:36:18+00:00"
         },
         {
             "name": "predis/predis",
